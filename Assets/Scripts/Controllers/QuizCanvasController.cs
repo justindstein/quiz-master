@@ -11,33 +11,38 @@ public class QuizCanvasController : MonoBehaviour
 
     public Button[] AnswerButtons;
 
-    //public Question CurrentQuestion;
+    public CanvasState CurrentCanvasState;
 
-    void Start()
+    public Sprite DefaultAnswerSprite;
+
+    public Sprite CorrectAnswerSprite;
+
+    private void Start()
+    {
+        this.CurrentCanvasState.LoadQuestion(this.Question);
+
+        this.LoadCanvasState(this.CurrentCanvasState);
+    }
+
+    public void LoadCanvasState(CanvasState canvasState)
     {
         // Load the question into UI
-        this.loadQuestion(this.QuestionText, this.Question);
+        this.loadQuestion(this.QuestionText, canvasState);
 
         // Load the answers into UI
-        this.loadAnswers(this.AnswerButtons, this.Question);
-
-        // Save as CurrentQuestion
-        // TODO: figuring out the correct answer by string comparison is not good.
-        //this.CurrentQuestion.SetQuestion(this.Question);
+        this.loadAnswers(this.AnswerButtons, canvasState);
     }
 
-    private void loadQuestion(TextMeshProUGUI questionText, Question question)
+    private void loadQuestion(TextMeshProUGUI questionText, CanvasState canvasState)
     {
-        questionText.text = question.Text;
+        questionText.text = canvasState.Question;
     }
 
-    private void loadAnswers(Button[] answerButtons, Question question)
+    private void loadAnswers(Button[] answerButtons, CanvasState canvasState)
     {
         //Debug.Log(string.Format("QuizController.loadAnswers {0} {1}", answerButtons, question));
         int answerButtonsCount = answerButtons.Length;
-        int answersCount = question.IncorrectAnswers.Length + 1;
-
-        List<string> answers = createRandomizedAnswersList(question);
+        int answersCount = canvasState.Answers.Count;
 
         // Sanity check
         // TODO: Auto-generate buttons to match the number of questions up to 4
@@ -45,14 +50,15 @@ public class QuizCanvasController : MonoBehaviour
         // TODO: Or possibly have multiple correct answers as an array
         if (answerButtonsCount != answersCount)
         {
-            Debug.LogWarning(string.Format("QuizController.loadAnswers buttons and answers counts do not match: [answerButtonsCount: {0}] [answersCount: {1}] [question: {2}]", answerButtonsCount, answersCount, question.Text));
+            Debug.LogWarning(string.Format("QuizController.loadAnswers buttons and answers counts do not match: [answerButtonsCount: {0}] [answersCount: {1}] [canvasState.Question: {2}]", answerButtonsCount, answersCount, canvasState.Question));
             return;
         }
 
-        for (int i=0; i < answerButtons.Length; i++)
+        // TODO rewrite to generate number of buttons to match number of answers up to a certain amount
+        for (int i = 0; i < answerButtons.Length; i++)
         {
             TextMeshProUGUI textBox = answerButtons[i].GetComponentInChildren<TextMeshProUGUI>();
-            textBox.text = answers[i];
+            textBox.text = canvasState.Answers[i];
         }
 
         //Debug.Log(string.Format("QuizController.loadAnswers [answerButtonsCount: {0}] [answersCount: {1}]", answerButtonsCount, answersCount));
@@ -62,34 +68,23 @@ public class QuizCanvasController : MonoBehaviour
         // too few -> dynamically create number of boxes
     }
 
-    private List<string> createRandomizedAnswersList(Question question)
-    {
-        List<string> answers = new List<string>(question.IncorrectAnswers);
-        answers.Shuffle();
-
-        int correctAnswerIndex = answers.RandomInsert(question.CorrectAnswer);
-
-        // TODO: need to do something with the correctAnswerIndex
-        return answers;
-    }
-
-    public Sprite UnselectSprite;
-
-    public Sprite SelectSprite;
-
     public void OnAnswerSelected(int index)
     {
-        this.GetComponent<Image>().sprite = SelectSprite;
-        TextMeshProUGUI textBox = this.GetComponentInChildren<TextMeshProUGUI>();
+        // Correct answer
+        if (index == CurrentCanvasState.CorrectAnswerIndex)
+        {
+            QuestionText.text = "Correct!";
+            Image answerButtonImage = this.AnswerButtons[index].GetComponent<Image>();
+            answerButtonImage.sprite = CorrectAnswerSprite;
+        }
 
-        //if (textBox.text.Equals(CurrentQuestion.CorrectAnswer))
-        //{
-        //    QuestionText.text = "Correct!";
-        //}
-        //else
-        //{
-        //    Debug.Log(string.Format("{0} vs {1}", textBox.text, CurrentQuestion.CorrectAnswer));
-        //    Debug.Log("Incorrect!");
-        //}
+        // Incorrect answer
+        else
+        {
+            //Debug.Log(string.Format("{0} vs {1}", textBox.text, CurrentCanvasState.CorrectAnswerIndex));
+            QuestionText.text = string.Format("Wrong! Correct answer: \"{0}\"", CurrentCanvasState.GetCorrectAnswer());
+            Image answerButtonImage = this.AnswerButtons[CurrentCanvasState.CorrectAnswerIndex].GetComponent<Image>();
+            answerButtonImage.sprite = CorrectAnswerSprite;
+        }
     }
 }

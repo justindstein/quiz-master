@@ -246,9 +246,9 @@ MonoBehaviour:
   - {fileID: 1728184042}
   - {fileID: 935726376}
   - {fileID: 1029393882}
-  CurrentQuestion: {fileID: 11400000, guid: 87f83b3574bfa40139f79e139f367d2e, type: 2}
-  UnselectSprite: {fileID: 0}
-  SelectSprite: {fileID: 0}
+  CurrentCanvasState: {fileID: 11400000, guid: 3a8813bb0090343dbb0ea5e71bf829b3, type: 2}
+  DefaultAnswerSprite: {fileID: 21300000, guid: 2e34011362ea2420f9796a94ae5c4164, type: 3}
+  CorrectAnswerSprite: {fileID: 21300000, guid: e89f51b7621c04fffa47e63913381264, type: 3}
 --- !u!1 &178989153
 GameObject:
   m_ObjectHideFlags: 0

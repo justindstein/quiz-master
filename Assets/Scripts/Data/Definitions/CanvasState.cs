@@ -1,21 +1,29 @@
+using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu]
 public class CanvasState : ScriptableObject
 {
     public string Question;
 
-    public string[] Answers;
+    public List<string> Answers;
 
     public int CorrectAnswerIndex;
 
     public void LoadQuestion(Question question)
     {
         this.Question = question.Text;
-        string correctAnswer = question.CorrectAnswer;
-        this.Answers[0] = "1";
-        this.Answers[1] = "1";
-        this.Answers[2] = "1";
-        this.Answers[3] = "1";
-        this.CorrectAnswerIndex = 1;
+
+        List<string> answers = new List<string>(question.IncorrectAnswers);
+        answers.Shuffle();
+        this.Answers = answers;
+
+        int correctAnswerIndex = answers.RandomInsert(question.CorrectAnswer);
+        this.CorrectAnswerIndex = correctAnswerIndex;
+    }
+
+    public string GetCorrectAnswer()
+    {
+        return this.Answers[this.CorrectAnswerIndex];
     }
 }
