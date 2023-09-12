@@ -13,8 +13,19 @@ public class Question : ScriptableObject
 
     public string[] IncorrectAnswers;
 
+    public string[] Hints; // TODO: convert this to a stack at some point
+
     [TextArea(2, 6)]
-    public string Explanation;
+    public string AnswerExplanation;
+
+    public void SetQuestion(Question question)
+    {
+        this.Text = question.Text;
+        this.Category = question.Category;
+        this.CorrectAnswer = question.CorrectAnswer;
+        this.IncorrectAnswers = question.IncorrectAnswers;
+        this.AnswerExplanation = question.AnswerExplanation;
+    }
 
     public void SetText(string text)
     {
@@ -38,6 +49,6 @@ public class Question : ScriptableObject
 
     public void SetExplanation(string explanation)
     {
-        this.Explanation = explanation;
+        this.AnswerExplanation = explanation;
     }
 }

@@ -2,15 +2,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
-using System.Linq;
 
-public class QuizController : MonoBehaviour
+public class QuizCanvasController : MonoBehaviour
 {
     public TextMeshProUGUI QuestionText;
 
     public Question Question;
 
     public Button[] AnswerButtons;
+
+    //public Question CurrentQuestion;
 
     void Start()
     {
@@ -19,6 +20,10 @@ public class QuizController : MonoBehaviour
 
         // Load the answers into UI
         this.loadAnswers(this.AnswerButtons, this.Question);
+
+        // Save as CurrentQuestion
+        // TODO: figuring out the correct answer by string comparison is not good.
+        //this.CurrentQuestion.SetQuestion(this.Question);
     }
 
     private void loadQuestion(TextMeshProUGUI questionText, Question question)
@@ -46,8 +51,8 @@ public class QuizController : MonoBehaviour
 
         for (int i=0; i < answerButtons.Length; i++)
         {
-            TextMeshProUGUI textMeshPro = answerButtons[i].GetComponentInChildren<TextMeshProUGUI>();
-            textMeshPro.text = answers[i];
+            TextMeshProUGUI textBox = answerButtons[i].GetComponentInChildren<TextMeshProUGUI>();
+            textBox.text = answers[i];
         }
 
         //Debug.Log(string.Format("QuizController.loadAnswers [answerButtonsCount: {0}] [answersCount: {1}]", answerButtonsCount, answersCount));
@@ -59,11 +64,32 @@ public class QuizController : MonoBehaviour
 
     private List<string> createRandomizedAnswersList(Question question)
     {
-        List<string> answers = new List<string>(question.IncorrectAnswers)
-        {
-            question.CorrectAnswer
-        };
+        List<string> answers = new List<string>(question.IncorrectAnswers);
         answers.Shuffle();
+
+        int correctAnswerIndex = answers.RandomInsert(question.CorrectAnswer);
+
+        // TODO: need to do something with the correctAnswerIndex
         return answers;
+    }
+
+    public Sprite UnselectSprite;
+
+    public Sprite SelectSprite;
+
+    public void OnAnswerSelected(int index)
+    {
+        this.GetComponent<Image>().sprite = SelectSprite;
+        TextMeshProUGUI textBox = this.GetComponentInChildren<TextMeshProUGUI>();
+
+        //if (textBox.text.Equals(CurrentQuestion.CorrectAnswer))
+        //{
+        //    QuestionText.text = "Correct!";
+        //}
+        //else
+        //{
+        //    Debug.Log(string.Format("{0} vs {1}", textBox.text, CurrentQuestion.CorrectAnswer));
+        //    Debug.Log("Incorrect!");
+        //}
     }
 }
