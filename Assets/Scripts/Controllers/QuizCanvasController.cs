@@ -17,11 +17,11 @@ public class QuizCanvasController : MonoBehaviour
 
     public Sprite CorrectAnswerSprite;
 
+    public QuestionSetManager QuestionSetManager;
+
     private void Start()
     {
-        this.CurrentCanvasState.LoadQuestion(this.Question);
-
-        this.LoadCanvasState(this.CurrentCanvasState);
+        this.loadNewQuestion(this.Question);
     }
 
     public void LoadCanvasState(CanvasState canvasState)
@@ -57,8 +57,13 @@ public class QuizCanvasController : MonoBehaviour
         // TODO rewrite to generate number of buttons to match number of answers up to a certain amount
         for (int i = 0; i < answerButtons.Length; i++)
         {
-            TextMeshProUGUI textBox = answerButtons[i].GetComponentInChildren<TextMeshProUGUI>();
-            textBox.text = canvasState.Answers[i];
+            Image buttonImage = answerButtons[i].GetComponent<Image>();
+            buttonImage.sprite = this.DefaultAnswerSprite;
+
+            answerButtons[i].interactable = true;
+
+            TextMeshProUGUI buttonTMP = answerButtons[i].GetComponentInChildren<TextMeshProUGUI>();
+            buttonTMP.text = canvasState.Answers[i];
         }
 
         //Debug.Log(string.Format("QuizController.loadAnswers [answerButtonsCount: {0}] [answersCount: {1}]", answerButtonsCount, answersCount));
@@ -82,9 +87,32 @@ public class QuizCanvasController : MonoBehaviour
         else
         {
             //Debug.Log(string.Format("{0} vs {1}", textBox.text, CurrentCanvasState.CorrectAnswerIndex));
-            QuestionText.text = string.Format("Wrong! Correct answer: \"{0}\"", CurrentCanvasState.GetCorrectAnswer());
+            QuestionText.text = string.Format("Wrong! Correct answer:\n\"{0}\"", CurrentCanvasState.GetCorrectAnswer());
             Image answerButtonImage = this.AnswerButtons[CurrentCanvasState.CorrectAnswerIndex].GetComponent<Image>();
             answerButtonImage.sprite = CorrectAnswerSprite;
         }
+
+        // Disable buttons
+        this.setInteractable(this.AnswerButtons, false);
+
+        // Load new question
+        this.loadNewQuestion(this.QuestionSetManager.GetNextQuestion());
+    }
+
+    private void setInteractable(Button[] buttons, bool interactable)
+    {
+        foreach (Button button in buttons)
+        {
+            button.interactable = interactable;
+        }
+    }
+
+    private void loadNewQuestion(Question question)
+    {
+        // Load next question into CurrentCanvasState
+        this.CurrentCanvasState.LoadQuestion(question);
+
+        // Load CurrentCanvasState into Canvas
+        this.LoadCanvasState(this.CurrentCanvasState);
     }
 }

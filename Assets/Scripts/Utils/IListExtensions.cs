@@ -11,7 +11,7 @@ public static class IListExtensions
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <param name="list"></param>
-    public static void Shuffle<T>(this IList<T> list)
+    public static IList<T> Shuffle<T>(this IList<T> list)
     {
         for (int i = list.Count - 1; i > 0; i--)
         {
@@ -20,6 +20,7 @@ public static class IListExtensions
             list[randomIndex] = list[i];
             list[i] = temp;
         }
+        return list;
     }
 
     /// <summary>
