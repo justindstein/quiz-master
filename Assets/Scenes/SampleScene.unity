@@ -2005,6 +2005,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParentImage: {fileID: 1836642607}
+  DefaultSprite: {fileID: 21300000, guid: 3e801bce5491b4d22bc235d827b64bdc, type: 3}
+  PausedSprite: {fileID: 21300000, guid: d51c9612e90ed4ef19a369aa90d4cb54, type: 3}
   TimeToAnswer: 10
 --- !u!114 &1836642610
 MonoBehaviour:

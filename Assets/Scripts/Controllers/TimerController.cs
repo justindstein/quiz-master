@@ -1,10 +1,13 @@
 using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
 
 public class TimerController : MonoBehaviour
 {
     public Image ParentImage;
+
+    public Sprite DefaultSprite;
+
+    public Sprite PausedSprite;
 
     public float TimeToAnswer;
 
@@ -28,11 +31,13 @@ public class TimerController : MonoBehaviour
         this.elapsedTime = 0;
         this.isTimerActive = true;
         this.UpdateTimerImage(this.ParentImage, this.maxFillAmount, this.elapsedTime, this.TimeToAnswer);
+        this.ParentImage.sprite = this.DefaultSprite;
     }
 
     public void StopTimer()
     {
         this.isTimerActive = false;
+        this.ParentImage.sprite = this.PausedSprite;
     }
 
     private void UpdateTimerImage(Image image, float maxFillAmount, float elapsedTime, float timeToAnswer)
