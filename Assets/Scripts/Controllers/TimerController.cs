@@ -27,13 +27,12 @@ public class TimerController : MonoBehaviour
     {
         this.elapsedTime = 0;
         this.isTimerActive = true;
+        this.UpdateTimerImage(this.ParentImage, this.maxFillAmount, this.elapsedTime, this.TimeToAnswer);
     }
 
     public void StopTimer()
     {
         this.isTimerActive = false;
-        this.elapsedTime = 0;
-        this.UpdateTimerImage(this.ParentImage, this.maxFillAmount, this.elapsedTime, this.TimeToAnswer); // TODO: Do I need this?
     }
 
     private void UpdateTimerImage(Image image, float maxFillAmount, float elapsedTime, float timeToAnswer)

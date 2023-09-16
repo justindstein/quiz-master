@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: InvokeOnLoadQuestion
   m_EditorClassIdentifier: 
   MethodName: InvokeOnloadQuestion
-  Time: 5
+  Time: 3
