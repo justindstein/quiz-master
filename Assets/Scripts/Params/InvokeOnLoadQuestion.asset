@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: InvokeOnLoadQuestion
   m_EditorClassIdentifier: 
   MethodName: InvokeOnloadQuestion
-  Time: 3
+  Time: {fileID: 11400000, guid: 9af3268aebf6747a89ac154ccffef2bb, type: 2}

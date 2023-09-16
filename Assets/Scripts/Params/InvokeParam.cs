@@ -5,6 +5,6 @@ public class InvokeParam : ScriptableObject
 {
     public string MethodName;
 
-    public float Time;
+    public FloatVariable Time;
 }
 

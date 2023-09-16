@@ -1,10 +1,9 @@
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.Events;
 using System;
-using System.Collections;
+using System.Collections.Generic;
 
 public class QuizCanvasController : MonoBehaviour
 {
@@ -48,36 +47,33 @@ public class QuizCanvasController : MonoBehaviour
         questionText.text = canvasState.Question;
     }
 
-    private void loadAnswers(Button[] answerButtons, CanvasState canvasState)
+    private void loadAnswers(IList<Button> answerButtons, CanvasState canvasState)
     {
         //Debug.Log(string.Format("QuizController.loadAnswers {0} {1}", answerButtons, question));
-        int answerButtonsCount = answerButtons.Length;
-        int answersCount = canvasState.Answers.Count;
 
         // Sanity check
         // TODO: Auto-generate buttons to match the number of questions up to 4
         // TODO: Or possibly choose a sub-set if there are too many incorrect answers
         // TODO: Or possibly have multiple correct answers as an array
+        int answerButtonsCount = answerButtons.Count;
+        int answersCount = canvasState.Answers.Count;
         if (answerButtonsCount != answersCount)
         {
             Debug.LogWarning(string.Format("QuizController.loadAnswers buttons and answers counts do not match: [answerButtonsCount: {0}] [answersCount: {1}] [canvasState.Question: {2}]", answerButtonsCount, answersCount, canvasState.Question));
             return;
         }
 
+        // Enable buttons
+        UIUtil.SetInteractable(answerButtons, true);
+
+        // Set sprite to default
+        UIUtil.SetSprite(answerButtons, this.DefaultAnswerSprite);
+
+        // Set answer button text
+        UIUtil.SetText(answerButtons, canvasState.Answers);
+
         // TODO rewrite to generate number of buttons to match number of answers up to a certain amount
-        for (int i = 0; i < answerButtons.Length; i++)
-        {
-            Image buttonImage = answerButtons[i].GetComponent<Image>();
-            buttonImage.sprite = this.DefaultAnswerSprite;
-
-            answerButtons[i].interactable = true;
-
-            TextMeshProUGUI buttonTMP = answerButtons[i].GetComponentInChildren<TextMeshProUGUI>();
-            buttonTMP.text = canvasState.Answers[i];
-        }
-
         //Debug.Log(string.Format("QuizController.loadAnswers [answerButtonsCount: {0}] [answersCount: {1}]", answerButtonsCount, answersCount));
-
         // if number of answers not equal to number of answer buttosn
         // too many -> ignore some
         // too few -> dynamically create number of boxes
@@ -104,12 +100,12 @@ public class QuizCanvasController : MonoBehaviour
         answerButtonImage.sprite = CorrectAnswerSprite;
 
         // Disable buttons
-        this.setInteractable(this.AnswerButtons, false);
+        UIUtil.SetInteractable(this.AnswerButtons, false);
     }
 
     public void InvokeMethod(InvokeParam invokeParam)
     {
-        Invoke(invokeParam.MethodName, invokeParam.Time);
+        Invoke(invokeParam.MethodName, invokeParam.Time.Value);
     }
 
     private void InvokeOnloadQuestion()
@@ -125,16 +121,7 @@ public class QuizCanvasController : MonoBehaviour
         answerButtonImage.sprite = CorrectAnswerSprite;
 
         // Disable buttons
-        this.setInteractable(this.AnswerButtons, false);
-    }
-
-
-    private void setInteractable(Button[] buttons, bool interactable)
-    {
-        foreach (Button button in buttons)
-        {
-            button.interactable = interactable;
-        }
+        UIUtil.SetInteractable(this.AnswerButtons, false);
     }
 
     public void LoadNewQuestion()
