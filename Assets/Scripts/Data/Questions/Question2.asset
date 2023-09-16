@@ -12,13 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0f2236f1817348eaaa98da148bb6675, type: 3}
   m_Name: Question2
   m_EditorClassIdentifier: 
-  QuestionText: 
   Text: What two items does Bilbo give to Frodo in Rivendell?
-  Category: {fileID: 11400000, guid: fabfd93f569ac42da94044981fef2487, type: 2}
   CorrectAnswer: Mithril shirt and sword
   IncorrectAnswers:
   - Bow and arrows
   - The One Ring and Sting
   - Shirt and cloak
-  Explanation: Frodo recieves a Mithril shirt, which saves his life in Moria, and
-    his sword, Sting.
+  Hints: []
+  AnswerExplanation: Frodo recieves a Mithril shirt, which saves his life in Moria,
+    and his sword, Sting.

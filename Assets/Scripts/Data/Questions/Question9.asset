@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d0f2236f1817348eaaa98da148bb6675, type: 3}
-  m_Name: Question3
+  m_Name: Question9
   m_EditorClassIdentifier: 
-  Text: What is Gandalf known as to the Elves?
-  CorrectAnswer: Mithrandir
+  Text: What race is Smeagol?
+  CorrectAnswer: Hobbit (Stoor)
   IncorrectAnswers:
-  - Thorin
-  - Celeborn
-  - Glorfindel
+  - Orc
+  - Gollum
+  - Elf
   Hints: []
-  AnswerExplanation: After Gandalf 'dies' in Moria, and the company reaches Lothlorien,
-    the elves sing a song about Mithrandir, and Frodo learns that it is a song about
-    Gandalf.
+  AnswerExplanation: Smeagol, or Gollum to his enemies, is or was, a hobbit (or a
+    close relative of the hobbits). The power of the One Ring mutated him into the
+    foul creature we know and love.

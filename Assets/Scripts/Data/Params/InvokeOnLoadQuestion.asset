@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e428c54dec2b415ab1256582039b380, type: 3}
   m_Name: InvokeOnLoadQuestion
   m_EditorClassIdentifier: 
-  MethodName: OnLoadQuestion
+  MethodName: InvokeOnloadQuestion
   Time: 5

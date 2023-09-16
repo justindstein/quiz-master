@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d0f2236f1817348eaaa98da148bb6675, type: 3}
-  m_Name: Question3
+  m_Name: Question10
   m_EditorClassIdentifier: 
-  Text: What is Gandalf known as to the Elves?
-  CorrectAnswer: Mithrandir
+  Text: Who is attacked by Black Riders in the town of Bree while out for some fresh
+    air?
+  CorrectAnswer: Merry
   IncorrectAnswers:
-  - Thorin
-  - Celeborn
-  - Glorfindel
+  - Samwise
+  - Pippin
+  - Aragorn
   Hints: []
-  AnswerExplanation: After Gandalf 'dies' in Moria, and the company reaches Lothlorien,
-    the elves sing a song about Mithrandir, and Frodo learns that it is a song about
-    Gandalf.
+  AnswerExplanation: Merry is overcome and knocked out by Black Riders outside the
+    Prancing Pony.

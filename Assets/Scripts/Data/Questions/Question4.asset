@@ -12,14 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0f2236f1817348eaaa98da148bb6675, type: 3}
   m_Name: Question4
   m_EditorClassIdentifier: 
-  QuestionText: 
   Text: There are four Hobbits, Merry, Pippin, Frodo, and Samwise. What are their
     last names?
-  Category: {fileID: 11400000, guid: fabfd93f569ac42da94044981fef2487, type: 2}
   CorrectAnswer: Brandybuck, Took, Baggins, and Gamgee
   IncorrectAnswers:
   - Brandywine, Terk, Baggin, Gimli
   - Buckland, Tool, Bergins, Gandalf
   - Barliman, Tolk, Buggins, Gamgel
-  Explanation: Frodo, Merry, and Pippin are all related through marriage of their
-    parents and such. Sam is Frodo's faithful servant.
+  Hints: []
+  AnswerExplanation: Frodo, Merry, and Pippin are all related through marriage of
+    their parents and such. Sam is Frodo's faithful servant.

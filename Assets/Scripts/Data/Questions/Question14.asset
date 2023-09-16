@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d0f2236f1817348eaaa98da148bb6675, type: 3}
-  m_Name: Question3
+  m_Name: Question14
   m_EditorClassIdentifier: 
-  Text: What is Gandalf known as to the Elves?
-  CorrectAnswer: Mithrandir
+  Text: Who makes Gandalf, Aragorn, Gimli, and Legolas lay down their weapons before
+    they can enter the Great Hall and speak with Theoden?
+  CorrectAnswer: Hama
   IncorrectAnswers:
-  - Thorin
-  - Celeborn
-  - Glorfindel
+  - Theoden
+  - Theodred
+  - "Gr\xEDma"
   Hints: []
-  AnswerExplanation: After Gandalf 'dies' in Moria, and the company reaches Lothlorien,
-    the elves sing a song about Mithrandir, and Frodo learns that it is a song about
-    Gandalf.
+  AnswerExplanation: Hama is captain of the guard, and is killed in the battle of
+    Helm's Deep.
