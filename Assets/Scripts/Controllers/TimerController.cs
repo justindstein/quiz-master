@@ -1,37 +1,31 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 public class TimerController : MonoBehaviour
 {
-    // TODO: timer is not called, it is just based off events
-
     public Image ParentImage;
 
     public float TimeToAnswer;
 
-    private float maxFillAmount;
+    private float maxFillAmount = 1;
 
     private float elapsedTime;
 
     private bool isTimerActive;
 
-    void Start()
-    {
-        this.maxFillAmount = 1;
-        this.elapsedTime = 0;
-        this.isTimerActive = false;
-    }
-
     void FixedUpdate()
     {
-        this.elapsedTime += Time.deltaTime;
-        this.UpdateTimerImage(this.ParentImage, this.maxFillAmount, this.elapsedTime, this.TimeToAnswer);
+        if (isTimerActive)
+        {
+            this.elapsedTime += Time.deltaTime;
+            this.UpdateTimerImage(this.ParentImage, this.maxFillAmount, this.elapsedTime, this.TimeToAnswer);
+        }
     }
 
     public void StartTimer()
     {
+        this.elapsedTime = 0;
         this.isTimerActive = true;
     }
 
@@ -39,6 +33,7 @@ public class TimerController : MonoBehaviour
     {
         this.isTimerActive = false;
         this.elapsedTime = 0;
+        this.UpdateTimerImage(this.ParentImage, this.maxFillAmount, this.elapsedTime, this.TimeToAnswer); // TODO: Do I need this?
     }
 
     private void UpdateTimerImage(Image image, float maxFillAmount, float elapsedTime, float timeToAnswer)
@@ -46,8 +41,9 @@ public class TimerController : MonoBehaviour
         float total = Mathf.Max(maxFillAmount - (elapsedTime / TimeToAnswer), 0);
         this.ParentImage.fillAmount = total;
 
-#if UNITY_EDITOR
-        Debug.Log(string.Format("{0}: Mathf.Max({1} - ({2} / {3}), 0)", total, maxFillAmount, elapsedTime, timeToAnswer));
-#endif
+    #if UNITY_EDITOR
+        //Debug.Log(string.Format("{0}: Mathf.Max({1} - ({2} / {3}), 0)", total, maxFillAmount, elapsedTime, timeToAnswer));
+    #endif
     }
 }
+

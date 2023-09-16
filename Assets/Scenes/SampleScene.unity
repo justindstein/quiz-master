@@ -251,6 +251,123 @@ MonoBehaviour:
   DefaultAnswerSprite: {fileID: 21300000, guid: 2e34011362ea2420f9796a94ae5c4164, type: 3}
   CorrectAnswerSprite: {fileID: 21300000, guid: e89f51b7621c04fffa47e63913381264, type: 3}
   QuestionSetManager: {fileID: 1588186558}
+  OnLoadQuestion:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: dbcbac971a1f14522bef9d61e76db5fa, type: 2}
+        m_TargetAssemblyTypeName: GameEvent, Assembly-CSharp
+        m_MethodName: Raise
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 79354426}
+        m_TargetAssemblyTypeName: QuizCanvasController, Assembly-CSharp
+        m_MethodName: LoadNewQuestion
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1836642609}
+        m_TargetAssemblyTypeName: TimerController, Assembly-CSharp
+        m_MethodName: StartTimer
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnCorrectAnswer:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 65e8eae95eb7e4d84b03f6ce6e02b3bd, type: 2}
+        m_TargetAssemblyTypeName: GameEvent, Assembly-CSharp
+        m_MethodName: Raise
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 79354426}
+        m_TargetAssemblyTypeName: QuizCanvasController, Assembly-CSharp
+        m_MethodName: CorrectAnswerFeedback
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 79354426}
+        m_TargetAssemblyTypeName: QuizCanvasController, Assembly-CSharp
+        m_MethodName: InvokeMethod
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 11400000, guid: e74f43ba24997401fa9930529ffadeea, type: 2}
+          m_ObjectArgumentAssemblyTypeName: InvokeParam, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnIncorrectAnswer:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: b899b2bf68b32409cb0f5cdf59909390, type: 2}
+        m_TargetAssemblyTypeName: GameEvent, Assembly-CSharp
+        m_MethodName: Raise
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 79354426}
+        m_TargetAssemblyTypeName: QuizCanvasController, Assembly-CSharp
+        m_MethodName: IncorrectAnswerFeedback
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 79354426}
+        m_TargetAssemblyTypeName: QuizCanvasController, Assembly-CSharp
+        m_MethodName: InvokeMethod
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 11400000, guid: e74f43ba24997401fa9930529ffadeea, type: 2}
+          m_ObjectArgumentAssemblyTypeName: InvokeParam, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &178989153
 GameObject:
   m_ObjectHideFlags: 0
@@ -823,7 +940,7 @@ PrefabInstance:
       objectReference: {fileID: 79354426}
     - target: {fileID: 3003030503056921167, guid: b3697fe8e969542c2b6155724574da77, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnAnswerSelected
+      value: AnswerSelected
       objectReference: {fileID: 0}
     - target: {fileID: 3003030503056921167, guid: b3697fe8e969542c2b6155724574da77, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -1127,7 +1244,7 @@ PrefabInstance:
       objectReference: {fileID: 79354426}
     - target: {fileID: 3003030503056921167, guid: b3697fe8e969542c2b6155724574da77, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnAnswerSelected
+      value: AnswerSelected
       objectReference: {fileID: 0}
     - target: {fileID: 3003030503056921167, guid: b3697fe8e969542c2b6155724574da77, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -1253,7 +1370,7 @@ PrefabInstance:
       objectReference: {fileID: 79354426}
     - target: {fileID: 3003030503056921167, guid: b3697fe8e969542c2b6155724574da77, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnAnswerSelected
+      value: AnswerSelected
       objectReference: {fileID: 0}
     - target: {fileID: 3003030503056921167, guid: b3697fe8e969542c2b6155724574da77, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -1664,7 +1781,7 @@ PrefabInstance:
       objectReference: {fileID: 79354426}
     - target: {fileID: 3003030503056921167, guid: b3697fe8e969542c2b6155724574da77, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnAnswerSelected
+      value: AnswerSelected
       objectReference: {fileID: 0}
     - target: {fileID: 3003030503056921167, guid: b3697fe8e969542c2b6155724574da77, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -1786,6 +1903,7 @@ GameObject:
   - component: {fileID: 1836642608}
   - component: {fileID: 1836642607}
   - component: {fileID: 1836642609}
+  - component: {fileID: 1836642610}
   m_Layer: 5
   m_Name: Timer
   m_TagString: Untagged
@@ -1864,6 +1982,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ParentImage: {fileID: 1836642607}
   TimeToAnswer: 10
+--- !u!114 &1836642610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1836642605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ef990d7ce6084a7ebc69d7d34352f39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: dbcbac971a1f14522bef9d61e76db5fa, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1836642609}
+        m_TargetAssemblyTypeName: TimerController, Assembly-CSharp
+        m_MethodName: StartTimer
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

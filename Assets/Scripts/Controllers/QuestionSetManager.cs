@@ -8,14 +8,14 @@ public class QuestionSetManager : MonoBehaviour
     private IList<Question> askedQuestions;
     private IList<Question> unaskedQuestions;
 
-    private void Start()
+    private void Awake()
     {
         this.askedQuestions = new List<Question>();
         this.unaskedQuestions = new List<Question>();
 
         // TODO: this goes away soon
         this.LoadQuestionSet(this.CurrentQuestionSet);
-    }
+    } 
 
     public void LoadQuestionSet(QuestionSet questionSet)
     {

@@ -2,6 +2,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.Events;
+using System;
+using System.Collections;
 
 public class QuizCanvasController : MonoBehaviour
 {
@@ -19,9 +22,16 @@ public class QuizCanvasController : MonoBehaviour
 
     public QuestionSetManager QuestionSetManager;
 
+    public UnityEvent OnLoadQuestion;
+
+    public UnityEvent OnCorrectAnswer;
+
+    public UnityEvent OnIncorrectAnswer;
+
+
     private void Start()
     {
-        this.loadNewQuestion(this.Question);
+        this.OnLoadQuestion.Invoke();
     }
 
     public void LoadCanvasState(CanvasState canvasState)
@@ -73,31 +83,51 @@ public class QuizCanvasController : MonoBehaviour
         // too few -> dynamically create number of boxes
     }
 
-    public void OnAnswerSelected(int index)
+    public void AnswerSelected(int index)
     {
-        // Correct answer
         if (index == CurrentCanvasState.CorrectAnswerIndex)
         {
-            QuestionText.text = "Correct!";
-            Image answerButtonImage = this.AnswerButtons[index].GetComponent<Image>();
-            answerButtonImage.sprite = CorrectAnswerSprite;
+            Debug.Log(String.Format("QuizCanvasController.AnswerSelected CorrectAnswer [index {0}]", index));
+            this.OnCorrectAnswer.Invoke();
         }
-
-        // Incorrect answer
         else
         {
-            //Debug.Log(string.Format("{0} vs {1}", textBox.text, CurrentCanvasState.CorrectAnswerIndex));
-            QuestionText.text = string.Format("Wrong! Correct answer:\n\"{0}\"", CurrentCanvasState.GetCorrectAnswer());
-            Image answerButtonImage = this.AnswerButtons[CurrentCanvasState.CorrectAnswerIndex].GetComponent<Image>();
-            answerButtonImage.sprite = CorrectAnswerSprite;
+            Debug.Log(String.Format("QuizCanvasController.AnswerSelected IncorrectAnswer [index {0}]", index));
+            this.OnIncorrectAnswer.Invoke();
         }
+    }
+
+    public void CorrectAnswerFeedback()
+    {
+        QuestionText.text = "Correct!";
+        Image answerButtonImage = this.AnswerButtons[CurrentCanvasState.CorrectAnswerIndex].GetComponent<Image>();
+        answerButtonImage.sprite = CorrectAnswerSprite;
 
         // Disable buttons
         this.setInteractable(this.AnswerButtons, false);
-
-        // Load new question
-        this.loadNewQuestion(this.QuestionSetManager.GetNextQuestion());
     }
+
+    public void InvokeMethod(InvokeParam invokeParam)
+    {
+        Invoke(invokeParam.MethodName, invokeParam.Time);
+    }
+
+    private void InvokeOnloadQuestion()
+    {
+        this.OnLoadQuestion.Invoke();
+    }
+
+    public void IncorrectAnswerFeedback()
+    {
+        //Debug.Log(string.Format("{0} vs {1}", textBox.text, CurrentCanvasState.CorrectAnswerIndex));
+        QuestionText.text = string.Format("Wrong! Correct answer:\n\"{0}\"", CurrentCanvasState.GetCorrectAnswer());
+        Image answerButtonImage = this.AnswerButtons[CurrentCanvasState.CorrectAnswerIndex].GetComponent<Image>();
+        answerButtonImage.sprite = CorrectAnswerSprite;
+
+        // Disable buttons
+        this.setInteractable(this.AnswerButtons, false);
+    }
+
 
     private void setInteractable(Button[] buttons, bool interactable)
     {
@@ -107,8 +137,10 @@ public class QuizCanvasController : MonoBehaviour
         }
     }
 
-    private void loadNewQuestion(Question question)
+    public void LoadNewQuestion()
     {
+        Question question = this.QuestionSetManager.GetNextQuestion();
+
         // Load next question into CurrentCanvasState
         this.CurrentCanvasState.LoadQuestion(question);
 
