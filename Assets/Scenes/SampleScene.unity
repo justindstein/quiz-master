@@ -136,6 +136,7 @@ GameObject:
   - component: {fileID: 79354423}
   - component: {fileID: 79354422}
   - component: {fileID: 79354426}
+  - component: {fileID: 79354427}
   m_Layer: 5
   m_Name: QuizCanvas
   m_TagString: Untagged
@@ -374,6 +375,46 @@ MonoBehaviour:
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 11400000, guid: e74f43ba24997401fa9930529ffadeea, type: 2}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 79354426}
+        m_TargetAssemblyTypeName: QuizCanvasController, Assembly-CSharp
+        m_MethodName: InvokeMethod
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 11400000, guid: e74f43ba24997401fa9930529ffadeea, type: 2}
+          m_ObjectArgumentAssemblyTypeName: InvokeParam, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &79354427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 79354421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ef990d7ce6084a7ebc69d7d34352f39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: de6d76cc3814f4192a02f7e9ae6d1b60, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 79354426}
+        m_TargetAssemblyTypeName: QuizCanvasController, Assembly-CSharp
+        m_MethodName: IncorrectAnswerFeedback
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -2007,7 +2048,35 @@ MonoBehaviour:
   ParentImage: {fileID: 1836642607}
   DefaultSprite: {fileID: 21300000, guid: 3e801bce5491b4d22bc235d827b64bdc, type: 3}
   PausedSprite: {fileID: 21300000, guid: d51c9612e90ed4ef19a369aa90d4cb54, type: 3}
-  TimeToAnswer: 10
+  OnTimerExpired: {fileID: 11400000, guid: de6d76cc3814f4192a02f7e9ae6d1b60, type: 2}
+  TimerExpired:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: de6d76cc3814f4192a02f7e9ae6d1b60, type: 2}
+        m_TargetAssemblyTypeName: GameEvent, Assembly-CSharp
+        m_MethodName: Raise
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1836642609}
+        m_TargetAssemblyTypeName: TimerController, Assembly-CSharp
+        m_MethodName: StopTimer
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  QuestionDuration: {fileID: 11400000, guid: 3a9288d750a2f42ffb7adc230d8fd367, type: 2}
 --- !u!114 &1836642610
 MonoBehaviour:
   m_ObjectHideFlags: 0
