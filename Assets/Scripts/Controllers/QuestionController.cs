@@ -7,9 +7,11 @@ public class QuestionController : MonoBehaviour
 
     public CanvasState CurrentCanvasState;
 
-    public string CorrectAnswerText = "Correct!";
+    public StringVariable CorrectAnswerText;
 
-    public string IncorrectAnswerText = "Wrong! Correct answer:\n\"{0}\"";
+    public StringVariable IncorrectAnswerText;
+
+    public StringVariable ExpiredTimerText;
 
     // OnLoadQuestion
     public void LoadQuestion()
@@ -20,12 +22,18 @@ public class QuestionController : MonoBehaviour
     // OnCorrectAnswer
     public void SetCorrectAnswerState()
     {
-        QuestionText.text = this.CorrectAnswerText;
+        QuestionText.text = this.CorrectAnswerText.Value;
     }
 
     // OnIncorrectAnswer
     public void SetIncorrectAnswerState()
     {
-        QuestionText.text = string.Format(this.IncorrectAnswerText, CurrentCanvasState.GetCorrectAnswer());
+        QuestionText.text = string.Format(this.IncorrectAnswerText.Value, CurrentCanvasState.GetCorrectAnswer());
+    }
+
+    // OnIncorrectAnswer
+    public void SetExpiredTimerState()
+    {
+        QuestionText.text = string.Format(this.ExpiredTimerText.Value, CurrentCanvasState.GetCorrectAnswer());
     }
 }

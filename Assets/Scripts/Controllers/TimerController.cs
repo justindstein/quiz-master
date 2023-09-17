@@ -14,8 +14,6 @@ public class TimerController : MonoBehaviour
 
     public FloatVariable QuestionDuration;
 
-    public GameEvent OnTimerExpired;
-
     public UnityEvent TimerExpired;
 
     private float elapsedTime;

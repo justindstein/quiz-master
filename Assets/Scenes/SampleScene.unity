@@ -803,10 +803,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   QuestionText: {fileID: 562300034}
   CurrentCanvasState: {fileID: 11400000, guid: 3a8813bb0090343dbb0ea5e71bf829b3, type: 2}
-  CorrectAnswerText: Correct!
-  IncorrectAnswerText: 'Wrong! Correct answer:
-
-    "{0}"'
+  CorrectAnswerText: {fileID: 11400000, guid: 1519a17bbf3644eb5a452a763ca7e358, type: 2}
+  IncorrectAnswerText: {fileID: 11400000, guid: eae5b5eb9580243cbb10cc7682985843, type: 2}
+  ExpiredTimerText: {fileID: 11400000, guid: fc521fd5f370f44aa8d587c89f56d32a, type: 2}
 --- !u!114 &562300038
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2243,7 +2242,6 @@ MonoBehaviour:
   PausedSprite: {fileID: 21300000, guid: d51c9612e90ed4ef19a369aa90d4cb54, type: 3}
   TimerMaxFill: {fileID: 11400000, guid: b02e37ddc6a7e4b1eb4f0e89df808de1, type: 2}
   QuestionDuration: {fileID: 11400000, guid: 3a9288d750a2f42ffb7adc230d8fd367, type: 2}
-  OnTimerExpired: {fileID: 11400000, guid: de6d76cc3814f4192a02f7e9ae6d1b60, type: 2}
   TimerExpired:
     m_PersistentCalls:
       m_Calls:
