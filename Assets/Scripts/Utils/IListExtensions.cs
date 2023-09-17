@@ -24,25 +24,6 @@ public static class IListExtensions
     }
 
     /// <summary>
-    /// Randomly shuffle elements of a list in O(n) runtime.
-    /// https://stackoverflow.com/questions/273313/randomize-a-listt
-    /// </summary>
-    /// <typeparam name="T"></typeparam>
-    /// <param name="list"></param>
-    public static void OldShuffle<T>(this IList<T> list)
-    {
-        int n = list.Count;
-        while (n > 1)
-        {
-            n--;
-            int k = ThreadSafeRandom.ThisThreadsRandom.Next(n + 1);
-            T value = list[k];
-            list[k] = list[n];
-            list[n] = value;
-        }
-    }
-
-    /// <summary>
     /// Insert element t in a random index.
     /// </summary>
     /// <typeparam name="T"></typeparam>

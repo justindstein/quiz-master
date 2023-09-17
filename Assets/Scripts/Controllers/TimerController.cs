@@ -37,6 +37,7 @@ public class TimerController : MonoBehaviour
         }
     }
 
+    // OnLoadQuestion
     public void StartTimer()
     {
         this.elapsedTime = 0;
@@ -45,6 +46,7 @@ public class TimerController : MonoBehaviour
         this.ParentImage.sprite = this.DefaultSprite;
     }
 
+    // OnCorrectAnswer
     public void StopTimer()
     {
         this.timerActive = false;

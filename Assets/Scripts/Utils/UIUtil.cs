@@ -5,6 +5,8 @@ using System.Collections.Generic;
 
 public static class UIUtil
 {
+    // TODO: these might go into AnswerController
+
     public static void SetInteractable(IList<Button> buttons, bool interactable)
     {
         foreach (Button button in buttons)
