@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0f2236f1817348eaaa98da148bb6675, type: 3}
   m_Name: Question5
   m_EditorClassIdentifier: 
-  QuestionText: 
   Text: Who cures Frodo in Rivendell?
-  Category: {fileID: 11400000, guid: fabfd93f569ac42da94044981fef2487, type: 2}
   CorrectAnswer: Elrond
   IncorrectAnswers:
   - Aragorn
   - Gandalf
   - Theoden
-  Explanation: 
+  Hints: []
+  AnswerExplanation: "\"\u2018Good!\u2019 said Gandalf. \u2018It is mending fast.
+    You will soon be \nsound again. Elrond has cured you: he has tended you for \ndays,
+    ever since you were brought in.\u2019\""

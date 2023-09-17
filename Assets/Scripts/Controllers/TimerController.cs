@@ -40,7 +40,7 @@ public class TimerController : MonoBehaviour
         this.ParentImage.fillAmount = fillFraction;
 
 #if UNITY_EDITOR
-        Debug.Log(string.Format("{0}: Mathf.Max({1} - ({2} / {3}), 0)", fillFraction, TimerMaxFill.Value, elapsedTime, timeToAnswer));
+        //Debug.Log(string.Format("{0}: Mathf.Max({1} - ({2} / {3}), 0)", fillFraction, TimerMaxFill.Value, elapsedTime, timeToAnswer));
 #endif
     }
 

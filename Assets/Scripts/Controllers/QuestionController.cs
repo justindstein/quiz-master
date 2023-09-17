@@ -3,9 +3,10 @@ using UnityEngine;
 
 public class QuestionController : MonoBehaviour
 {
+    // TODO should this be provided as a param or should we just grab it programmatically?
     public TextMeshProUGUI QuestionText;
 
-    public CanvasState CurrentCanvasState;
+    public CanvasState CanvasState;
 
     public StringVariable CorrectAnswerText;
 
@@ -16,7 +17,7 @@ public class QuestionController : MonoBehaviour
     // OnLoadQuestion
     public void LoadQuestion()
     {
-        this.QuestionText.text = this.CurrentCanvasState.Question;
+        this.QuestionText.text = this.CanvasState.Question;
     }
 
     // OnCorrectAnswer
@@ -28,12 +29,12 @@ public class QuestionController : MonoBehaviour
     // OnIncorrectAnswer
     public void SetIncorrectAnswerState()
     {
-        QuestionText.text = string.Format(this.IncorrectAnswerText.Value, CurrentCanvasState.GetCorrectAnswer());
+        QuestionText.text = string.Format(this.IncorrectAnswerText.Value, CanvasState.GetCorrectAnswer());
     }
 
     // OnIncorrectAnswer
     public void SetExpiredTimerState()
     {
-        QuestionText.text = string.Format(this.ExpiredTimerText.Value, CurrentCanvasState.GetCorrectAnswer());
+        QuestionText.text = string.Format(this.ExpiredTimerText.Value, CanvasState.GetCorrectAnswer());
     }
 }

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 238887718c1274e749b8df0ff2defbd7, type: 3}
-  m_Name: CurrentCanvasState
+  m_Name: CanvasState
   m_EditorClassIdentifier: 
   Question: 
   Answers: []

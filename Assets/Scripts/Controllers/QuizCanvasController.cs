@@ -4,7 +4,8 @@ using System;
 
 public class QuizCanvasController : MonoBehaviour
 {
-    public CanvasState CurrentCanvasState;
+    // TODO: revisit ordering of all of these
+    public CanvasState CanvasState;
 
     public QuestionSetManager QuestionSetManager;
 
@@ -21,7 +22,7 @@ public class QuizCanvasController : MonoBehaviour
 
     public void AnswerSelected(int index)
     {
-        if (index == CurrentCanvasState.CorrectAnswerIndex)
+        if (index == CanvasState.CorrectAnswerIndex)
         {
             Debug.Log(String.Format("QuizCanvasController.AnswerSelected CorrectAnswer [index {0}]", index));
             this.CorrectAnswer.Invoke();
@@ -48,6 +49,6 @@ public class QuizCanvasController : MonoBehaviour
         Question question = this.QuestionSetManager.GetNextQuestion();
 
         // Load next question into CurrentCanvasState
-        this.CurrentCanvasState.LoadQuestion(question);
+        this.CanvasState.LoadQuestion(question);
     }
 }

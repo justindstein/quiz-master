@@ -10,6 +10,16 @@ public class CanvasState : ScriptableObject
 
     public int CorrectAnswerIndex;
 
+    // Reset values as ScripableObject.Awake does not run as expected:
+    // https://forum.unity.com/threads/solved-but-unhappy-scriptableobject-awake-never-execute.488468/
+    private void OnEnable()
+    {
+        Debug.Log("CanvasState.OnEnable");
+        this.Question = null;
+        this.Answers = null;
+        this.CorrectAnswerIndex = 0;
+    }
+
     public void LoadQuestion(Question question)
     {
         this.Question = question.Text;
