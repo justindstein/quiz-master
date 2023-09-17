@@ -2161,6 +2161,7 @@ GameObject:
   - component: {fileID: 1836642609}
   - component: {fileID: 1836642610}
   - component: {fileID: 1836642611}
+  - component: {fileID: 1836642612}
   m_Layer: 5
   m_Name: Timer
   m_TagString: Untagged
@@ -2241,6 +2242,7 @@ MonoBehaviour:
   DefaultSprite: {fileID: 21300000, guid: 3e801bce5491b4d22bc235d827b64bdc, type: 3}
   PausedSprite: {fileID: 21300000, guid: d51c9612e90ed4ef19a369aa90d4cb54, type: 3}
   TimerMaxFill: {fileID: 11400000, guid: b02e37ddc6a7e4b1eb4f0e89df808de1, type: 2}
+  QuestionDuration: {fileID: 11400000, guid: 3a9288d750a2f42ffb7adc230d8fd367, type: 2}
   OnTimerExpired: {fileID: 11400000, guid: de6d76cc3814f4192a02f7e9ae6d1b60, type: 2}
   TimerExpired:
     m_PersistentCalls:
@@ -2269,7 +2271,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  QuestionDuration: {fileID: 11400000, guid: 3a9288d750a2f42ffb7adc230d8fd367, type: 2}
 --- !u!114 &1836642610
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2311,6 +2312,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Event: {fileID: 11400000, guid: 65e8eae95eb7e4d84b03f6ce6e02b3bd, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1836642609}
+        m_TargetAssemblyTypeName: TimerController, Assembly-CSharp
+        m_MethodName: StopTimer
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1836642612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1836642605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ef990d7ce6084a7ebc69d7d34352f39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: b899b2bf68b32409cb0f5cdf59909390, type: 2}
   Response:
     m_PersistentCalls:
       m_Calls:
