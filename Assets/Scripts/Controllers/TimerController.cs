@@ -25,13 +25,23 @@ public class TimerController : MonoBehaviour
         if (this.timerActive)
         {
             this.elapsedTime += Time.deltaTime;
-            this.UpdateTimerImage(this.ParentImage, this.TimerMaxFill.Value, this.elapsedTime, this.QuestionDuration.Value);
+            this.updateTimer(this.ParentImage, this.elapsedTime, this.QuestionDuration.Value);
 
-            if(this.elapsedTime > this.QuestionDuration.Value)
+            if (this.elapsedTime > this.QuestionDuration.Value)
             {
                 this.TimerExpired.Invoke();
             }
         }
+    }
+
+    private void updateTimer(Image image, float elapsedTime, float timeToAnswer)
+    {
+        float fillFraction = Mathf.Max(TimerMaxFill.Value - (elapsedTime / this.QuestionDuration.Value), 0);
+        this.ParentImage.fillAmount = fillFraction;
+
+#if UNITY_EDITOR
+        Debug.Log(string.Format("{0}: Mathf.Max({1} - ({2} / {3}), 0)", fillFraction, TimerMaxFill.Value, elapsedTime, timeToAnswer));
+#endif
     }
 
     // OnLoadQuestion
@@ -47,15 +57,5 @@ public class TimerController : MonoBehaviour
     {
         this.timerActive = false;
         this.ParentImage.sprite = this.PausedSprite;
-    }
-
-    private void UpdateTimerImage(Image image, float maxFillAmount, float elapsedTime, float timeToAnswer)
-    {
-        float total = Mathf.Max(maxFillAmount - (elapsedTime / this.QuestionDuration.Value), 0);
-        this.ParentImage.fillAmount = total;
-
-    #if UNITY_EDITOR
-        Debug.Log(string.Format("{0}: Mathf.Max({1} - ({2} / {3}), 0)", total, maxFillAmount, elapsedTime, timeToAnswer));
-    #endif
     }
 }

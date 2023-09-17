@@ -638,7 +638,7 @@ GameObject:
   - component: {fileID: 562300038}
   - component: {fileID: 562300039}
   m_Layer: 5
-  m_Name: QuestionText
+  m_Name: Question
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -906,7 +906,7 @@ GameObject:
   - component: {fileID: 625845747}
   - component: {fileID: 625845748}
   m_Layer: 5
-  m_Name: AnswerButtonGroup
+  m_Name: Answers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1200,6 +1200,26 @@ PrefabInstance:
     - target: {fileID: 3003030503056921167, guid: b3697fe8e969542c2b6155724574da77, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: QuizCanvasController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6489250632410378350, guid: b3697fe8e969542c2b6155724574da77, type: 3}
+      propertyPath: m_fontColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6489250632410378350, guid: b3697fe8e969542c2b6155724574da77, type: 3}
+      propertyPath: m_fontColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6489250632410378350, guid: b3697fe8e969542c2b6155724574da77, type: 3}
+      propertyPath: m_fontColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6489250632410378350, guid: b3697fe8e969542c2b6155724574da77, type: 3}
+      propertyPath: m_fontColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6489250632410378350, guid: b3697fe8e969542c2b6155724574da77, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 8782574070687847616, guid: b3697fe8e969542c2b6155724574da77, type: 3}
       propertyPath: m_Name
@@ -1509,6 +1529,22 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 6489250632410378350, guid: b3697fe8e969542c2b6155724574da77, type: 3}
+      propertyPath: m_fontColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6489250632410378350, guid: b3697fe8e969542c2b6155724574da77, type: 3}
+      propertyPath: m_fontColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6489250632410378350, guid: b3697fe8e969542c2b6155724574da77, type: 3}
+      propertyPath: m_fontColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6489250632410378350, guid: b3697fe8e969542c2b6155724574da77, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 8782574070687847616, guid: b3697fe8e969542c2b6155724574da77, type: 3}
       propertyPath: m_Name
       value: AnswerButton (3)
@@ -1634,6 +1670,22 @@ PrefabInstance:
     - target: {fileID: 3003030503056921167, guid: b3697fe8e969542c2b6155724574da77, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6489250632410378350, guid: b3697fe8e969542c2b6155724574da77, type: 3}
+      propertyPath: m_fontColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6489250632410378350, guid: b3697fe8e969542c2b6155724574da77, type: 3}
+      propertyPath: m_fontColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6489250632410378350, guid: b3697fe8e969542c2b6155724574da77, type: 3}
+      propertyPath: m_fontColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6489250632410378350, guid: b3697fe8e969542c2b6155724574da77, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 8782574070687847616, guid: b3697fe8e969542c2b6155724574da77, type: 3}
       propertyPath: m_Name
@@ -2045,6 +2097,22 @@ PrefabInstance:
     - target: {fileID: 3003030503056921167, guid: b3697fe8e969542c2b6155724574da77, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6489250632410378350, guid: b3697fe8e969542c2b6155724574da77, type: 3}
+      propertyPath: m_fontColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6489250632410378350, guid: b3697fe8e969542c2b6155724574da77, type: 3}
+      propertyPath: m_fontColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6489250632410378350, guid: b3697fe8e969542c2b6155724574da77, type: 3}
+      propertyPath: m_fontColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6489250632410378350, guid: b3697fe8e969542c2b6155724574da77, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 8782574070687847616, guid: b3697fe8e969542c2b6155724574da77, type: 3}
       propertyPath: m_Name
