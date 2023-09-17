@@ -8,15 +8,15 @@ public class QuizCanvasController : MonoBehaviour
 
     public QuestionSetManager QuestionSetManager;
 
-    public UnityEvent OnLoadQuestion;
+    public UnityEvent LoadQuestion;
 
-    public UnityEvent OnCorrectAnswer;
+    public UnityEvent CorrectAnswer;
 
-    public UnityEvent OnIncorrectAnswer;
+    public UnityEvent IncorrectAnswer;
 
     private void Start()
     {
-        this.OnLoadQuestion.Invoke();
+        this.LoadQuestion.Invoke();
     }
 
     public void AnswerSelected(int index)
@@ -24,12 +24,12 @@ public class QuizCanvasController : MonoBehaviour
         if (index == CurrentCanvasState.CorrectAnswerIndex)
         {
             Debug.Log(String.Format("QuizCanvasController.AnswerSelected CorrectAnswer [index {0}]", index));
-            this.OnCorrectAnswer.Invoke();
+            this.CorrectAnswer.Invoke();
         }
         else
         {
             Debug.Log(String.Format("QuizCanvasController.AnswerSelected IncorrectAnswer [index {0}]", index));
-            this.OnIncorrectAnswer.Invoke();
+            this.IncorrectAnswer.Invoke();
         }
     }
 
@@ -40,7 +40,7 @@ public class QuizCanvasController : MonoBehaviour
 
     private void InvokeOnloadQuestion()
     {
-        this.OnLoadQuestion.Invoke(); // TODO: rename and remove 'On'
+        this.LoadQuestion.Invoke();
     }
 
     public void GetNextQuestion()

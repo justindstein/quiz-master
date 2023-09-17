@@ -10,29 +10,28 @@ public class TimerController : MonoBehaviour
 
     public Sprite PausedSprite;
 
-    private float maxFillAmount = 1;
-
-    private float elapsedTime;
-
-    public GameEvent OnTimerExpired;
-
-    private bool timerActive;
-
-    public UnityEvent TimerExpired;
+    public FloatVariable TimerMaxFill;
 
     public FloatVariable QuestionDuration;
 
-    void FixedUpdate()
+    public GameEvent OnTimerExpired;
+
+    public UnityEvent TimerExpired;
+
+    private float elapsedTime;
+
+    private bool timerActive;
+
+    private void FixedUpdate()
     {
         if (this.timerActive)
         {
             this.elapsedTime += Time.deltaTime;
-            this.UpdateTimerImage(this.ParentImage, this.maxFillAmount, this.elapsedTime, this.QuestionDuration.Value);
+            this.UpdateTimerImage(this.ParentImage, this.TimerMaxFill.Value, this.elapsedTime, this.QuestionDuration.Value);
 
             if(this.elapsedTime > this.QuestionDuration.Value)
             {
                 this.TimerExpired.Invoke();
-                this.timerActive = false;
             }
         }
     }
@@ -41,9 +40,8 @@ public class TimerController : MonoBehaviour
     public void StartTimer()
     {
         this.elapsedTime = 0;
-        this.timerActive = true;
-        this.UpdateTimerImage(this.ParentImage, this.maxFillAmount, this.elapsedTime, this.QuestionDuration.Value);
         this.ParentImage.sprite = this.DefaultSprite;
+        this.timerActive = true;
     }
 
     // OnCorrectAnswer

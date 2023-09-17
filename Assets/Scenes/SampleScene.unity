@@ -243,7 +243,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CurrentCanvasState: {fileID: 11400000, guid: 3a8813bb0090343dbb0ea5e71bf829b3, type: 2}
   QuestionSetManager: {fileID: 1588186558}
-  OnLoadQuestion:
+  LoadQuestion:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 79354426}
@@ -270,7 +270,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  OnCorrectAnswer:
+  CorrectAnswer:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 11400000, guid: 65e8eae95eb7e4d84b03f6ce6e02b3bd, type: 2}
@@ -297,7 +297,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  OnIncorrectAnswer:
+  IncorrectAnswer:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 11400000, guid: b899b2bf68b32409cb0f5cdf59909390, type: 2}
@@ -2240,6 +2240,7 @@ MonoBehaviour:
   ParentImage: {fileID: 1836642607}
   DefaultSprite: {fileID: 21300000, guid: 3e801bce5491b4d22bc235d827b64bdc, type: 3}
   PausedSprite: {fileID: 21300000, guid: d51c9612e90ed4ef19a369aa90d4cb54, type: 3}
+  TimerMaxFill: {fileID: 11400000, guid: b02e37ddc6a7e4b1eb4f0e89df808de1, type: 2}
   OnTimerExpired: {fileID: 11400000, guid: de6d76cc3814f4192a02f7e9ae6d1b60, type: 2}
   TimerExpired:
     m_PersistentCalls:
