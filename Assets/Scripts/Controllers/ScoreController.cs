@@ -1,10 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
 public class ScoreController : MonoBehaviour
 {
+    // TODO: Deserialize things that are not used externally
     public TextMeshProUGUI ScoreText;
 
     public QuestionSetManager QuestionSetManager;

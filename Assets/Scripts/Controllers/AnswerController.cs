@@ -5,7 +5,7 @@ public class AnswerController : MonoBehaviour
 {
     public Button[] AnswerButtons;
 
-    public CanvasState CurrentCanvasState;
+    public CanvasState CanvasState;
 
     public Sprite DefaultSprite;
 
@@ -21,14 +21,14 @@ public class AnswerController : MonoBehaviour
         UIUtil.SetSprite(this.AnswerButtons, this.DefaultSprite);
 
         // Set answer button text
-        UIUtil.SetText(this.AnswerButtons, this.CurrentCanvasState.Answers);
+        UIUtil.SetText(this.AnswerButtons, this.CanvasState.Answers);
     }
 
     // OnCorrectAnswer
     // TODO: rename this
     public void SetCorrectAnswerState()
     {
-        this.AnswerButtons[CurrentCanvasState.CorrectAnswerIndex].GetComponent<Image>().sprite = this.CorrectAnswerSprite;
+        this.AnswerButtons[CanvasState.CorrectAnswerIndex].GetComponent<Image>().sprite = this.CorrectAnswerSprite;
 
         // Disable buttons
         UIUtil.SetInteractable(this.AnswerButtons, false);
@@ -38,7 +38,7 @@ public class AnswerController : MonoBehaviour
     // TODO: remove this
     public void SetIncorrectAnswerState()
     {
-        this.AnswerButtons[CurrentCanvasState.CorrectAnswerIndex].GetComponent<Image>().sprite = this.CorrectAnswerSprite;
+        this.AnswerButtons[CanvasState.CorrectAnswerIndex].GetComponent<Image>().sprite = this.CorrectAnswerSprite;
 
         // Disable buttons
         UIUtil.SetInteractable(this.AnswerButtons, false);
