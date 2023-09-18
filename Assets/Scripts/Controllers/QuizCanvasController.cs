@@ -9,15 +9,13 @@ public class QuizCanvasController : MonoBehaviour
 
     public QuestionSetManager QuestionSetManager;
 
-    public UnityEvent LoadQuestion;
-
     public UnityEvent CorrectAnswer;
 
     public UnityEvent IncorrectAnswer;
 
     private void Start()
     {
-        this.LoadQuestion.Invoke();
+        this.GetNextQuestion();
     }
 
     public void AnswerSelected(int index)
@@ -34,21 +32,14 @@ public class QuizCanvasController : MonoBehaviour
         }
     }
 
+    // TODO: this maybe useful, add this to extensions util
     public void InvokeMethod(InvokeParam invokeParam)
     {
         Invoke(invokeParam.MethodName, invokeParam.Time.Value);
     }
 
-    private void InvokeOnloadQuestion()
-    {
-        this.LoadQuestion.Invoke();
-    }
-
     public void GetNextQuestion()
     {
-        Question question = this.QuestionSetManager.GetNextQuestion();
-
-        // Load next question into CurrentCanvasState
-        this.CanvasState.LoadQuestion(question);
+        this.CanvasState.LoadQuestion(this.QuestionSetManager.GetNextQuestion());
     }
 }

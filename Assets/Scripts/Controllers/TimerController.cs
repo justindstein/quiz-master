@@ -4,6 +4,12 @@ using UnityEngine.UI;
 
 public class TimerController : MonoBehaviour
 {
+    public QuizState QuizState;
+
+    public CanvasState CanvasState;
+
+    public QuestionSetManager QuestionSetManager;
+
     public Image ParentImage;
 
     public Sprite DefaultSprite;
@@ -14,29 +20,52 @@ public class TimerController : MonoBehaviour
 
     public FloatVariable QuestionDuration;
 
+    public FloatVariable AnswerDuration;
+
     public UnityEvent TimerExpired;
+
+    public UnityEvent LoadQuestion;
 
     private float elapsedTime;
 
-    private bool timerActive;
+    private void Start()
+    {
+        // TODO: This isn't good enough
+        this.LoadQuestion.Invoke();
+    }
+
+    // TODO: delete the disabled event listener for OnLoadQuestion
 
     private void FixedUpdate()
     {
-        if (this.timerActive)
+        // TODO: Cleanup redundancies in this
+        if (this.QuizState.IsQuestionState())
         {
             this.elapsedTime += Time.deltaTime;
             this.updateTimer(this.ParentImage, this.elapsedTime, this.QuestionDuration.Value);
 
             if (this.elapsedTime > this.QuestionDuration.Value)
             {
+                Debug.Log(string.Format("TimerController.FixedUpdate TimerExpired"));
                 this.TimerExpired.Invoke();
+            }
+        }
+        else if (this.QuizState.IsAnswerState())
+        {
+            this.elapsedTime += Time.deltaTime;
+            this.updateTimer(this.ParentImage, this.elapsedTime, this.AnswerDuration.Value);
+
+            if (this.elapsedTime > this.AnswerDuration.Value)
+            {
+                Debug.Log(string.Format("TimerController.FixedUpdate LoadQuestion"));
+                this.LoadQuestion.Invoke();
             }
         }
     }
 
     private void updateTimer(Image image, float elapsedTime, float timeToAnswer)
     {
-        float fillFraction = Mathf.Max(TimerMaxFill.Value - (elapsedTime / this.QuestionDuration.Value), 0);
+        float fillFraction = Mathf.Max(TimerMaxFill.Value - (elapsedTime / timeToAnswer), 0);
         this.ParentImage.fillAmount = fillFraction;
 
 #if UNITY_EDITOR
@@ -45,17 +74,32 @@ public class TimerController : MonoBehaviour
     }
 
     // OnLoadQuestion
-    public void StartTimer()
+    public void ResetTimer()
     {
+        Debug.Log("TimerController.ResetTimer");
+        if (this.QuizState.IsQuestionState())
+        {
+            this.ParentImage.sprite = this.DefaultSprite;
+            this.ParentImage.fillClockwise = false;
+        }
+
+        else if (this.QuizState.IsAnswerState())
+        {
+            this.ParentImage.sprite = this.PausedSprite;
+            this.ParentImage.fillClockwise = true;
+        }
+
         this.elapsedTime = 0;
-        this.ParentImage.sprite = this.DefaultSprite;
-        this.timerActive = true;
     }
 
-    // OnCorrectAnswer
-    public void StopTimer()
+    public void SetQuizState(string quizStateType)
     {
-        this.timerActive = false;
-        this.ParentImage.sprite = this.PausedSprite;
+        Debug.Log(string.Format("TimerController.SetQuizState [quizStateType: {0}]", quizStateType));
+        this.QuizState.SetValue(quizStateType);
+    }
+
+    public void GetNextQuestion()
+    {
+        this.CanvasState.LoadQuestion(this.QuestionSetManager.GetNextQuestion());
     }
 }
