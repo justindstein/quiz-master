@@ -26,6 +26,8 @@ public class TimerController : MonoBehaviour
 
     public UnityEvent LoadQuestion;
 
+    public UnityEvent QuizFinished;
+
     private float elapsedTime;
 
     private void Start()
@@ -100,6 +102,13 @@ public class TimerController : MonoBehaviour
 
     public void GetNextQuestion()
     {
-        this.CanvasState.LoadQuestion(this.QuestionSetManager.GetNextQuestion());
+        if (QuestionSetManager.IsQuestionRemaining())
+        {
+            this.CanvasState.LoadQuestion(this.QuestionSetManager.GetNextQuestion());
+        }
+        else
+        {
+            this.QuizFinished.Invoke();
+        }
     }
 }

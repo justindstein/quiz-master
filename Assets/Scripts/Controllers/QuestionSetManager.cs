@@ -15,7 +15,7 @@ public class QuestionSetManager : MonoBehaviour
 
         // TODO: this goes away soon
         this.LoadQuestionSet(this.CurrentQuestionSet);
-    } 
+    }
 
     public void LoadQuestionSet(QuestionSet questionSet)
     {
@@ -34,5 +34,15 @@ public class QuestionSetManager : MonoBehaviour
         this.askedQuestions.Add(nextQuestion);
 
         return nextQuestion;
+    }
+
+    public int GetQuestionCount()
+    {
+        return this.CurrentQuestionSet.Questions.Length;
+    }
+
+    public bool IsQuestionRemaining()
+    {
+        return (this.unaskedQuestions.Count > 0);
     }
 }
