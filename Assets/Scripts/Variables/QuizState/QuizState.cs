@@ -15,7 +15,7 @@ public class QuizState : ScriptableObject
 
     private void OnEnable()
     {
-        Debug.Log("QuizState.OnEnable");
+        //Debug.Log("QuizState.OnEnable");
         this.Value = QuizStateType.NONE;
 
         this.stateTransitions = new Dictionary<QuizStateType, HashSet<QuizStateType>>()
@@ -28,7 +28,7 @@ public class QuizState : ScriptableObject
 
     public void SetValue(string value)
     {
-        Debug.Log(string.Format("QuizState.SetValue [quizStateType: {0}]", value));
+        //Debug.Log(string.Format("QuizState.SetValue [quizStateType: {0}]", value));
         this.SetValue((QuizStateType)System.Enum.Parse(typeof(QuizStateType), value));
     }
 

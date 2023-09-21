@@ -20,6 +20,8 @@ public class ScoreState : ScriptableObject
         this.IncorrectAnswers = 0;
     }
 
+    // TODO: figure out if this is called by anything outside of ScoreController.UpdateScore, if not, all of the fields should be parameterized,
+    // no reason to pass these globally?
     public string GetScore()
     {
         return string.Format("Score: {0} / {1}", this.CorrectAnswers, (this.CorrectAnswers + this.IncorrectAnswers));

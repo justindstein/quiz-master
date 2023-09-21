@@ -21,6 +21,15 @@ public class AnswerController : MonoBehaviour
         UIUtil.SetSprite(this.AnswerButtons, this.DefaultSprite);
 
         // Set answer button text
+        foreach (Button button in this.AnswerButtons)
+        {
+            Debug.Log(string.Format("LoadAnswers.button {0}", button));
+        }
+        foreach (string answer in this.CanvasState.Answers)
+        {
+            Debug.Log(string.Format("LoadAnswers.answer {0}", answer));
+        }
+
         UIUtil.SetText(this.AnswerButtons, this.CanvasState.Answers);
     }
 

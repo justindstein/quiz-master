@@ -28,13 +28,22 @@ public static class IListExtensions
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <param name="list"></param>
-    /// <param name="t"></param>
+    /// <param name="element"></param>
     /// <returns>The index of the randomly inserted element</returns>
-    public static int RandomInsert<T>(this IList<T> list, T t)
+    public static int RandomInsert<T>(this IList<T> list, T element)
     {
         int randomIndex = ThreadSafeRandom.ThisThreadsRandom.Next(list.Count - 1);
-        list.Insert(randomIndex, t);
+        list.Insert(randomIndex, element);
         return randomIndex;
+    }
+
+    public static IList<T> AddRange<T>(this IList<T> list, IEnumerable<T> elements)
+    {
+        foreach (var element in elements)
+        {
+            list.Add(element);
+        }
+        return list;
     }
 }
 

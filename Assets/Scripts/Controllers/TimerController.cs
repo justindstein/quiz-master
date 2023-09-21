@@ -1,3 +1,4 @@
+using UnityEditor.ShaderKeywordFilter;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -48,7 +49,7 @@ public class TimerController : MonoBehaviour
 
             if (this.elapsedTime > this.QuestionDuration.Value)
             {
-                Debug.Log(string.Format("TimerController.FixedUpdate TimerExpired"));
+                //Debug.Log(string.Format("TimerController.FixedUpdate TimerExpired"));
                 this.TimerExpired.Invoke();
             }
         }
@@ -59,7 +60,7 @@ public class TimerController : MonoBehaviour
 
             if (this.elapsedTime > this.AnswerDuration.Value)
             {
-                Debug.Log(string.Format("TimerController.FixedUpdate LoadQuestion"));
+                //Debug.Log(string.Format("TimerController.FixedUpdate LoadQuestion"));
                 this.LoadQuestion.Invoke();
             }
         }
@@ -78,7 +79,7 @@ public class TimerController : MonoBehaviour
     // OnLoadQuestion
     public void ResetTimer()
     {
-        Debug.Log("TimerController.ResetTimer");
+        //Debug.Log("TimerController.ResetTimer");
         if (this.QuizState.IsQuestionState())
         {
             this.ParentImage.sprite = this.DefaultSprite;
@@ -96,7 +97,7 @@ public class TimerController : MonoBehaviour
 
     public void SetQuizState(string quizStateType)
     {
-        Debug.Log(string.Format("TimerController.SetQuizState [quizStateType: {0}]", quizStateType));
+        //Debug.Log(string.Format("TimerController.SetQuizState [quizStateType: {0}]", quizStateType));
         this.QuizState.SetValue(quizStateType);
     }
 
@@ -108,6 +109,7 @@ public class TimerController : MonoBehaviour
         }
         else
         {
+            Debug.Log("GetNextQuestion: QuizFinished.Invoke()");
             this.QuizFinished.Invoke();
         }
     }

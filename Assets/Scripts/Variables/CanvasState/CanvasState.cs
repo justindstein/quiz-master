@@ -14,7 +14,7 @@ public class CanvasState : ScriptableObject
     // https://forum.unity.com/threads/solved-but-unhappy-scriptableobject-awake-never-execute.488468/
     private void OnEnable()
     {
-        Debug.Log("CanvasState.OnEnable");
+        //Debug.Log("CanvasState.OnEnable");
         this.Question = null;
         this.Answers = null;
         this.CorrectAnswerIndex = 0;
