@@ -1,17 +1,18 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+// TODO: Change name to 'AnswerGroup' or similar
+// TODO: OnTimerExpired event handling should be merged with 'IncorrectAnswer', something can invoke 'IncorrectAnswer' OnTimerExperired
 public class AnswerController : MonoBehaviour
 {
-    public Button[] AnswerButtons;
+    public QuizStateManager QuizStateManager;
 
-    public CanvasState CanvasState;
+    public Button[] AnswerButtons;
 
     public Sprite DefaultSprite;
 
     public Sprite CorrectAnswerSprite;
 
-    // OnLoadQuestion
     public void LoadAnswers()
     {
         // Enable buttons
@@ -21,44 +22,17 @@ public class AnswerController : MonoBehaviour
         UIUtil.SetSprite(this.AnswerButtons, this.DefaultSprite);
 
         // Set answer button text
-        foreach (Button button in this.AnswerButtons)
-        {
-            Debug.Log(string.Format("LoadAnswers.button {0}", button));
-        }
-        foreach (string answer in this.CanvasState.GetAnswers())
-        {
-            Debug.Log(string.Format("LoadAnswers.answer {0}", answer));
-        }
-
-        UIUtil.SetText(this.AnswerButtons, this.CanvasState.GetAnswers());
+        // TODO: get off CanvasState
+        UIUtil.SetText(this.AnswerButtons, this.QuizStateManager.GetAnswers());
     }
 
-    // OnCorrectAnswer
-    // TODO: rename this
-    public void SetCorrectAnswerState()
+    public void HighlightCorrectAnswer()
     {
-        this.AnswerButtons[CanvasState.CorrectAnswerIndex].GetComponent<Image>().sprite = this.CorrectAnswerSprite;
-
         // Disable buttons
         UIUtil.SetInteractable(this.AnswerButtons, false);
-    }
 
-    // OnIncorrectAnswer
-    // TODO: remove this
-    public void SetIncorrectAnswerState()
-    {
-        this.AnswerButtons[CanvasState.CorrectAnswerIndex].GetComponent<Image>().sprite = this.CorrectAnswerSprite;
-
-        // Disable buttons
-        UIUtil.SetInteractable(this.AnswerButtons, false);
-    }
-
-    public void SetExpiredAnswerState()
-    {
-        this.AnswerButtons[CanvasState.CorrectAnswerIndex].GetComponent<Image>().sprite = this.CorrectAnswerSprite;
-
-        // Disable buttons
-        UIUtil.SetInteractable(this.AnswerButtons, false);
+        // Highlight correct answer
+        this.AnswerButtons[QuizStateManager.GetCorrectAnswerIndex()].GetComponent<Image>().sprite = this.CorrectAnswerSprite;
     }
 }
 

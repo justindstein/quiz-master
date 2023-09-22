@@ -6,7 +6,7 @@ public class QuestionController : MonoBehaviour
     // TODO should this be provided as a param or should we just grab it programmatically?
     public TextMeshProUGUI QuestionText;
 
-    public CanvasState CanvasState;
+    public QuizStateManager QuizStateManager;
 
     public StringVariable CorrectAnswerText;
 
@@ -14,27 +14,25 @@ public class QuestionController : MonoBehaviour
 
     public StringVariable ExpiredTimerText;
 
-    // OnLoadQuestion
-    public void LoadQuestion()
+    public void ShowQuestion()
     {
-        this.QuestionText.text = this.CanvasState.GetQuestion();
+        this.QuestionText.text = this.QuizStateManager.GetQuestion();
     }
 
-    // OnCorrectAnswer
-    public void SetCorrectAnswerState()
+    public void ShowCorrectAnswerText()
     {
         QuestionText.text = this.CorrectAnswerText.Value;
     }
 
     // OnIncorrectAnswer
-    public void SetIncorrectAnswerState()
+    public void ShowIncorrectAnswerText()
     {
-        QuestionText.text = string.Format(this.IncorrectAnswerText.Value, CanvasState.GetCorrectAnswer());
+        QuestionText.text = string.Format(this.IncorrectAnswerText.Value, QuizStateManager.GetCorrectAnswer());
     }
 
     // OnIncorrectAnswer
-    public void SetExpiredTimerState()
+    public void ShowTimerExpiredText()
     {
-        QuestionText.text = string.Format(this.ExpiredTimerText.Value, CanvasState.GetCorrectAnswer());
+        QuestionText.text = string.Format(this.ExpiredTimerText.Value, QuizStateManager.GetCorrectAnswer());
     }
 }

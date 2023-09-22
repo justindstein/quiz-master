@@ -5,9 +5,7 @@ using System;
 public class QuizCanvasController : MonoBehaviour
 {
     // TODO: revisit ordering of all of these
-    public CanvasState CanvasState;
-
-    //public QuestionSetManager QuestionSetManager;
+    public QuizStateManager QuizStateManager;
 
     public UnityEvent CorrectAnswer;
 
@@ -15,7 +13,7 @@ public class QuizCanvasController : MonoBehaviour
 
     public void AnswerSelected(int index)
     {
-        if (index == CanvasState.CorrectAnswerIndex)
+        if (index == QuizStateManager.GetCorrectAnswerIndex())
         {
             Debug.Log(String.Format("QuizCanvasController.AnswerSelected CorrectAnswer [index {0}]", index));
             this.CorrectAnswer.Invoke();

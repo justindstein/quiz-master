@@ -6,9 +6,7 @@ public class TimerController : MonoBehaviour
 {
     public QuizState QuizState;
 
-    public CanvasState CanvasState;
-
-    public QuestionSetManager QuestionSetManager;
+    public QuizStateManager QuizStateManager;
 
     public Image ParentImage;
 
@@ -29,12 +27,6 @@ public class TimerController : MonoBehaviour
     public UnityEvent QuizFinished;
 
     private float elapsedTime;
-
-    //private void Start()
-    //{
-    //    // TODO: This isn't good enough
-    //    this.LoadQuestion.Invoke();
-    //}
 
     // TODO: delete the disabled event listener for OnLoadQuestion
 
@@ -96,16 +88,17 @@ public class TimerController : MonoBehaviour
 
     public void SetQuizState(string quizStateType)
     {
-        //Debug.Log(string.Format("TimerController.SetQuizState [quizStateType: {0}]", quizStateType));
         this.QuizState.SetValue(quizStateType);
     }
 
     public void GetNextQuestion()
     {
-        if (QuestionSetManager.IsQuestionRemaining())
+        if (QuizStateManager.IsQuestionRemaining())
         {
-            this.CanvasState.LoadQuestion(this.QuestionSetManager.GetNextQuestion());
+            this.QuizStateManager.LoadQuestion(this.QuizStateManager.GetNextQuestion());
         }
+
+        // TODO: TimerController shouldnt be in charge of finishing a quiz
         else
         {
             Debug.Log("GetNextQuestion: QuizFinished.Invoke()");

@@ -7,14 +7,13 @@ public class ScoreController : MonoBehaviour
     // TODO: Deserialize things that are not used externally
     public TextMeshProUGUI ScoreText;
 
-    public QuestionSetManager QuestionSetManager;
+    public QuizStateManager QuizStateManager;
 
     public ScoreState ScoreState;
 
     private void Start()
     {
-        //this.QuestionSetManager.GetNextQuestion();
-        this.ScoreState.QuestionCount = this.QuestionSetManager.GetQuestionCount(); // TODO: is this necessary?
+        this.ScoreState.QuestionCount = this.QuizStateManager.GetQuestionCount(); // TODO: is this necessary?
         this.UpdateScore();
     }
 

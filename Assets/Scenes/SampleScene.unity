@@ -241,7 +241,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b0ed987c24644443a67dbaa9e1acc3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CanvasState: {fileID: 11400000, guid: 3a8813bb0090343dbb0ea5e71bf829b3, type: 2}
+  QuizStateManager: {fileID: 1565632546}
   CorrectAnswer:
     m_PersistentCalls:
       m_Calls:
@@ -645,7 +645,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ScoreText: {fileID: 228247205}
-  QuestionSetManager: {fileID: 1588186558}
+  QuizStateManager: {fileID: 1565632546}
   ScoreState: {fileID: 11400000, guid: 263987f9375c54d9bb6234146bab6025, type: 2}
 --- !u!224 &303327320 stripped
 RectTransform:
@@ -977,7 +977,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 562300037}
         m_TargetAssemblyTypeName: QuestionController, Assembly-CSharp
-        m_MethodName: SetCorrectAnswerState
+        m_MethodName: ShowCorrectAnswerText
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1000,7 +1000,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   QuestionText: {fileID: 562300034}
-  CanvasState: {fileID: 11400000, guid: 3a8813bb0090343dbb0ea5e71bf829b3, type: 2}
+  QuizStateManager: {fileID: 0}
   CorrectAnswerText: {fileID: 11400000, guid: 1519a17bbf3644eb5a452a763ca7e358, type: 2}
   IncorrectAnswerText: {fileID: 11400000, guid: eae5b5eb9580243cbb10cc7682985843, type: 2}
   ExpiredTimerText: {fileID: 11400000, guid: fc521fd5f370f44aa8d587c89f56d32a, type: 2}
@@ -1022,7 +1022,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 562300037}
         m_TargetAssemblyTypeName: QuestionController, Assembly-CSharp
-        m_MethodName: SetIncorrectAnswerState
+        m_MethodName: ShowIncorrectAnswerText
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1050,7 +1050,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 562300037}
         m_TargetAssemblyTypeName: QuestionController, Assembly-CSharp
-        m_MethodName: SetIncorrectAnswerState
+        m_MethodName: ShowTimerExpiredText
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1078,7 +1078,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 562300037}
         m_TargetAssemblyTypeName: QuestionController, Assembly-CSharp
-        m_MethodName: LoadQuestion
+        m_MethodName: ShowQuestion
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1177,7 +1177,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 625845746}
         m_TargetAssemblyTypeName: AnswerController, Assembly-CSharp
-        m_MethodName: SetCorrectAnswerState
+        m_MethodName: HighlightCorrectAnswer
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1199,12 +1199,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61ef7f27ba5e049eebf5c1a316e3e426, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  QuizStateManager: {fileID: 1565632546}
   AnswerButtons:
   - {fileID: 673529983}
   - {fileID: 1728184042}
   - {fileID: 935726376}
   - {fileID: 1029393882}
-  CanvasState: {fileID: 11400000, guid: 3a8813bb0090343dbb0ea5e71bf829b3, type: 2}
   DefaultSprite: {fileID: 21300000, guid: 2e34011362ea2420f9796a94ae5c4164, type: 3}
   CorrectAnswerSprite: {fileID: 21300000, guid: e89f51b7621c04fffa47e63913381264, type: 3}
 --- !u!114 &625845747
@@ -1225,7 +1225,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 625845746}
         m_TargetAssemblyTypeName: AnswerController, Assembly-CSharp
-        m_MethodName: SetIncorrectAnswerState
+        m_MethodName: HighlightCorrectAnswer
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1253,7 +1253,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 625845746}
         m_TargetAssemblyTypeName: AnswerController, Assembly-CSharp
-        m_MethodName: SetIncorrectAnswerState
+        m_MethodName: HighlightCorrectAnswer
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2139,7 +2139,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1481772433}
   m_CullTransparentMesh: 1
---- !u!1 &1588186557
+--- !u!1 &1565632545
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2147,37 +2147,37 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1588186559}
-  - component: {fileID: 1588186558}
+  - component: {fileID: 1565632547}
+  - component: {fileID: 1565632546}
   m_Layer: 0
-  m_Name: QuestionSetManager
+  m_Name: QuizStateManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1588186558
+--- !u!114 &1565632546
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1588186557}
+  m_GameObject: {fileID: 1565632545}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22d08d8ac782c4405bc034f0fc25e20c, type: 3}
+  m_Script: {fileID: 11500000, guid: 47d9f350884cb4ecc8568c91de32285d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &1588186559
+--- !u!4 &1565632547
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1588186557}
+  m_GameObject: {fileID: 1565632545}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1097.0647, y: 546.9747, z: 3.9615307}
+  m_LocalPosition: {x: 959.1426, y: 546.5158, z: -13.440371}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2195,7 +2195,7 @@ GameObject:
   - component: {fileID: 1672380985}
   - component: {fileID: 1672380986}
   m_Layer: 5
-  m_Name: QuestionSets
+  m_Name: Quizzes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2259,8 +2259,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c579d15ea5074048a4c5280834d5c8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  QuestionSetManager: {fileID: 1588186558}
-  CanvasState: {fileID: 11400000, guid: 3a8813bb0090343dbb0ea5e71bf829b3, type: 2}
+  QuizStateManager: {fileID: 1565632546}
   QuestionSets:
   - {fileID: 11400000, guid: fcb363b0f438948a5a2930b535dd19fb, type: 2}
   LoadQuiz:
@@ -2622,8 +2621,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   QuizState: {fileID: 11400000, guid: 829e17942a9954632b494d307b075ef7, type: 2}
-  CanvasState: {fileID: 11400000, guid: 3a8813bb0090343dbb0ea5e71bf829b3, type: 2}
-  QuestionSetManager: {fileID: 1588186558}
+  QuizStateManager: {fileID: 1565632546}
   ParentImage: {fileID: 1836642607}
   DefaultSprite: {fileID: 21300000, guid: 3e801bce5491b4d22bc235d827b64bdc, type: 3}
   PausedSprite: {fileID: 21300000, guid: d51c9612e90ed4ef19a369aa90d4cb54, type: 3}
@@ -3096,5 +3094,5 @@ SceneRoots:
   - {fileID: 178989157}
   - {fileID: 756867701}
   - {fileID: 79354425}
-  - {fileID: 1588186559}
   - {fileID: 2134367105}
+  - {fileID: 1565632547}

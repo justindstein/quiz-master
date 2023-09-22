@@ -3,9 +3,7 @@ using UnityEngine.Events;
 
 public class QuizController : MonoBehaviour
 {
-    public QuestionSetManager QuestionSetManager;
-
-    public CanvasState CanvasState;
+    public QuizStateManager QuizStateManager;
 
     public QuestionSet[] QuestionSets;
 
@@ -14,8 +12,7 @@ public class QuizController : MonoBehaviour
     public void StartQuiz(int index)
     {
         Debug.Log("QuizController.StartQuiz:" + this.QuestionSets[index].name);
-        this.QuestionSetManager.LoadQuestionSet(this.QuestionSets[index]);
-        this.CanvasState.LoadQuestion(this.QuestionSetManager.GetNextQuestion());
-        LoadQuiz.Invoke();
+        this.QuizStateManager.LoadQuestionSet(this.QuestionSets[index]);
+        LoadQuiz.Invoke(); // TODO: This should be invoked by QuizStateManager
     }
 }
