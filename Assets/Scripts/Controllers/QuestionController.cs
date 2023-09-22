@@ -16,6 +16,7 @@ public class QuestionController : MonoBehaviour
 
     public void ShowQuestion()
     {
+        Debug.Log("ShowQuestion");
         this.QuestionText.text = this.QuizStateManager.GetQuestion();
     }
 

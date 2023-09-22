@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 // TODO: Let's start with StateManagers and transition to State if possible
 
@@ -12,11 +13,19 @@ public class QuizStateManager : MonoBehaviour
 
     // TODO: Convert to queue
     private IList<Question> unaskedQuestions = new List<Question>();
-    //private Queue<Question> unaskedQuestions = new Queue<Question>();
+    //private Queue<Question> unaskedQuestionsQueue = new Queue<Question>();
+
+    List<QuestionState> questionStates = new List<QuestionState>();
+
+    public UnityEvent OnQuizStarted;
+
+    public UnityEvent OnLoadQuestion;
 
     // TODO: convert to set of questions
-    public void LoadQuestionSet(QuestionSet questionSet)
+    public void StartQuiz(QuestionSet questionSet)
     {
+        this.OnQuizStarted.Invoke();
+
         this.questionSet = questionSet;
 
         this.askedQuestions.Clear();
@@ -24,10 +33,29 @@ public class QuizStateManager : MonoBehaviour
         this.unaskedQuestions.Clear();
         this.unaskedQuestions.AddRange(questionSet.Questions).Shuffle();
 
-        this.LoadQuestion(this.GetNextQuestion());
+        this.LoadNextQuestion();
     }
 
-    public Question GetNextQuestion()
+    /// <summary>
+    /// TODO: Returns true if correct answer
+    /// </summary>
+    /// <param name="question"></param>
+    /// <param name="answeredIndex"></param>
+    /// <returns></returns>
+    public bool SubmitAnswer(QuestionPresentation questionPresentation, int answeredIndex)
+    {
+        QuestionState questionState = new QuestionState(questionPresentation, answeredIndex);
+        this.questionStates.Add(questionState);
+        return (questionState.AnsweredIndex == questionPresentation.CorrectAnswerIndex);
+    }
+
+    public void LoadNextQuestion()
+    {
+        this.currentQuestion = new QuestionPresentation(this.GetNextQuestion());
+        this.OnLoadQuestion.Invoke();
+    }
+
+    private Question GetNextQuestion()
     {
         Question nextQuestion = this.unaskedQuestions[0];
         this.unaskedQuestions.RemoveAt(0);
@@ -47,16 +75,7 @@ public class QuizStateManager : MonoBehaviour
         return (this.GetQuestionCount() > 0);
     }
 
-
-    //////////////
-
-
     private QuestionPresentation currentQuestion;
-
-    public void LoadQuestion(Question question)
-    {
-        this.currentQuestion = new QuestionPresentation(question);
-    }
 
     public string GetQuestion()
     {
@@ -87,7 +106,7 @@ public class QuizStateManager : MonoBehaviour
     // Quiz1 -> [question1, question2, etc]
     // Question1 -> {question {questionText, answeredText}, answers[] {answer1 {text, isCorrectAnswer}, answer2, answer3, answer4} }
     // Start is called before the first frame update
-    private class QuestionPresentation
+    public class QuestionPresentation
     {
         public string Question { get; }
 
@@ -103,6 +122,18 @@ public class QuizStateManager : MonoBehaviour
             this.Answers = answers.Shuffle();
 
             this.CorrectAnswerIndex = answers.RandomInsert(question.CorrectAnswer);
+        }
+    }
+
+    private class QuestionState
+    {
+        public QuestionPresentation QuestionPresentation;
+        public int AnsweredIndex;
+
+        public QuestionState(QuestionPresentation questionPresentation, int answeredIndex)
+        {
+            this.QuestionPresentation = questionPresentation;
+            this.AnsweredIndex = answeredIndex;
         }
     }
 }

@@ -15,6 +15,8 @@ public class AnswerController : MonoBehaviour
 
     public void LoadAnswers()
     {
+        Debug.Log("Is this getting called");
+
         // Enable buttons
         UIUtil.SetInteractable(this.AnswerButtons, true);
 
@@ -22,7 +24,6 @@ public class AnswerController : MonoBehaviour
         UIUtil.SetSprite(this.AnswerButtons, this.DefaultSprite);
 
         // Set answer button text
-        // TODO: get off CanvasState
         UIUtil.SetText(this.AnswerButtons, this.QuizStateManager.GetAnswers());
     }
 

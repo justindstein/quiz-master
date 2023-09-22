@@ -26,11 +26,11 @@ public class QuizState : ScriptableObject
         };
     }
 
-    public void SetValue(string value)
-    {
-        //Debug.Log(string.Format("QuizState.SetValue [quizStateType: {0}]", value));
-        this.SetValue((QuizStateType)System.Enum.Parse(typeof(QuizStateType), value));
-    }
+    //public void SetValue(string value)
+    //{
+    //    //Debug.Log(string.Format("QuizState.SetValue [quizStateType: {0}]", value));
+    //    this.SetValue((QuizStateType)System.Enum.Parse(typeof(QuizStateType), value));
+    //}
 
     public void SetValue(QuizStateType value)
     {

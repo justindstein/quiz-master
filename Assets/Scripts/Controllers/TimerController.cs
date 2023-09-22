@@ -22,13 +22,7 @@ public class TimerController : MonoBehaviour
 
     public UnityEvent TimerExpired;
 
-    public UnityEvent LoadQuestion;
-
-    public UnityEvent QuizFinished;
-
     private float elapsedTime;
-
-    // TODO: delete the disabled event listener for OnLoadQuestion
 
     private void FixedUpdate()
     {
@@ -40,10 +34,10 @@ public class TimerController : MonoBehaviour
 
             if (this.elapsedTime > this.QuestionDuration.Value)
             {
-                //Debug.Log(string.Format("TimerController.FixedUpdate TimerExpired"));
                 this.TimerExpired.Invoke();
             }
         }
+
         else if (this.QuizState.IsAnswerState())
         {
             this.elapsedTime += Time.deltaTime;
@@ -51,8 +45,7 @@ public class TimerController : MonoBehaviour
 
             if (this.elapsedTime > this.AnswerDuration.Value)
             {
-                //Debug.Log(string.Format("TimerController.FixedUpdate LoadQuestion"));
-                this.LoadQuestion.Invoke();
+                this.QuizStateManager.LoadNextQuestion();
             }
         }
     }
@@ -70,7 +63,6 @@ public class TimerController : MonoBehaviour
     // OnLoadQuestion
     public void ResetTimer()
     {
-        //Debug.Log("TimerController.ResetTimer");
         if (this.QuizState.IsQuestionState())
         {
             this.ParentImage.sprite = this.DefaultSprite;
@@ -86,23 +78,13 @@ public class TimerController : MonoBehaviour
         this.elapsedTime = 0;
     }
 
-    public void SetQuizState(string quizStateType)
+    public void EnableQuestionState()
     {
-        this.QuizState.SetValue(quizStateType);
+        this.QuizState.SetValue(QuizStateType.QUESTION);
     }
 
-    public void GetNextQuestion()
+    public void EnableAnswerState()
     {
-        if (QuizStateManager.IsQuestionRemaining())
-        {
-            this.QuizStateManager.LoadQuestion(this.QuizStateManager.GetNextQuestion());
-        }
-
-        // TODO: TimerController shouldnt be in charge of finishing a quiz
-        else
-        {
-            Debug.Log("GetNextQuestion: QuizFinished.Invoke()");
-            this.QuizFinished.Invoke();
-        }
+        this.QuizState.SetValue(QuizStateType.ANSWER);
     }
 }
