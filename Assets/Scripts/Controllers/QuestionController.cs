@@ -17,7 +17,7 @@ public class QuestionController : MonoBehaviour
     // OnLoadQuestion
     public void LoadQuestion()
     {
-        this.QuestionText.text = this.CanvasState.Question;
+        this.QuestionText.text = this.CanvasState.GetQuestion();
     }
 
     // OnCorrectAnswer

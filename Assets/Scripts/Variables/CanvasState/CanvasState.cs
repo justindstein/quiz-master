@@ -4,9 +4,9 @@ using UnityEngine;
 [CreateAssetMenu]
 public class CanvasState : ScriptableObject
 {
-    public string Question;
+    private string Question;
 
-    public List<string> Answers;
+    private List<string> Answers;
 
     public int CorrectAnswerIndex;
 
@@ -36,4 +36,16 @@ public class CanvasState : ScriptableObject
     {
         return this.Answers[this.CorrectAnswerIndex];
     }
+
+    // TODO: is this really needed?
+    public string GetQuestion()
+    {
+        return this.Question;
+    }
+
+    public IList<string> GetAnswers()
+    {
+        return this.Answers;
+    }
+
 }

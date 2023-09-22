@@ -9,12 +9,7 @@ public class QuizController : MonoBehaviour
 
     public QuestionSet[] QuestionSets;
 
-    public UnityEvent LoadQuiz;
-
-    void Start()
-    {
-
-    }
+    public UnityEvent LoadQuiz; // TODO: rename to QuizStarted 
 
     public void StartQuiz(int index)
     {

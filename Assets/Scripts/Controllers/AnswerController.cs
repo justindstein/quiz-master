@@ -25,12 +25,12 @@ public class AnswerController : MonoBehaviour
         {
             Debug.Log(string.Format("LoadAnswers.button {0}", button));
         }
-        foreach (string answer in this.CanvasState.Answers)
+        foreach (string answer in this.CanvasState.GetAnswers())
         {
             Debug.Log(string.Format("LoadAnswers.answer {0}", answer));
         }
 
-        UIUtil.SetText(this.AnswerButtons, this.CanvasState.Answers);
+        UIUtil.SetText(this.AnswerButtons, this.CanvasState.GetAnswers());
     }
 
     // OnCorrectAnswer
@@ -46,6 +46,14 @@ public class AnswerController : MonoBehaviour
     // OnIncorrectAnswer
     // TODO: remove this
     public void SetIncorrectAnswerState()
+    {
+        this.AnswerButtons[CanvasState.CorrectAnswerIndex].GetComponent<Image>().sprite = this.CorrectAnswerSprite;
+
+        // Disable buttons
+        UIUtil.SetInteractable(this.AnswerButtons, false);
+    }
+
+    public void SetExpiredAnswerState()
     {
         this.AnswerButtons[CanvasState.CorrectAnswerIndex].GetComponent<Image>().sprite = this.CorrectAnswerSprite;
 

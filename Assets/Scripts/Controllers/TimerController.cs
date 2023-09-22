@@ -1,4 +1,3 @@
-using UnityEditor.ShaderKeywordFilter;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -31,11 +30,11 @@ public class TimerController : MonoBehaviour
 
     private float elapsedTime;
 
-    private void Start()
-    {
-        // TODO: This isn't good enough
-        this.LoadQuestion.Invoke();
-    }
+    //private void Start()
+    //{
+    //    // TODO: This isn't good enough
+    //    this.LoadQuestion.Invoke();
+    //}
 
     // TODO: delete the disabled event listener for OnLoadQuestion
 

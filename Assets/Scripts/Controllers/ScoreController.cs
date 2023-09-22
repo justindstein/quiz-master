@@ -14,7 +14,7 @@ public class ScoreController : MonoBehaviour
     private void Start()
     {
         //this.QuestionSetManager.GetNextQuestion();
-        this.ScoreState.QuestionCount = this.QuestionSetManager.GetQuestionCount();
+        this.ScoreState.QuestionCount = this.QuestionSetManager.GetQuestionCount(); // TODO: is this necessary?
         this.UpdateScore();
     }
 

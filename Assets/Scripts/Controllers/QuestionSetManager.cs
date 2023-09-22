@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class QuestionSetManager : MonoBehaviour
 {
-    private QuestionSet questionSet;
+    //private QuestionSet questionSet;
 
     private IList<Question> askedQuestions;
 
@@ -20,7 +20,7 @@ public class QuestionSetManager : MonoBehaviour
     {
         Debug.Log("QuestionSetManager.LoadQuestionSet");
         // TODO: is questionSet necessary? Possibly
-        this.questionSet = questionSet;
+        //this.questionSet = questionSet;
 
         // TODO: do we need to load the questionSet? just load into the asked and unasked questions
         this.askedQuestions.Clear();
@@ -28,19 +28,19 @@ public class QuestionSetManager : MonoBehaviour
         this.unaskedQuestions.Clear();
         this.unaskedQuestions.AddRange(questionSet.Questions).Shuffle();
 
-        foreach (Question q in this.unaskedQuestions)
-        {
-            Debug.Log("LoadQuestionSet -> " + q.name);
-        }
+        //foreach (Question q in this.unaskedQuestions)
+        //{
+        //    Debug.Log("LoadQuestionSet -> " + q.name);
+        //}
     }
 
     // TODO: this should be converted to Queue.dequeue()
     public Question GetNextQuestion()
     {
-        foreach (Question q in this.unaskedQuestions)
-        {
-            Debug.Log("GetNextQuestion -> " + q.name);
-        }
+        //foreach (Question q in this.unaskedQuestions)
+        //{
+        //    Debug.Log("GetNextQuestion -> " + q.name);
+        //}
 
         Question nextQuestion = this.unaskedQuestions[0];
         this.unaskedQuestions.RemoveAt(0);
@@ -57,10 +57,10 @@ public class QuestionSetManager : MonoBehaviour
 
     public bool IsQuestionRemaining()
     {
-        foreach (Question q in this.unaskedQuestions)
-        {
-            Debug.Log("IsQuestionRemaining -> " + q.name);
-        }
+        //foreach (Question q in this.unaskedQuestions)
+        //{
+        //    Debug.Log("IsQuestionRemaining -> " + q.name);
+        //}
 
         return (this.unaskedQuestions.Count > 0);
     }
