@@ -259,9 +259,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: ClickHandler, Assembly-CSharp
-        m_MethodName: 
+      - m_Target: {fileID: 1137659102659658139}
+        m_TargetAssemblyTypeName: AnswerButtonController, Assembly-CSharp
+        m_MethodName: OnClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -286,7 +286,6 @@ MonoBehaviour:
   CorrectAnswerSprite: {fileID: 21300000, guid: e89f51b7621c04fffa47e63913381264, type: 3}
   OnCorrectAnswer: {fileID: 11400000, guid: 65e8eae95eb7e4d84b03f6ce6e02b3bd, type: 2}
   OnIncorrectAnswer: {fileID: 11400000, guid: b899b2bf68b32409cb0f5cdf59909390, type: 2}
-  IsCorrect: 0
 --- !u!114 &7528537065619518508
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -26,12 +26,12 @@ public class AnswerController : MonoBehaviour
     {
         GameObject answerButton = Instantiate(prefab);
 
-        answerButton.GetComponent<AnswerButtonController>().IsCorrect = answer.IsCorrect;
+        answerButton.GetComponent<AnswerButtonController>().SetIsCorrect(answer.IsCorrect);
 
-        answerButton.GetComponent<Button>().onClick.AddListener(() =>
-        {
-            answerButton.GetComponent<AnswerButtonController>().OnClick();
-        });
+        //answerButton.GetComponent<Button>().onClick.AddListener(() =>
+        //{
+        //    answerButton.GetComponent<AnswerButtonController>().OnClick();
+        //});
 
         answerButton.GetComponentInChildren<TextMeshProUGUI>().SetText(answer.Answer);
 

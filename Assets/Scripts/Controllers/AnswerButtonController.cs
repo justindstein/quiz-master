@@ -9,11 +9,11 @@ public class AnswerButtonController : MonoBehaviour
 
     public GameEvent OnIncorrectAnswer;
 
-    public bool IsCorrect = false;
+    private bool isCorrect;
 
     public void OnClick()
     {
-        if(this.IsCorrect)
+        if(this.isCorrect)
         {
             OnCorrectAnswer.Raise();
         } else
@@ -24,7 +24,7 @@ public class AnswerButtonController : MonoBehaviour
 
     public void Highlight()
     {
-        if (this.IsCorrect)
+        if (this.isCorrect)
         {
             this.GetComponent<Image>().sprite = this.CorrectAnswerSprite;
         }
@@ -33,5 +33,10 @@ public class AnswerButtonController : MonoBehaviour
     public void Disable()
     {
         this.GetComponent<Button>().interactable = false;
+    }
+
+    public void SetIsCorrect(bool value)
+    {
+        this.isCorrect = value;
     }
 }

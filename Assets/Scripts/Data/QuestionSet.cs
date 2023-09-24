@@ -1,6 +1,7 @@
 using UnityEngine;
 
 [CreateAssetMenu]
+// TODO: rename to quiz type
 public class QuestionSet : ScriptableObject
 {
     public string Name;
