@@ -2,13 +2,9 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu]
-public class QuizState : ScriptableObject
+// TODO: possibly move to quizstatemanager
+public class QuizState
 {
-#if UNITY_EDITOR
-    [Multiline]
-    public string DeveloperDescription = "";
-#endif
     public QuizStateType Value = QuizStateType.NONE;
 
     private Dictionary<QuizStateType, HashSet<QuizStateType>> stateTransitions = new Dictionary<QuizStateType, HashSet<QuizStateType>>()

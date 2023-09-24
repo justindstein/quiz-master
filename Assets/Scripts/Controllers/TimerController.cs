@@ -4,8 +4,6 @@ using UnityEngine.UI;
 
 public class TimerController : MonoBehaviour
 {
-    public QuizState QuizState;
-
     public QuizStateManager QuizStateManager;
 
     public Image ParentImage;
@@ -22,12 +20,14 @@ public class TimerController : MonoBehaviour
 
     public UnityEvent TimerExpired;
 
+    private QuizState quizState = new QuizState();
+
     private float elapsedTime;
 
     private void FixedUpdate()
     {
         // TODO: Cleanup redundancies in this
-        if (this.QuizState.IsQuestionState())
+        if (this.quizState.IsQuestionState())
         {
             this.elapsedTime += Time.deltaTime;
             this.updateTimer(this.ParentImage, this.elapsedTime, this.QuestionDuration.Value);
@@ -38,7 +38,7 @@ public class TimerController : MonoBehaviour
             }
         }
 
-        else if (this.QuizState.IsAnswerState())
+        else if (this.quizState.IsAnswerState())
         {
             this.elapsedTime += Time.deltaTime;
             this.updateTimer(this.ParentImage, this.elapsedTime, this.AnswerDuration.Value);
@@ -60,16 +60,15 @@ public class TimerController : MonoBehaviour
 #endif
     }
 
-    // OnLoadQuestion
     public void ResetTimer()
     {
-        if (this.QuizState.IsQuestionState())
+        if (this.quizState.IsQuestionState())
         {
             this.ParentImage.sprite = this.DefaultSprite;
             this.ParentImage.fillClockwise = false;
         }
 
-        else if (this.QuizState.IsAnswerState())
+        else if (this.quizState.IsAnswerState())
         {
             this.ParentImage.sprite = this.PausedSprite;
             this.ParentImage.fillClockwise = true;
@@ -80,12 +79,11 @@ public class TimerController : MonoBehaviour
 
     public void QuestionState()
     {
-        Debug.Log("QuestionState");
-        this.QuizState.SetValue(QuizStateType.QUESTION);
+        this.quizState.SetValue(QuizStateType.QUESTION);
     }
 
     public void AnswerState()
     {
-        this.QuizState.SetValue(QuizStateType.ANSWER);
+        this.quizState.SetValue(QuizStateType.ANSWER);
     }
 }
