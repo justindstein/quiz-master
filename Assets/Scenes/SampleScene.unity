@@ -1810,6 +1810,7 @@ MonoBehaviour:
   QuizStateManager: {fileID: 1565632546}
   Quizzes:
   - {fileID: 11400000, guid: fcb363b0f438948a5a2930b535dd19fb, type: 2}
+  - {fileID: 11400000, guid: a3836cbff51514c4b87c31d2d8773dfc, type: 2}
 --- !u!1 &1789974885
 GameObject:
   m_ObjectHideFlags: 0
