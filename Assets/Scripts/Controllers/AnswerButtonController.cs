@@ -1,7 +1,10 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AnswerButtonController : MonoBehaviour
 {
+    public Sprite CorrectAnswerSprite;
+
     public GameEvent OnCorrectAnswer;
 
     public GameEvent OnIncorrectAnswer;
@@ -12,12 +15,23 @@ public class AnswerButtonController : MonoBehaviour
     {
         if(this.IsCorrect)
         {
-            Debug.Log("correct");
             OnCorrectAnswer.Raise();
         } else
         {
-            Debug.Log("incorrect");
             OnIncorrectAnswer.Raise();
         }
+    }
+
+    public void Highlight()
+    {
+        if (this.IsCorrect)
+        {
+            this.GetComponent<Image>().sprite = this.CorrectAnswerSprite;
+        }
+    }
+
+    public void Disable()
+    {
+        this.GetComponent<Button>().interactable = false;
     }
 }
