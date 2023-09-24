@@ -74,8 +74,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -146,6 +146,7 @@ GameObject:
   - component: {fileID: 6025258721516500259}
   - component: {fileID: 3706915601851518242}
   - component: {fileID: 3003030503056921167}
+  - component: {fileID: 1137659102659658139}
   m_Layer: 5
   m_Name: AnswerButton
   m_TagString: Untagged
@@ -267,3 +268,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1137659102659658139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8782574070687847616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44361eb763cb04b4d871bf459b2be96a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnCorrectAnswer: {fileID: 11400000, guid: 65e8eae95eb7e4d84b03f6ce6e02b3bd, type: 2}
+  OnIncorrectAnswer: {fileID: 11400000, guid: b899b2bf68b32409cb0f5cdf59909390, type: 2}
+  IsCorrect: 0

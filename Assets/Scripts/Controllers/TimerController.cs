@@ -78,12 +78,13 @@ public class TimerController : MonoBehaviour
         this.elapsedTime = 0;
     }
 
-    public void EnableQuestionState()
+    public void QuestionState()
     {
+        Debug.Log("QuestionState");
         this.QuizState.SetValue(QuizStateType.QUESTION);
     }
 
-    public void EnableAnswerState()
+    public void AnswerState()
     {
         this.QuizState.SetValue(QuizStateType.ANSWER);
     }

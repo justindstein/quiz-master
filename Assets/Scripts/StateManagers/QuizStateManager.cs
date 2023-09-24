@@ -13,7 +13,7 @@ public class QuizStateManager : MonoBehaviour
 
     // TODO: Convert to queue
     private IList<Question> unaskedQuestions = new List<Question>();
-    //private Queue<Question> unaskedQuestionsQueue = new Queue<Question>();
+    private Queue<Question> unaskedQuestionsQueue = new Queue<Question>();
 
     List<QuestionState> questionStates = new List<QuestionState>();
 
@@ -31,7 +31,8 @@ public class QuizStateManager : MonoBehaviour
         this.askedQuestions.Clear();
 
         this.unaskedQuestions.Clear();
-        this.unaskedQuestions.AddRange(questionSet.Questions).Shuffle();
+        this.unaskedQuestions.AddRange(questionSet.Questions).Shuffle().ToQueue();
+        this.unaskedQuestionsQueue = unaskedQuestions.ToQueue();
 
         this.LoadNextQuestion();
     }
@@ -51,7 +52,7 @@ public class QuizStateManager : MonoBehaviour
 
     public void LoadNextQuestion()
     {
-        this.currentQuestion = new QuestionPresentation(this.GetNextQuestion());
+        this.questionPresentation = new QuestionPresentation(this.GetNextQuestion());
         this.OnLoadQuestion.Invoke();
     }
 
@@ -75,26 +76,31 @@ public class QuizStateManager : MonoBehaviour
         return (this.GetQuestionCount() > 0);
     }
 
-    private QuestionPresentation currentQuestion;
+    private QuestionPresentation questionPresentation;
 
     public string GetQuestion()
     {
-        return this.currentQuestion.Question;
+        return this.questionPresentation.Question;
     }
 
     public IList<string> GetAnswers()
     {
-        return this.currentQuestion.Answers;
+        return this.questionPresentation.Answers;
     }
 
     public int GetCorrectAnswerIndex()
     {
-        return this.currentQuestion.CorrectAnswerIndex;
+        return this.questionPresentation.CorrectAnswerIndex;
     }
 
     public string GetCorrectAnswer()
     {
         return this.GetAnswers()[this.GetCorrectAnswerIndex()];
+    }
+
+    public IList<AnswerEntity> GetAnswerEntities()
+    {
+        return this.questionPresentation.AnswerEntities;
     }
 
     // TODO:
@@ -114,6 +120,9 @@ public class QuizStateManager : MonoBehaviour
 
         public int CorrectAnswerIndex { get; }
 
+        public IList<AnswerEntity> AnswerEntities;
+
+        // TODO: clean up this mess
         public QuestionPresentation(Question question)
         {
             this.Question = question.Text;
@@ -122,6 +131,13 @@ public class QuizStateManager : MonoBehaviour
             this.Answers = answers.Shuffle();
 
             this.CorrectAnswerIndex = answers.RandomInsert(question.CorrectAnswer);
+
+            this.AnswerEntities = new List<AnswerEntity>();
+            for (int i = this.Answers.Count - 1; i >= 0; i--)
+            {
+                AnswerEntity answer = new AnswerEntity(this.Answers[i], (i == this.CorrectAnswerIndex));
+                this.AnswerEntities.Add(answer);
+            }
         }
     }
 
@@ -134,6 +150,18 @@ public class QuizStateManager : MonoBehaviour
         {
             this.QuestionPresentation = questionPresentation;
             this.AnsweredIndex = answeredIndex;
+        }
+    }
+
+    public class AnswerEntity
+    {
+        public string Answer;
+        public bool IsCorrect;
+
+        public AnswerEntity(string answer, bool isCorrect)
+        {
+            this.Answer = answer;
+            this.IsCorrect = isCorrect;
         }
     }
 }

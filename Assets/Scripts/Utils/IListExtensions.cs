@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Xml.Linq;
 
 /// <summary>
 /// Extensions to the IList class
@@ -44,6 +45,18 @@ public static class IListExtensions
             list.Add(element);
         }
         return list;
+    }
+
+    public static Queue<T> ToQueue<T>(this IList<T> list)
+    {
+        Queue<T> queue = new Queue<T>();
+
+        foreach (var element in list)
+        {
+            queue.Enqueue(element);
+        }
+
+        return queue;
     }
 }
 

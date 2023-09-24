@@ -9,31 +9,18 @@ public class QuizState : ScriptableObject
     [Multiline]
     public string DeveloperDescription = "";
 #endif
-    public QuizStateType Value;
+    public QuizStateType Value = QuizStateType.NONE;
 
-    private Dictionary<QuizStateType, HashSet<QuizStateType>> stateTransitions = new Dictionary<QuizStateType, HashSet<QuizStateType>>();
-
-    private void OnEnable()
-    {
-        //Debug.Log("QuizState.OnEnable");
-        this.Value = QuizStateType.NONE;
-
-        this.stateTransitions = new Dictionary<QuizStateType, HashSet<QuizStateType>>()
+    private Dictionary<QuizStateType, HashSet<QuizStateType>> stateTransitions = new Dictionary<QuizStateType, HashSet<QuizStateType>>()
         {
             { QuizStateType.NONE, new HashSet<QuizStateType> { QuizStateType.QUESTION, QuizStateType.ANSWER } },
             { QuizStateType.ANSWER, new HashSet<QuizStateType> { QuizStateType.QUESTION } },
             { QuizStateType.QUESTION, new HashSet<QuizStateType> { QuizStateType.ANSWER } }
         };
-    }
-
-    //public void SetValue(string value)
-    //{
-    //    //Debug.Log(string.Format("QuizState.SetValue [quizStateType: {0}]", value));
-    //    this.SetValue((QuizStateType)System.Enum.Parse(typeof(QuizStateType), value));
-    //}
 
     public void SetValue(QuizStateType value)
     {
+        Debug.Log("SetValue: " + value + " From: " + this.Value);
         if (this.stateTransitions[this.Value].Contains(value))
         {
             this.Value = value;
