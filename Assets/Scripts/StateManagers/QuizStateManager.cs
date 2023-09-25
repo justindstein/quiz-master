@@ -3,21 +3,22 @@ using UnityEngine;
 using UnityEngine.Events;
 
 // TODO: Let's start with StateManagers and transition to State if possible
-
 public class QuizStateManager : MonoBehaviour
 {
     // TODO: is questionSet necessary? Possibly
-    private QuestionSet questionSet;
+    //private QuestionSet questionSet;
 
     private IList<Question> askedQuestions = new List<Question>();
 
     // TODO: Convert to queue
-    private IList<Question> unaskedQuestions = new List<Question>();
-    private Queue<Question> unaskedQuestionsQueue = new Queue<Question>();
+    //private IList<Question> unaskedQuestions = new List<Question>();
+    private Queue<Question> unaskedQuestions = new Queue<Question>();
 
     List<QuestionState> questionStates = new List<QuestionState>();
 
     public UnityEvent OnQuizStarted;
+
+    public UnityEvent OnQuizEnded;
 
     public UnityEvent OnLoadQuestion;
 
@@ -26,15 +27,36 @@ public class QuizStateManager : MonoBehaviour
     {
         this.OnQuizStarted.Invoke();
 
-        this.questionSet = questionSet;
-
         this.askedQuestions.Clear();
 
         this.unaskedQuestions.Clear();
-        this.unaskedQuestions.AddRange(questionSet.Questions).Shuffle().ToQueue();
-        this.unaskedQuestionsQueue = unaskedQuestions.ToQueue();
+        this.unaskedQuestions = ((IList<Question>)new List<Question>())
+            .AddRange(questionSet.Questions)
+            .Shuffle()
+            .ToQueue();
 
         this.LoadNextQuestion();
+    }
+
+    public void LoadNextQuestion()
+    {
+        if (isQuestionRemaining())
+        {
+            Question nextQuestion = this.unaskedQuestions.Dequeue();
+            this.askedQuestions.Add(nextQuestion);
+            this.questionPresentation = new QuestionPresentation(nextQuestion);
+
+            this.OnLoadQuestion.Invoke();
+        }
+        else
+        {
+            this.OnQuizEnded.Invoke();
+        }
+    }
+
+    private bool isQuestionRemaining()
+    {
+        return (this.GetQuestionCount() > 0);
     }
 
     /// <summary>
@@ -50,30 +72,9 @@ public class QuizStateManager : MonoBehaviour
         return (questionState.AnsweredIndex == questionPresentation.CorrectAnswerIndex);
     }
 
-    public void LoadNextQuestion()
-    {
-        this.questionPresentation = new QuestionPresentation(this.GetNextQuestion());
-        this.OnLoadQuestion.Invoke();
-    }
-
-    private Question GetNextQuestion()
-    {
-        Question nextQuestion = this.unaskedQuestions[0];
-        this.unaskedQuestions.RemoveAt(0);
-
-        this.askedQuestions.Add(nextQuestion);
-
-        return nextQuestion;
-    }
-
     public int GetQuestionCount()
     {
         return this.askedQuestions.Count + this.unaskedQuestions.Count;
-    }
-
-    public bool IsQuestionRemaining()
-    {
-        return (this.GetQuestionCount() > 0);
     }
 
     private QuestionPresentation questionPresentation;

@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd9f73447828940958a681504939751a, type: 3}
   m_Name: TimerExpiredText
   m_EditorClassIdentifier: 
-  DeveloperDescription: 'Out of time! Correct answer: {0}'
-  Value: 
+  DeveloperDescription: 
+  Value: 'Out of time! Correct answer: {0}'

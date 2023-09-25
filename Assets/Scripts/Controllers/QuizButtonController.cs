@@ -1,7 +1,7 @@
 using UnityEngine;
 
 /// <summary>
-/// Click handling for quiz buttons.
+/// Click handling for quiz buttons
 /// </summary>
 public class QuizButtonController : MonoBehaviour
 {

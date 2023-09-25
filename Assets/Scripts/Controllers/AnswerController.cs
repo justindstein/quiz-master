@@ -22,7 +22,18 @@ public class AnswerController : MonoBehaviour
     }
 
     /// <summary>
-    /// 
+    /// Clears out all loaded answers
+    /// </summary>
+    public void ClearAnswers()
+    {
+        for (int i = this.transform.childCount - 1; i >= 0; i--)
+        {
+            Destroy(this.transform.GetChild(i).gameObject);
+        }
+    }
+
+    /// <summary>
+    /// Instantiates a new answer button
     /// </summary>
     /// <param name="prefab">The prefab to instantiate</param>
     /// <param name="answer">The associated answer</param>
@@ -36,13 +47,5 @@ public class AnswerController : MonoBehaviour
         answerButton.GetComponentInChildren<TextMeshProUGUI>().SetText(answer.Answer);
 
         return answerButton;
-    }
-
-    public void ClearAnswers()
-    {
-        for (int i = this.transform.childCount - 1; i >= 0; i--)
-        {
-            Destroy(this.transform.GetChild(i).gameObject);
-        }
     }
 }

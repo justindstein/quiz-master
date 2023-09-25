@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
-/// Click handling for answer buttons.
+/// Click handling for answer buttons
 /// </summary>
 public class AnswerButtonController : MonoBehaviour
 {
@@ -25,6 +25,9 @@ public class AnswerButtonController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Highlight this button if this instance corresponds to the correct answer
+    /// </summary>
     public void Highlight()
     {
         if (this.isCorrect)
@@ -33,6 +36,9 @@ public class AnswerButtonController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Disable button so that it no longers responds to clicks
+    /// </summary>
     public void Disable()
     {
         this.GetComponent<Button>().interactable = false;
