@@ -1,6 +1,5 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class QuizController : MonoBehaviour
 {
@@ -10,12 +9,17 @@ public class QuizController : MonoBehaviour
 
     public QuestionSet[] Quizzes;
 
+    public GameEvent OnLoadMenu;
+
     private void Start()
     {
-        this.loadAnswers();
+        this.OnLoadMenu.Raise();
     }
 
-    private void loadAnswers()
+    /// <summary>
+    /// Load a collection of quizzes into 'Quizzes' layout group.
+    /// </summary>
+    public void LoadQuizzes()
     {
         foreach (QuestionSet quiz in this.Quizzes)
         {
@@ -27,17 +31,18 @@ public class QuizController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="prefab">The prefab to instantiate</param>
+    /// <param name="quiz">The associated quiz</param>
+    /// <returns>Instantiated button gameobject</returns>
     private GameObject instantiateAnswerButton(GameObject prefab, QuestionSet quiz)
     {
         GameObject quizButton = Instantiate(prefab);
 
         quizButton.GetComponent<QuizButtonController>().SetQuizStateManager(this.QuizStateManager);
         quizButton.GetComponent<QuizButtonController>().SetQuiz(quiz);
-
-        //quizButton.GetComponent<Button>().onClick.AddListener(() =>
-        //{
-        //    quizButton.GetComponent<QuizButtonController>().OnClick();
-        //});
 
         quizButton.GetComponentInChildren<TextMeshProUGUI>().SetText(quiz.Name);
 

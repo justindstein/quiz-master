@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/// <summary>
+/// Click handling for quiz buttons.
+/// </summary>
 public class QuizButtonController : MonoBehaviour
 {
     public QuizStateManager QuizStateManager;

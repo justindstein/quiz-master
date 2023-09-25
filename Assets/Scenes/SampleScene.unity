@@ -1742,6 +1742,7 @@ GameObject:
   - component: {fileID: 1672380984}
   - component: {fileID: 1672380985}
   - component: {fileID: 1672380986}
+  - component: {fileID: 1672380987}
   m_Layer: 5
   m_Name: Quizzes
   m_TagString: Untagged
@@ -1811,6 +1812,35 @@ MonoBehaviour:
   Quizzes:
   - {fileID: 11400000, guid: fcb363b0f438948a5a2930b535dd19fb, type: 2}
   - {fileID: 11400000, guid: a3836cbff51514c4b87c31d2d8773dfc, type: 2}
+  OnLoadMenu: {fileID: 11400000, guid: 04330fbe25eb744da8d5df11b8d20eb0, type: 2}
+--- !u!114 &1672380987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1672380983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ef990d7ce6084a7ebc69d7d34352f39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 04330fbe25eb744da8d5df11b8d20eb0, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1672380986}
+        m_TargetAssemblyTypeName: QuizController, Assembly-CSharp
+        m_MethodName: LoadQuizzes
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1789974885
 GameObject:
   m_ObjectHideFlags: 0

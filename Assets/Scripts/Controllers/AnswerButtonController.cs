@@ -1,6 +1,9 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Click handling for answer buttons.
+/// </summary>
 public class AnswerButtonController : MonoBehaviour
 {
     public Sprite CorrectAnswerSprite;
