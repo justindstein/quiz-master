@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.Events;
 
 // TODO: Let's start with StateManagers and transition to State if possible
+// QuestionManager? QuizManager?
 public class QuizStateManager : MonoBehaviour
 {
     public UnityEvent OnQuizStarted;
@@ -11,11 +12,15 @@ public class QuizStateManager : MonoBehaviour
 
     public UnityEvent OnLoadQuestion;
 
-    private IList<Question> askedQuestions = new List<Question>();
+    private IList<Question> askedQuestions;
 
-    private Queue<Question> unaskedQuestions = new Queue<Question>();
+    private Queue<Question> unaskedQuestions;
 
-    //List<QuestionState> questionStates = new List<QuestionState>();
+    private void Awake()
+    {
+        this.askedQuestions = new List<Question>();
+        this.unaskedQuestions = new Queue<Question>();
+    }
 
     // TODO: convert to set of questions
     public void StartQuiz(QuestionSet questionSet)
@@ -35,38 +40,17 @@ public class QuizStateManager : MonoBehaviour
 
     public void LoadNextQuestion()
     {
-        //if (IsQuestionRemaining())
-        //{
-            Question nextQuestion = this.unaskedQuestions.Dequeue();
-            this.askedQuestions.Add(nextQuestion);
-            this.questionPresentation = new QuestionPresentation(nextQuestion);
+        Question nextQuestion = this.unaskedQuestions.Dequeue();
+        this.askedQuestions.Add(nextQuestion);
+        this.questionPresentation = new QuestionPresentation(nextQuestion);
 
-            this.OnLoadQuestion.Invoke();
-        //}
-        //else
-        //{
-        //    this.OnQuizEnded.Invoke();
-        //}
-        // TODO: cleanup this
+        this.OnLoadQuestion.Invoke();
     }
 
     public bool IsQuestionRemaining()
     {
-        return (this.GetQuestionCount() > 0);
+        return (this.unaskedQuestions.Count > 0);
     }
-
-    /// <summary>
-    /// TODO: Returns true if correct answer
-    /// </summary>
-    /// <param name="question"></param>
-    /// <param name="answeredIndex"></param>
-    /// <returns></returns>
-    //public bool SubmitAnswer(QuestionPresentation questionPresentation, int answeredIndex)
-    //{
-    //    QuestionState questionState = new QuestionState(questionPresentation, answeredIndex);
-    //    this.questionStates.Add(questionState);
-    //    return (questionState.AnsweredIndex == questionPresentation.CorrectAnswerIndex);
-    //}
 
     public int GetQuestionCount()
     {
@@ -85,6 +69,8 @@ public class QuizStateManager : MonoBehaviour
         return this.questionPresentation.Answers;
     }
 
+    // TODO: maybe this should just be wrapped up in GetCurrentQuestion, it's retrieved once and stored locally. It's weird for there
+    // to be a current question in this service
     public int GetCorrectAnswerIndex()
     {
         return this.questionPresentation.CorrectAnswerIndex;

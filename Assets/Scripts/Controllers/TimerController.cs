@@ -1,12 +1,11 @@
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.U2D;
 using UnityEngine.UI;
 
 public class TimerController : MonoBehaviour
 {
     public QuizStateManager QuizStateManager;
-
-    public Image ParentImage;
 
     public Sprite DefaultSprite;
 
@@ -18,80 +17,112 @@ public class TimerController : MonoBehaviour
 
     public FloatVariable AnswerDuration;
 
-    public UnityEvent OnTimerExpired;
+    public UnityEvent OnQuestionTimerExpired;
 
-    public UnityEvent OnQuizFinished;
+    public UnityEvent OnAnswerTimerExpired;
 
-    private QuizState quizState = new QuizState();
+    private Image parentImage;
 
-    private float elapsedTime;
+    private QuizTimer quizTimer;
+
+    private void Awake()
+    {
+        this.parentImage = this.GetComponent<Image>();
+        this.quizTimer = new QuizTimer(this.TimerMaxFill.Value, QuizStateType.QUESTION, this.QuestionDuration.Value);
+    }
 
     private void FixedUpdate()
     {
-        // TODO: Cleanup redundancies in this
-        if (this.quizState.IsQuestionState())
-        {
-            this.elapsedTime += Time.deltaTime;
-            this.updateTimer(this.ParentImage, this.elapsedTime, this.QuestionDuration.Value);
+        //this.quizState.IsAnswerState()
 
-            if (this.elapsedTime > this.QuestionDuration.Value)
-            {
-                this.OnTimerExpired.Invoke();
-            }
+        // Question timer
+        if (this.quizTimer.GetTimerType() == QuizStateType.QUESTION)
+        {
+            updateTimer(this.PausedSprite, true, QuizStateType.ANSWER, this.QuestionDuration.Value, this.OnQuestionTimerExpired);
+
+            //this.quizTimer.ApplyChange(Time.deltaTime);
+            //this.parentImage.fillAmount = this.quizTimer.GetTimerFill();
+
+            //if (this.quizTimer.IsDone())
+            //{
+            //    this.parentImage.sprite = this.PausedSprite;
+            //    this.parentImage.fillClockwise = true;
+            //    this.quizTimer.Reset(QuizStateType.ANSWER, this.AnswerDuration.Value);
+            //    this.OnQuestionTimerExpired.Invoke();
+            //}
         }
 
-        else if (this.quizState.IsAnswerState())
+        // Answer timer
+        else if (this.quizTimer.GetTimerType() == QuizStateType.ANSWER)
         {
-            this.elapsedTime += Time.deltaTime;
-            this.updateTimer(this.ParentImage, this.elapsedTime, this.AnswerDuration.Value);
+            updateTimer(this.DefaultSprite, false, QuizStateType.QUESTION, this.AnswerDuration.Value, this.OnAnswerTimerExpired);
 
-            if (this.elapsedTime > this.AnswerDuration.Value)
-            {
-                if(this.QuizStateManager.IsQuestionRemaining())
-                {
-                    this.QuizStateManager.LoadNextQuestion();
-                } else
-                {
-                    ;
-                }
-            }
+            //this.quizTimer.ApplyChange(Time.deltaTime);
+            //this.parentImage.fillAmount = this.quizTimer.GetTimerFill();
+
+            //if (this.quizTimer.IsDone())
+            //{
+            //    this.parentImage.sprite = this.DefaultSprite;
+            //    this.parentImage.fillClockwise = false;
+            //    this.quizTimer.Reset(QuizStateType.QUESTION, this.AnswerDuration.Value);
+            //    this.OnAnswerTimerExpired.Invoke();
+            //}
         }
     }
 
-    private void updateTimer(Image image, float elapsedTime, float timeToAnswer)
+    private void updateTimer(Sprite sprite, bool fillClockwise, QuizStateType quizStateType, float duration, UnityEvent unityEvent)
     {
-        float fillFraction = Mathf.Max(TimerMaxFill.Value - (elapsedTime / timeToAnswer), 0);
-        this.ParentImage.fillAmount = fillFraction;
+        this.quizTimer.ApplyChange(Time.deltaTime);
+        this.parentImage.fillAmount = this.quizTimer.GetTimerFill();
 
-#if UNITY_EDITOR
-        //Debug.Log(string.Format("{0}: Mathf.Max({1} - ({2} / {3}), 0)", fillFraction, TimerMaxFill.Value, elapsedTime, timeToAnswer));
-#endif
+        if (this.quizTimer.IsDone())
+        {
+            this.parentImage.sprite = sprite;
+            this.parentImage.fillClockwise = fillClockwise;
+            this.quizTimer.Reset(quizStateType, this.AnswerDuration.Value);
+            unityEvent.Invoke();
+        }
     }
 
-    public void ResetTimer()
+    private class QuizTimer
     {
-        if (this.quizState.IsQuestionState())
+        private float timerMaxFill;
+
+        private QuizStateType timerType;
+
+        private float duration;
+
+        private float elapsedTime;
+
+        public QuizTimer(float timerMaxFill, QuizStateType timerType, float duration)
         {
-            this.ParentImage.sprite = this.DefaultSprite;
-            this.ParentImage.fillClockwise = false;
+            this.duration = duration;
+            this.elapsedTime = 0f;
         }
 
-        else if (this.quizState.IsAnswerState())
+        public void ApplyChange(float value)
         {
-            this.ParentImage.sprite = this.PausedSprite;
-            this.ParentImage.fillClockwise = true;
+            this.elapsedTime += value;
         }
 
-        this.elapsedTime = 0;
-    }
+        public bool IsDone()
+        {
+            return (this.elapsedTime >= this.duration);
+        }
 
-    public void QuestionState()
-    {
-        this.quizState.SetValue(QuizStateType.QUESTION);
-    }
+        public void Reset(QuizStateType timerType, float duration)
+        {
+            this.elapsedTime = 0f;
+        }
 
-    public void AnswerState()
-    {
-        this.quizState.SetValue(QuizStateType.ANSWER);
+        public QuizStateType GetTimerType()
+        {
+            return this.timerType;
+        }
+
+        public float GetTimerFill()
+        {
+            return Mathf.Max(this.timerMaxFill - (this.elapsedTime / this.duration), 0);
+        }
     }
 }
