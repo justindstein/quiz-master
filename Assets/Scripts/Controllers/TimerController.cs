@@ -18,7 +18,9 @@ public class TimerController : MonoBehaviour
 
     public FloatVariable AnswerDuration;
 
-    public UnityEvent TimerExpired;
+    public UnityEvent OnTimerExpired;
+
+    public UnityEvent OnQuizFinished;
 
     private QuizState quizState = new QuizState();
 
@@ -34,7 +36,7 @@ public class TimerController : MonoBehaviour
 
             if (this.elapsedTime > this.QuestionDuration.Value)
             {
-                this.TimerExpired.Invoke();
+                this.OnTimerExpired.Invoke();
             }
         }
 
@@ -45,7 +47,13 @@ public class TimerController : MonoBehaviour
 
             if (this.elapsedTime > this.AnswerDuration.Value)
             {
-                this.QuizStateManager.LoadNextQuestion();
+                if(this.QuizStateManager.IsQuestionRemaining())
+                {
+                    this.QuizStateManager.LoadNextQuestion();
+                } else
+                {
+                    ;
+                }
             }
         }
     }

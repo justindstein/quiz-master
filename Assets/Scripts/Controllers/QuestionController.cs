@@ -13,7 +13,7 @@ public class QuestionController : MonoBehaviour
 
     private TextMeshProUGUI questionText;
 
-    public void Awake()
+    private void Awake()
     {
         this.questionText = this.GetComponent<TextMeshProUGUI>();
     }

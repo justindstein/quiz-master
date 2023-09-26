@@ -5,22 +5,17 @@ using UnityEngine.Events;
 // TODO: Let's start with StateManagers and transition to State if possible
 public class QuizStateManager : MonoBehaviour
 {
-    // TODO: is questionSet necessary? Possibly
-    //private QuestionSet questionSet;
-
-    private IList<Question> askedQuestions = new List<Question>();
-
-    // TODO: Convert to queue
-    //private IList<Question> unaskedQuestions = new List<Question>();
-    private Queue<Question> unaskedQuestions = new Queue<Question>();
-
-    List<QuestionState> questionStates = new List<QuestionState>();
-
     public UnityEvent OnQuizStarted;
 
     public UnityEvent OnQuizEnded;
 
     public UnityEvent OnLoadQuestion;
+
+    private IList<Question> askedQuestions = new List<Question>();
+
+    private Queue<Question> unaskedQuestions = new Queue<Question>();
+
+    //List<QuestionState> questionStates = new List<QuestionState>();
 
     // TODO: convert to set of questions
     public void StartQuiz(QuestionSet questionSet)
@@ -40,21 +35,22 @@ public class QuizStateManager : MonoBehaviour
 
     public void LoadNextQuestion()
     {
-        if (isQuestionRemaining())
-        {
+        //if (IsQuestionRemaining())
+        //{
             Question nextQuestion = this.unaskedQuestions.Dequeue();
             this.askedQuestions.Add(nextQuestion);
             this.questionPresentation = new QuestionPresentation(nextQuestion);
 
             this.OnLoadQuestion.Invoke();
-        }
-        else
-        {
-            this.OnQuizEnded.Invoke();
-        }
+        //}
+        //else
+        //{
+        //    this.OnQuizEnded.Invoke();
+        //}
+        // TODO: cleanup this
     }
 
-    private bool isQuestionRemaining()
+    public bool IsQuestionRemaining()
     {
         return (this.GetQuestionCount() > 0);
     }
@@ -65,12 +61,12 @@ public class QuizStateManager : MonoBehaviour
     /// <param name="question"></param>
     /// <param name="answeredIndex"></param>
     /// <returns></returns>
-    public bool SubmitAnswer(QuestionPresentation questionPresentation, int answeredIndex)
-    {
-        QuestionState questionState = new QuestionState(questionPresentation, answeredIndex);
-        this.questionStates.Add(questionState);
-        return (questionState.AnsweredIndex == questionPresentation.CorrectAnswerIndex);
-    }
+    //public bool SubmitAnswer(QuestionPresentation questionPresentation, int answeredIndex)
+    //{
+    //    QuestionState questionState = new QuestionState(questionPresentation, answeredIndex);
+    //    this.questionStates.Add(questionState);
+    //    return (questionState.AnsweredIndex == questionPresentation.CorrectAnswerIndex);
+    //}
 
     public int GetQuestionCount()
     {
