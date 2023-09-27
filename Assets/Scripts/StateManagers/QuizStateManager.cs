@@ -1,16 +1,16 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
+//using UnityEngine.Events;
 
 // TODO: Let's start with StateManagers and transition to State if possible
 // QuestionManager? QuizManager?
 public class QuizStateManager : MonoBehaviour
 {
-    public UnityEvent OnQuizStarted;
+    //public UnityEvent OnQuizStarted;
 
-    public UnityEvent OnQuizEnded;
+    //public UnityEvent OnQuizEnded;
 
-    public UnityEvent OnLoadQuestion;
+    //public UnityEvent OnLoadQuestion;
 
     private IList<Question> askedQuestions;
 
@@ -25,7 +25,7 @@ public class QuizStateManager : MonoBehaviour
     // TODO: convert to set of questions
     public void StartQuiz(QuestionSet questionSet)
     {
-        this.OnQuizStarted.Invoke();
+        //this.OnQuizStarted.Invoke();
 
         this.askedQuestions.Clear();
 
@@ -35,16 +35,17 @@ public class QuizStateManager : MonoBehaviour
             .Shuffle()
             .ToQueue();
 
-        this.LoadNextQuestion();
+        //this.LoadNextQuestion();
     }
 
+    // TODO: QuizStateManager should maybe just load all quizzes and store
     public void LoadNextQuestion()
     {
         Question nextQuestion = this.unaskedQuestions.Dequeue();
         this.askedQuestions.Add(nextQuestion);
         this.questionPresentation = new QuestionPresentation(nextQuestion);
 
-        this.OnLoadQuestion.Invoke();
+        //this.OnLoadQuestion.Invoke();
     }
 
     public bool IsQuestionRemaining()

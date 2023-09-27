@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.U2D;
 using UnityEngine.UI;
 
 public class TimerController : MonoBehaviour
@@ -84,6 +83,19 @@ public class TimerController : MonoBehaviour
         }
     }
 
+    // TODO: TimerTypeVariable and floatVariable
+    public void ResetTimer(string quizStateType)
+    {
+        if (quizStateType.Equals("ANSWER"))
+        {
+            this.quizTimer.Reset(QuizStateType.ANSWER, this.AnswerDuration.Value);
+        }
+        else if (quizStateType.Equals("QUESTION"))
+        {
+            this.quizTimer.Reset(QuizStateType.QUESTION, this.QuestionDuration.Value);
+        }
+    }
+
     private class QuizTimer
     {
         private float timerMaxFill;
@@ -96,6 +108,8 @@ public class TimerController : MonoBehaviour
 
         public QuizTimer(float timerMaxFill, QuizStateType timerType, float duration)
         {
+            this.timerMaxFill = timerMaxFill;
+            this.timerType = timerType;
             this.duration = duration;
             this.elapsedTime = 0f;
         }
@@ -112,7 +126,8 @@ public class TimerController : MonoBehaviour
 
         public void Reset(QuizStateType timerType, float duration)
         {
-            this.elapsedTime = 0f;
+            this.timerType = timerType;
+            this.elapsedTime = duration;
         }
 
         public QuizStateType GetTimerType()

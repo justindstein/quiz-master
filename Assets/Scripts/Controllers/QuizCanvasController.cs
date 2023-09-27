@@ -1,18 +1,27 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class QuizCanvasController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public QuizStateManager QuizStateManager;
+
+    public UnityEvent OnLoadQuestion;
+
+    public UnityEvent OnQuizEnded;
+
+    public void LoadNextQuestion()
     {
-        
+        this.QuizStateManager.LoadNextQuestion();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void StartQuiz(QuestionSet foo)
     {
-        
+
     }
+
+    public void LoadQuestion()
+    {
+
+    }
+
 }

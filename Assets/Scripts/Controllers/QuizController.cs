@@ -1,15 +1,16 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class QuizController : MonoBehaviour
 {
     public GameObject QuizButtonPrefab;
 
-    public QuizStateManager QuizStateManager;
-
     public QuestionSet[] Quizzes;
 
     public GameEvent OnLoadMenu;
+
+    public UnityEvent OnQuizStarted;
 
     // TODO: This should be moved elsewhere
     private void Start()
@@ -54,7 +55,6 @@ public class QuizController : MonoBehaviour
     {
         GameObject quizButton = Instantiate(prefab);
 
-        quizButton.GetComponent<QuizButtonController>().SetQuizStateManager(this.QuizStateManager);
         quizButton.GetComponent<QuizButtonController>().SetQuiz(quiz);
 
         quizButton.GetComponentInChildren<TextMeshProUGUI>().SetText(quiz.Name);

@@ -8,9 +8,14 @@ public class GameEvent : ScriptableObject
 
     public void Raise()
     {
-        Debug.Log(string.Format("GameEvent.Raise() [name {0}]", this.name));
+        Raise(null, null);
+    }
+
+    public void Raise(Component sender, Object obj)
+    {
+        Debug.Log(string.Format("GameEvent.Raise() [sender {0}] [object {1}]", sender, obj));
         for (int i = eventListeners.Count - 1; i >= 0; i--)
-            eventListeners[i].OnEventRaised();
+            eventListeners[i].OnEventRaised(sender, obj);
     }
 
     public void RegisterListener(GameEventListener listener)

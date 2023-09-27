@@ -1,13 +1,16 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
 
+[System.Serializable]
+public class ParameterizedUnityEvent : UnityEvent<Component, Object> { }
+
 public class GameEventListener : MonoBehaviour
 {
     [Tooltip("Event to register with.")]
     public GameEvent Event;
 
     [Tooltip("Response to invoke when Event is raised.")]
-    public UnityEvent Response;
+    public ParameterizedUnityEvent Response;
 
     private void OnEnable()
     {
@@ -19,8 +22,8 @@ public class GameEventListener : MonoBehaviour
         Event.UnregisterListener(this);
     }
 
-    public void OnEventRaised()
+    public void OnEventRaised(Component component, Object obj)
     {
-        Response.Invoke();
+        Response.Invoke(component, obj);
     }
 }

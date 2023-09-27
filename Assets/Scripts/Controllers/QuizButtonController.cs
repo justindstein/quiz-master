@@ -1,22 +1,19 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 /// <summary>
 /// Click handling for quiz buttons
 /// </summary>
 public class QuizButtonController : MonoBehaviour
 {
-    public QuizStateManager QuizStateManager;
+    public UnityEvent<Component, QuestionSet> OnQuizStarted;
 
     private QuestionSet quiz;
 
     public void OnClick()
     {
-        this.QuizStateManager.StartQuiz(this.quiz);
-    }
-
-    public void SetQuizStateManager(QuizStateManager value)
-    {
-        this.QuizStateManager = value;
+        Debug.Log("OnClick");
+        this.OnQuizStarted.Invoke(this, this.quiz);
     }
 
     public void SetQuiz(QuestionSet value)
