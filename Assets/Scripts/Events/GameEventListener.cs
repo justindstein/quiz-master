@@ -2,7 +2,7 @@
 using UnityEngine.Events;
 
 [System.Serializable]
-public class ParameterizedUnityEvent : UnityEvent<Component, Object> { }
+public class ParameterizedUnityEvent : UnityEvent<Component, System.Object> { }
 
 public class GameEventListener : MonoBehaviour
 {
@@ -22,7 +22,7 @@ public class GameEventListener : MonoBehaviour
         Event.UnregisterListener(this);
     }
 
-    public void OnEventRaised(Component component, Object obj)
+    public void OnEventRaised(Component component, System.Object obj)
     {
         Response.Invoke(component, obj);
     }

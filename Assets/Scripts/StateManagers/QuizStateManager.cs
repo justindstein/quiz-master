@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -9,6 +8,8 @@ using UnityEngine.Events;
 public class QuizStateManager : MonoBehaviour
 {
     public UnityEvent<Component, System.Object> OnQuizLoaded;
+
+    public UnityEvent<Component, QuestionPresentation> OnQuestionLoaded;
 
     private readonly IList<Question> askedQuestions = new List<Question>();
 
@@ -39,24 +40,25 @@ public class QuizStateManager : MonoBehaviour
                 .Shuffle()
             );
 
-            OnQuizLoaded.Invoke(this, quiz.name); // TODO: passing quizName not necessary 
+            OnQuizLoaded.Invoke(this, quiz); // TODO: passing quizName not necessary 
         }
     }
 
+    // TODO: QuizStateManager should maybe just load all quizzes and store
+    public void LoadQuestion()
+    {
+        Question nextQuestion = this.unaskedQuestions.Dequeue();
+        this.askedQuestions.Add(nextQuestion);
+        this.questionPresentation = new QuestionPresentation(nextQuestion);
+        this.OnQuestionLoaded.Invoke(this, this.questionPresentation); // TODO: clean up questionPresentation
+    }
 
     //////////////////////////
 
 
 
-    // TODO: QuizStateManager should maybe just load all quizzes and store
-    public void LoadNextQuestion()
-    {
-        Question nextQuestion = this.unaskedQuestions.Dequeue();
-        this.askedQuestions.Add(nextQuestion);
-        this.questionPresentation = new QuestionPresentation(nextQuestion);
 
-        //this.OnLoadQuestion.Invoke();
-    }
+
 
     public bool IsQuestionRemaining()
     {

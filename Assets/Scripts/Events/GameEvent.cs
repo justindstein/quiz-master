@@ -16,12 +16,12 @@ public class GameEvent : ScriptableObject
         Raise(component, null);
     }
 
-    public void Raise(Object obj)
+    public void Raise(System.Object obj)
     {
         Raise(null, obj);
     }
 
-    public void Raise(Component component, Object obj)
+    public void Raise(Component component, System.Object obj)
     {
         Debug.Log(string.Format("{0}.Raise() [component {1}] [object {2}]", this.name, component, obj));
         for (int i = eventListeners.Count - 1; i >= 0; i--)

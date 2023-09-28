@@ -1,10 +1,10 @@
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using static QuizStateManager;
 
 public class QuestionController : MonoBehaviour
 {
-    public QuizStateManager QuizStateManager;
-
     public StringVariable CorrectAnswerText;
 
     public StringVariable IncorrectAnswerText;
@@ -28,23 +28,38 @@ public class QuestionController : MonoBehaviour
         this.questionText.text = "";
     }
 
-    public void ShowQuestion()
+    public void ShowQuestion(Component component, System.Object obj)
     {
-        this.questionText.text = this.QuizStateManager.GetQuestion();
+        if (typeof(QuestionPresentation).IsInstanceOfType(obj))
+        {
+            QuestionPresentation questionPresentation = (QuestionPresentation)obj;
+
+            this.questionText.text = questionPresentation.Question;
+        }
     }
 
-    public void ShowCorrectAnswerText()
+    public void ShowCorrectAnswerText(Component component, System.Object obj)
     {
         this.questionText.text = this.CorrectAnswerText.Value;
     }
 
-    public void ShowIncorrectAnswerText()
+    public void ShowIncorrectAnswerText(Component component, System.Object obj)
     {
-        this.questionText.text = string.Format(this.IncorrectAnswerText.Value, QuizStateManager.GetCorrectAnswer());
+        if (typeof(QuestionPresentation).IsInstanceOfType(obj))
+        {
+            QuestionPresentation questionPresentation = (QuestionPresentation)obj;
+
+            this.questionText.text = string.Format(this.IncorrectAnswerText.Value, questionPresentation.Answers[questionPresentation.CorrectAnswerIndex]);
+        }
     }
 
-    public void ShowTimerExpiredText()
+    public void ShowTimerExpiredText(Component component, System.Object obj)
     {
-        this.questionText.text = string.Format(this.ExpiredTimerText.Value, QuizStateManager.GetCorrectAnswer());
+        if (typeof(QuestionPresentation).IsInstanceOfType(obj))
+        {
+            QuestionPresentation questionPresentation = (QuestionPresentation)obj;
+
+            this.questionText.text = string.Format(this.ExpiredTimerText.Value, questionPresentation.Answers[questionPresentation.CorrectAnswerIndex]);
+        }
     }
 }

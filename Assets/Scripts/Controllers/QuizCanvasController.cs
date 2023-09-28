@@ -5,23 +5,13 @@ public class QuizCanvasController : MonoBehaviour
 {
     public QuizStateManager QuizStateManager;
 
-    public UnityEvent OnLoadQuestion;
+    public UnityEvent<Component, Object> OnLoadQuestion;
 
     public UnityEvent OnQuizEnded;
 
-    public void LoadNextQuestion()
-    {
-        this.QuizStateManager.LoadNextQuestion();
-    }
-
-    public void StartQuiz(QuestionSet foo)
-    {
-
-    }
 
     public void LoadQuestion()
     {
-
+        this.OnLoadQuestion.Invoke(this, null);
     }
-
 }
