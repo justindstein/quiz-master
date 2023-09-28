@@ -10,9 +10,14 @@ public class QuizButtonController : MonoBehaviour
 
     private QuestionSet quiz;
 
+    private void OnDisable()
+    {
+        Destroy(this.gameObject);
+    }
+
     public void OnClick()
     {
-        Debug.Log("OnClick");
+        Debug.Log(string.Format("Button clicked: [quizName {0}]", this.quiz.Name));
         this.OnQuizStarted.Invoke(this, this.quiz);
     }
 

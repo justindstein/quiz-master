@@ -14,6 +14,11 @@ public class AnswerButtonController : MonoBehaviour
 
     private bool isCorrect;
 
+    private void OnDisable()
+    {
+        Destroy(this.gameObject);
+    }
+
     public void OnClick()
     {
         if(this.isCorrect)

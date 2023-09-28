@@ -244,7 +244,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2c2e1987ecce4deaa5cb091bf821589, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  QuizStateManager: {fileID: 0}
+  QuizStateManager: {fileID: 1565632546}
   OnLoadQuestion:
     m_PersistentCalls:
       m_Calls: []
@@ -2606,6 +2606,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1565632547}
   - component: {fileID: 1565632546}
+  - component: {fileID: 1565632548}
   m_Layer: 0
   m_Name: QuizStateManager
   m_TagString: Untagged
@@ -2625,6 +2626,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47d9f350884cb4ecc8568c91de32285d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnQuizLoaded:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &1565632547
 Transform:
   m_ObjectHideFlags: 0
@@ -2640,6 +2644,34 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1565632548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1565632545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ef990d7ce6084a7ebc69d7d34352f39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 075265d137b344a93b5a3bf8f6187e92, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1565632546}
+        m_TargetAssemblyTypeName: QuizStateManager, Assembly-CSharp
+        m_MethodName: SetQuiz
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &1596382661
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2842,22 +2874,6 @@ MonoBehaviour:
   Quizzes:
   - {fileID: 11400000, guid: fcb363b0f438948a5a2930b535dd19fb, type: 2}
   - {fileID: 11400000, guid: a3836cbff51514c4b87c31d2d8773dfc, type: 2}
-  OnLoadMenu: {fileID: 11400000, guid: 04330fbe25eb744da8d5df11b8d20eb0, type: 2}
-  OnQuizStarted:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 11400000, guid: 075265d137b344a93b5a3bf8f6187e92, type: 2}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &1672380987
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2865,7 +2881,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1672380983}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9ef990d7ce6084a7ebc69d7d34352f39, type: 3}
   m_Name: 

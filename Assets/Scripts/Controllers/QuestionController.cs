@@ -18,6 +18,16 @@ public class QuestionController : MonoBehaviour
         this.questionText = this.GetComponent<TextMeshProUGUI>();
     }
 
+    private void OnEnable()
+    {
+        // Do nothing
+    }
+
+    private void OnDisable()
+    {
+        this.questionText.text = "";
+    }
+
     public void ShowQuestion()
     {
         this.questionText.text = this.QuizStateManager.GetQuestion();

@@ -7,7 +7,7 @@ using System.Xml.Linq;
 public static class IListExtensions
 {
     /// <summary>
-    /// Randomly shuffle a list of elements using Fisher-Yates Shuffle algorithm.
+    /// Randomly shuffle a list of elements using Fisher-Yates Shuffle algorithm
     /// https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle
     /// </summary>
     /// <typeparam name="T"></typeparam>
@@ -25,7 +25,7 @@ public static class IListExtensions
     }
 
     /// <summary>
-    /// Insert element t in a random index.
+    /// Insert element t in a random index
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <param name="list"></param>
@@ -38,6 +38,13 @@ public static class IListExtensions
         return randomIndex;
     }
 
+    /// <summary>
+    /// Adds collection of elements
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="list"></param>
+    /// <param name="elements"></param>
+    /// <returns>A chain reference to the affected IList</returns>
     public static IList<T> AddRange<T>(this IList<T> list, IEnumerable<T> elements)
     {
         foreach (var element in elements)
@@ -47,6 +54,12 @@ public static class IListExtensions
         return list;
     }
 
+    /// <summary>
+    /// Converts to Queue
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="list"></param>
+    /// <returns>A new Queue</returns>
     public static Queue<T> ToQueue<T>(this IList<T> list)
     {
         Queue<T> queue = new Queue<T>();

@@ -1,42 +1,52 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 //using UnityEngine.Events;
 
 // TODO: Let's start with StateManagers and transition to State if possible
 // QuestionManager? QuizManager?
 public class QuizStateManager : MonoBehaviour
 {
-    //public UnityEvent OnQuizStarted;
+    public UnityEvent<Component, System.Object> OnQuizLoaded;
 
-    //public UnityEvent OnQuizEnded;
+    private readonly IList<Question> askedQuestions = new List<Question>();
 
-    //public UnityEvent OnLoadQuestion;
+    private readonly Queue<Question> unaskedQuestions = new Queue<Question>();
 
-    private IList<Question> askedQuestions;
-
-    private Queue<Question> unaskedQuestions;
-
-    private void Awake()
+    private void OnDisable()
     {
-        this.askedQuestions = new List<Question>();
-        this.unaskedQuestions = new Queue<Question>();
-    }
-
-    // TODO: convert to set of questions
-    public void StartQuiz(QuestionSet questionSet)
-    {
-        //this.OnQuizStarted.Invoke();
-
         this.askedQuestions.Clear();
-
         this.unaskedQuestions.Clear();
-        this.unaskedQuestions = ((IList<Question>)new List<Question>())
-            .AddRange(questionSet.Questions)
-            .Shuffle()
-            .ToQueue();
-
-        //this.LoadNextQuestion();
     }
+
+    /// <summary>
+    /// Loads the quiz.
+    /// </summary>
+    /// <param name="component"></param>
+    /// <param name="obj"></param>
+    public void SetQuiz(Component component, System.Object obj)
+    {
+        if (typeof(QuestionSet).IsInstanceOfType(obj))
+        {
+            QuestionSet quiz = (QuestionSet)obj;
+
+            this.askedQuestions.Clear();
+
+            this.unaskedQuestions.Clear();
+            this.unaskedQuestions.AddRange(((IList<Question>)new List<Question>())
+                .AddRange(quiz.Questions)
+                .Shuffle()
+            );
+
+            OnQuizLoaded.Invoke(this, quiz.name); // TODO: passing quizName not necessary 
+        }
+    }
+
+
+    //////////////////////////
+
+
 
     // TODO: QuizStateManager should maybe just load all quizzes and store
     public void LoadNextQuestion()

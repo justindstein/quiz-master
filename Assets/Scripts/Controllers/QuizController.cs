@@ -1,6 +1,5 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class QuizController : MonoBehaviour
 {
@@ -8,14 +7,9 @@ public class QuizController : MonoBehaviour
 
     public QuestionSet[] Quizzes;
 
-    public GameEvent OnLoadMenu;
-
-    public UnityEvent OnQuizStarted;
-
-    // TODO: This should be moved elsewhere
-    private void Start()
+    private void OnEnable()
     {
-        this.OnLoadMenu.Raise();
+        this.LoadQuizzes();
     }
 
     /// <summary>
@@ -31,18 +25,6 @@ public class QuizController : MonoBehaviour
             // Set its parent to 'Answers' GameObject
             quizButton.transform.SetParent(this.transform);
         }
-    }
-
-    /// <summary>
-    /// Clears out all loaded quizzes
-    /// </summary>
-    /// TODO: 
-    public void ClearQuizzes()
-    {
-        //for (int i = this.transform.childCount - 1; i >= 0; i--)
-        //{
-        //    Destroy(this.transform.GetChild(i).gameObject);
-        //}
     }
 
     /// <summary>

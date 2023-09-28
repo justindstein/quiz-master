@@ -11,11 +11,21 @@ public class GameEvent : ScriptableObject
         Raise(null, null);
     }
 
-    public void Raise(Component sender, Object obj)
+    public void Raise(Component component)
     {
-        Debug.Log(string.Format("GameEvent.Raise() [sender {0}] [object {1}]", sender, obj));
+        Raise(component, null);
+    }
+
+    public void Raise(Object obj)
+    {
+        Raise(null, obj);
+    }
+
+    public void Raise(Component component, Object obj)
+    {
+        Debug.Log(string.Format("{0}.Raise() [component {1}] [object {2}]", this.name, component, obj));
         for (int i = eventListeners.Count - 1; i >= 0; i--)
-            eventListeners[i].OnEventRaised(sender, obj);
+            eventListeners[i].OnEventRaised(component, obj);
     }
 
     public void RegisterListener(GameEventListener listener)

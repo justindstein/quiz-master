@@ -9,6 +9,12 @@ public class AnswerController : MonoBehaviour
 
     public GameObject AnswerButtonPrefab;
 
+    private void OnEnable()
+    {
+        // TODO: this should eventually be driven by an event only, not OnEnable
+        this.LoadAnswers();
+    }
+
     public void LoadAnswers()
     {
         foreach (QuizStateManager.AnswerEntity answer in this.QuizStateManager.GetAnswerEntities())
