@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 /// <summary>
@@ -8,25 +9,41 @@ public class AnswerButtonController : MonoBehaviour
 {
     public Sprite CorrectAnswerSprite;
 
-    public GameEvent OnCorrectAnswer;
+    public UnityEvent<Component, System.Object> OnCorrectAnswer;
 
-    public GameEvent OnIncorrectAnswer;
+    public UnityEvent<Component, System.Object> OnIncorrectAnswer;
+
+    private Image image;
+
+    private Button button;
 
     private bool isCorrect;
+
+    private void Start()
+    {
+        this.image = this.GetComponent<Image>();
+        this.button = this.GetComponent<Button>();
+        this.isCorrect = false;
+    }
 
     private void OnDisable()
     {
         Destroy(this.gameObject);
     }
 
+    public void SetIsCorrect(bool value)
+    {
+        this.isCorrect = value;
+    }
+
     public void OnClick()
     {
         if(this.isCorrect)
         {
-            OnCorrectAnswer.Raise();
+            OnCorrectAnswer.Invoke(this, null);
         } else
         {
-            OnIncorrectAnswer.Raise();
+            OnIncorrectAnswer.Invoke(this, null);
         }
     }
 
@@ -37,7 +54,7 @@ public class AnswerButtonController : MonoBehaviour
     {
         if (this.isCorrect)
         {
-            this.GetComponent<Image>().sprite = this.CorrectAnswerSprite;
+            this.image.sprite = this.CorrectAnswerSprite;
         }
     }
 
@@ -46,11 +63,6 @@ public class AnswerButtonController : MonoBehaviour
     /// </summary>
     public void Disable()
     {
-        this.GetComponent<Button>().interactable = false;
-    }
-
-    public void SetIsCorrect(bool value)
-    {
-        this.isCorrect = value;
+        this.button.interactable = false;
     }
 }

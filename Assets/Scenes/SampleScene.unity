@@ -299,7 +299,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 79354421}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9ef990d7ce6084a7ebc69d7d34352f39, type: 3}
   m_Name: 
@@ -330,7 +330,7 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 1
+          m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1836642605}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
@@ -342,7 +342,7 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 1
+          m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 228247203}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
@@ -354,7 +354,7 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 1
+          m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &79354429
 MonoBehaviour:
@@ -1713,26 +1713,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ef990d7ce6084a7ebc69d7d34352f39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: dbcbac971a1f14522bef9d61e76db5fa, type: 2}
+  Event: {fileID: 11400000, guid: 3279243f00da34950a3505fcdf9db9e7, type: 2}
   Response:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 625845746}
         m_TargetAssemblyTypeName: AnswerController, Assembly-CSharp
-        m_MethodName: ClearAnswers
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 625845746}
-        m_TargetAssemblyTypeName: AnswerController, Assembly-CSharp
         m_MethodName: LoadAnswers
-        m_Mode: 1
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

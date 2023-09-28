@@ -1,6 +1,6 @@
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+
 using static QuizStateManager;
 
 public class QuestionController : MonoBehaviour
@@ -16,11 +16,6 @@ public class QuestionController : MonoBehaviour
     private void Awake()
     {
         this.questionText = this.GetComponent<TextMeshProUGUI>();
-    }
-
-    private void OnEnable()
-    {
-        // Do nothing
     }
 
     private void OnDisable()

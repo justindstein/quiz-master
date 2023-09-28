@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using static QuizStateManager;
 
 // TODO: Change name to 'AnswerGroup' or similar
 // TODO: OnTimerExpired event handling should be merged with 'IncorrectAnswer', something can invoke 'IncorrectAnswer' OnTimerExperired
@@ -9,32 +10,21 @@ public class AnswerController : MonoBehaviour
 
     public GameObject AnswerButtonPrefab;
 
-    private void OnEnable()
+    // TODO: shift typeof logic into a util
+    public void LoadAnswers(Component component, System.Object obj)
     {
-        // TODO: this should eventually be driven by an event only, not OnEnable
-        this.LoadAnswers();
-    }
-
-    public void LoadAnswers()
-    {
-        foreach (QuizStateManager.AnswerEntity answer in this.QuizStateManager.GetAnswerEntities())
+        if (typeof(QuestionPresentation).IsInstanceOfType(obj))
         {
-            // Instantiate a button
-            GameObject answerButton = instantiateAnswerButton(this.AnswerButtonPrefab, answer);
+            QuestionPresentation questionPresentation = (QuestionPresentation)obj;
 
-            // Set its parent to 'Answers' GameObject
-            answerButton.transform.SetParent(this.transform);
-        }
-    }
+            foreach (QuizStateManager.AnswerEntity answer in questionPresentation.AnswerEntities)
+            {
+                // Instantiate a button
+                GameObject answerButton = instantiateAnswerButton(this.AnswerButtonPrefab, answer);
 
-    /// <summary>
-    /// Clears out all loaded answers
-    /// </summary>
-    public void ClearAnswers()
-    {
-        for (int i = this.transform.childCount - 1; i >= 0; i--)
-        {
-            Destroy(this.transform.GetChild(i).gameObject);
+                // Set its parent to 'Answers' GameObject
+                answerButton.transform.SetParent(this.transform);
+            }
         }
     }
 

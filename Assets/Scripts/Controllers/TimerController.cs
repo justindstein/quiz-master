@@ -16,17 +16,17 @@ public class TimerController : MonoBehaviour
 
     public FloatVariable AnswerDuration;
 
-    public UnityEvent OnQuestionTimerExpired;
+    public UnityEvent<Component, System.Object> OnQuestionTimerExpired;
 
-    public UnityEvent OnAnswerTimerExpired;
+    public UnityEvent<Component, System.Object> OnAnswerTimerExpired;
 
-    private Image parentImage;
+    private Image image;
 
     private QuizTimer quizTimer;
 
     private void Awake()
     {
-        this.parentImage = this.GetComponent<Image>();
+        this.image = this.GetComponent<Image>();
         this.quizTimer = new QuizTimer(this.TimerMaxFill.Value, QuizStateType.QUESTION, this.QuestionDuration.Value);
     }
 
@@ -69,17 +69,17 @@ public class TimerController : MonoBehaviour
         }
     }
 
-    private void updateTimer(Sprite sprite, bool fillClockwise, QuizStateType quizStateType, float duration, UnityEvent unityEvent)
+    private void updateTimer(Sprite sprite, bool fillClockwise, QuizStateType quizStateType, float duration, UnityEvent<Component, System.Object> unityEvent)
     {
         this.quizTimer.ApplyChange(Time.deltaTime);
-        this.parentImage.fillAmount = this.quizTimer.GetTimerFill();
+        this.image.fillAmount = this.quizTimer.GetTimerFill();
 
         if (this.quizTimer.IsDone())
         {
-            this.parentImage.sprite = sprite;
-            this.parentImage.fillClockwise = fillClockwise;
+            this.image.sprite = sprite;
+            this.image.fillClockwise = fillClockwise;
             this.quizTimer.Reset(quizStateType, this.AnswerDuration.Value);
-            unityEvent.Invoke();
+            unityEvent.Invoke(this, null);
         }
     }
 
