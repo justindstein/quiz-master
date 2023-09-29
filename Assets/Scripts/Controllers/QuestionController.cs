@@ -15,10 +15,8 @@ public class QuestionController : MonoBehaviour
 
     public void ShowQuestion(Component component, System.Object obj)
     {
-        if (typeof(QuestionPresentation).IsInstanceOfType(obj))
+        if (obj is QuestionPresentation questionPresentation)
         {
-            QuestionPresentation questionPresentation = (QuestionPresentation)obj;
-
             // Clear out previous question
             this.deleteQuestions();
 
@@ -44,10 +42,8 @@ public class QuestionController : MonoBehaviour
 
     public void ShowIncorrectAnswerText(Component component, System.Object obj)
     {
-        if (typeof(QuestionPresentation).IsInstanceOfType(obj))
+        if (obj is QuestionPresentation questionPresentation)
         {
-            QuestionPresentation questionPresentation = (QuestionPresentation)obj;
-
             // Clear out previous question
             this.deleteQuestions();
 
@@ -62,10 +58,8 @@ public class QuestionController : MonoBehaviour
 
     public void ShowTimerExpiredText(Component component, System.Object obj)
     {
-        if (typeof(QuestionPresentation).IsInstanceOfType(obj))
+        if (obj is QuestionPresentation questionPresentation)
         {
-            QuestionPresentation questionPresentation = (QuestionPresentation)obj;
-
             // Clear out previous question
             this.deleteQuestions();
 

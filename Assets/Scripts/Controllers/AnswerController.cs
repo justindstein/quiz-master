@@ -8,13 +8,10 @@ public class AnswerController : MonoBehaviour
 
     public GameObject AnswerButtonPrefab;
 
-    // TODO: shift typeof logic into a util
     public void LoadAnswers(Component component, System.Object obj)
     {
-        if (typeof(QuestionPresentation).IsInstanceOfType(obj))
+        if (obj is QuestionPresentation questionPresentation)
         {
-            QuestionPresentation questionPresentation = (QuestionPresentation)obj;
-
             // Clear out previous answers
             this.DeleteAnswers();
 

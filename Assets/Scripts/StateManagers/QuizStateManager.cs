@@ -28,10 +28,8 @@ public class QuizStateManager : MonoBehaviour
     /// <param name="obj"></param>
     public void SetQuiz(Component component, System.Object obj)
     {
-        if (typeof(QuestionSet).IsInstanceOfType(obj))
+        if (obj is QuestionSet quiz)
         {
-            QuestionSet quiz = (QuestionSet)obj;
-
             this.askedQuestions.Clear();
 
             this.unaskedQuestions.Clear();
