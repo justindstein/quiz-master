@@ -2,8 +2,6 @@ using TMPro;
 using UnityEngine;
 using static QuizStateManager;
 
-// TODO: Change name to 'AnswerGroup' or similar
-// TODO: OnTimerExpired event handling should be merged with 'IncorrectAnswer', something can invoke 'IncorrectAnswer' OnTimerExperired
 public class AnswerController : MonoBehaviour
 {
     public QuizStateManager QuizStateManager;

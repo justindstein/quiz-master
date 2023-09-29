@@ -19,16 +19,11 @@ public class AnswerButtonController : MonoBehaviour
 
     private bool isCorrect;
 
-    private void Start()
+    private void Awake()
     {
         this.image = this.GetComponent<Image>();
         this.button = this.GetComponent<Button>();
         this.isCorrect = false;
-    }
-
-    private void OnDisable()
-    {
-        Destroy(this.gameObject);
     }
 
     public void SetIsCorrect(bool value)
