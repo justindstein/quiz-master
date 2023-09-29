@@ -19,6 +19,9 @@ public class AnswerController : MonoBehaviour
 
             foreach (QuizStateManager.AnswerEntity answer in questionPresentation.AnswerEntities)
             {
+                // Clear out previous answers
+                this.DeleteAnswers();
+
                 // Instantiate a button
                 GameObject answerButton = instantiateAnswerButton(this.AnswerButtonPrefab, answer);
 
@@ -43,5 +46,13 @@ public class AnswerController : MonoBehaviour
         answerButton.GetComponentInChildren<TextMeshProUGUI>().SetText(answer.Answer);
 
         return answerButton;
+    }
+
+    public void DeleteAnswers()
+    {
+        for (int i = this.transform.childCount - 1; i >= 0; i--)
+        {
+            Destroy(this.transform.GetChild(i).gameObject);
+        }
     }
 }

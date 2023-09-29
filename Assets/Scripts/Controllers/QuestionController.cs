@@ -5,23 +5,13 @@ using static QuizStateManager;
 
 public class QuestionController : MonoBehaviour
 {
+    public GameObject QuestionTextPrefab;
+
     public StringVariable CorrectAnswerText;
 
     public StringVariable IncorrectAnswerText;
 
     public StringVariable ExpiredTimerText;
-
-    private TextMeshProUGUI questionText;
-
-    private void Awake()
-    {
-        this.questionText = this.GetComponent<TextMeshProUGUI>();
-    }
-
-    private void OnDisable()
-    {
-        this.questionText.text = "";
-    }
 
     public void ShowQuestion(Component component, System.Object obj)
     {
@@ -29,13 +19,27 @@ public class QuestionController : MonoBehaviour
         {
             QuestionPresentation questionPresentation = (QuestionPresentation)obj;
 
-            this.questionText.text = questionPresentation.Question;
+            // Clear out previous question
+            this.DeleteQuestions();
+
+            // Instantiate a question
+            GameObject questionText = instantiateQuestionText(this.QuestionTextPrefab, questionPresentation.Question);
+
+            // Set its parent to 'Question' GameObject
+            questionText.transform.SetParent(this.transform);
         }
     }
 
     public void ShowCorrectAnswerText(Component component, System.Object obj)
     {
-        this.questionText.text = this.CorrectAnswerText.Value;
+        // Clear out previous question
+        this.DeleteQuestions();
+
+        // Instantiate a question
+        GameObject questionText = instantiateQuestionText(this.QuestionTextPrefab, this.CorrectAnswerText.Value);
+
+        // Set its parent to 'Question' GameObject
+        questionText.transform.SetParent(this.transform);
     }
 
     public void ShowIncorrectAnswerText(Component component, System.Object obj)
@@ -44,7 +48,15 @@ public class QuestionController : MonoBehaviour
         {
             QuestionPresentation questionPresentation = (QuestionPresentation)obj;
 
-            this.questionText.text = string.Format(this.IncorrectAnswerText.Value, questionPresentation.Answers[questionPresentation.CorrectAnswerIndex]);
+            // Clear out previous question
+            this.DeleteQuestions();
+
+            // Instantiate a question
+            //GameObject questionText = instantiateQuestionText(this.QuestionTextPrefab, string.Format(this.IncorrectAnswerText.Value, questionPresentation.Answers[questionPresentation.CorrectAnswerIndex]));
+            GameObject questionText = instantiateQuestionText(this.QuestionTextPrefab, "hello");
+
+            // Set its parent to 'Question' GameObject
+            questionText.transform.SetParent(this.transform);
         }
     }
 
@@ -54,7 +66,31 @@ public class QuestionController : MonoBehaviour
         {
             QuestionPresentation questionPresentation = (QuestionPresentation)obj;
 
-            this.questionText.text = string.Format(this.ExpiredTimerText.Value, questionPresentation.Answers[questionPresentation.CorrectAnswerIndex]);
+            // Clear out previous question
+            this.DeleteQuestions();
+
+            // Instantiate a question
+            GameObject questionText = instantiateQuestionText(this.QuestionTextPrefab, string.Format(this.ExpiredTimerText.Value, questionPresentation.Answers[questionPresentation.CorrectAnswerIndex]));
+
+            // Set its parent to 'Question' GameObject
+            questionText.transform.SetParent(this.transform);
+        }
+    }
+
+    private GameObject instantiateQuestionText(GameObject prefab, string text)
+    {
+        GameObject questionText = Instantiate(prefab);
+
+        questionText.GetComponent<TextMeshProUGUI>().SetText(text);
+
+        return questionText;
+    }
+
+    public void DeleteQuestions()
+    {
+        for (int i = this.transform.childCount - 1; i >= 0; i--)
+        {
+            Destroy(this.transform.GetChild(i));
         }
     }
 }

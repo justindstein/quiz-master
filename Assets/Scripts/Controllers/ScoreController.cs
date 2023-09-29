@@ -5,30 +5,38 @@ public class ScoreController : MonoBehaviour
 {
     // TODO: should this be merged with ScoreState?
     // TODO: Deserialize things that are not used externally
-    public TextMeshProUGUI ScoreText;
+    public GameObject ScoreTextPrefab;
 
-    public QuizStateManager QuizStateManager;
+    //public TextMeshProUGUI ScoreText;
 
-    public ScoreState ScoreState;
+    //public QuizStateManager QuizStateManager;
+
+    //public ScoreState ScoreState;
 
     private void Start()
     {
-        this.ScoreState.QuestionCount = this.QuizStateManager.GetQuestionCount(); // TODO: is this necessary?
-        this.UpdateScore();
+        //this.ScoreState.QuestionCount = this.QuizStateManager.GetQuestionCount(); // TODO: is this necessary?
+        //this.UpdateScore();
     }
 
-    public void IncrementCorrectAnswers()
+    public void ShowScore(Component component, System.Object obj)
     {
-        this.ScoreState.CorrectAnswers++;
+        //this.ScoreText.text = this.ScoreState.GetScore();
+        //this.ScoreText.text = "1337 / 1337";
     }
 
-    public void IncrementIncorrectAnswers()
-    {
-        this.ScoreState.IncorrectAnswers++;
-    }
+    //public void IncrementCorrectAnswers()
+    //{
+    //    this.ScoreState.CorrectAnswers++;
+    //}
 
-    public void UpdateScore()
-    {
-        this.ScoreText.text = this.ScoreState.GetScore();
-    }
+    //public void IncrementIncorrectAnswers()
+    //{
+    //    this.ScoreState.IncorrectAnswers++;
+    //}
+
+    //public void UpdateScore()
+    //{
+    //    this.ScoreText.text = this.ScoreState.GetScore();
+    //}
 }

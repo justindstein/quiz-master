@@ -1,10 +1,11 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class TimerController : MonoBehaviour
 {
-    public QuizStateManager QuizStateManager;
+    public GameObject TimerImagePrefab;
 
     public Sprite DefaultSprite;
 
@@ -22,122 +23,63 @@ public class TimerController : MonoBehaviour
 
     private Image image;
 
-    private QuizTimer quizTimer;
+    //private QuizTimer quizTimer;
 
     private void Awake()
     {
-        this.image = this.GetComponent<Image>();
-        this.quizTimer = new QuizTimer(this.TimerMaxFill.Value, QuizStateType.QUESTION, this.QuestionDuration.Value);
+        //this.image = this.GetComponent<Image>();
+        //this.quizTimer = new QuizTimer(this.TimerMaxFill.Value, QuizStateType.QUESTION, this.QuestionDuration.Value);
     }
 
-    private void FixedUpdate()
+    public void CreateQuestionTimer(Component component, System.Object obj)
     {
-        //this.quizState.IsAnswerState()
+        // Clear out previous answers
+        this.DeleteTimers();
 
-        // Question timer
-        if (this.quizTimer.GetTimerType() == QuizStateType.QUESTION)
-        {
-            updateTimer(this.PausedSprite, true, QuizStateType.ANSWER, this.QuestionDuration.Value, this.OnQuestionTimerExpired);
+        // Instantiate a button
+        GameObject answerButton = instantiateAnswerButton(this.TimerImagePrefab);
 
-            //this.quizTimer.ApplyChange(Time.deltaTime);
-            //this.parentImage.fillAmount = this.quizTimer.GetTimerFill();
-
-            //if (this.quizTimer.IsDone())
-            //{
-            //    this.parentImage.sprite = this.PausedSprite;
-            //    this.parentImage.fillClockwise = true;
-            //    this.quizTimer.Reset(QuizStateType.ANSWER, this.AnswerDuration.Value);
-            //    this.OnQuestionTimerExpired.Invoke();
-            //}
-        }
-
-        // Answer timer
-        else if (this.quizTimer.GetTimerType() == QuizStateType.ANSWER)
-        {
-            updateTimer(this.DefaultSprite, false, QuizStateType.QUESTION, this.AnswerDuration.Value, this.OnAnswerTimerExpired);
-
-            //this.quizTimer.ApplyChange(Time.deltaTime);
-            //this.parentImage.fillAmount = this.quizTimer.GetTimerFill();
-
-            //if (this.quizTimer.IsDone())
-            //{
-            //    this.parentImage.sprite = this.DefaultSprite;
-            //    this.parentImage.fillClockwise = false;
-            //    this.quizTimer.Reset(QuizStateType.QUESTION, this.AnswerDuration.Value);
-            //    this.OnAnswerTimerExpired.Invoke();
-            //}
-        }
+        // Set its parent to 'Answers' GameObject
+        answerButton.transform.SetParent(this.transform);
     }
 
-    private void updateTimer(Sprite sprite, bool fillClockwise, QuizStateType quizStateType, float duration, UnityEvent<Component, System.Object> unityEvent)
+    public void CreateAnswerTimer(Component component, System.Object obj)
     {
-        this.quizTimer.ApplyChange(Time.deltaTime);
-        this.image.fillAmount = this.quizTimer.GetTimerFill();
+        // Clear out previous answers
+        this.DeleteTimers();
 
-        if (this.quizTimer.IsDone())
+        // Instantiate a button
+        GameObject answerButton = instantiateAnswerButton(this.TimerImagePrefab);
+
+        // Set its parent to 'Answers' GameObject
+        answerButton.transform.SetParent(this.transform);
+    }
+
+    private GameObject instantiateAnswerButton(GameObject prefab)
+    {
+        GameObject answerButton = Instantiate(prefab);
+
+        return answerButton;
+    }
+
+    public void DeleteTimers()
+    {
+        for (int i = this.transform.childCount; i >= 0; i--)
         {
-            this.image.sprite = sprite;
-            this.image.fillClockwise = fillClockwise;
-            this.quizTimer.Reset(quizStateType, this.AnswerDuration.Value);
-            unityEvent.Invoke(this, null);
+            Destroy(this.transform.GetChild(i).gameObject);
         }
     }
 
     // TODO: TimerTypeVariable and floatVariable
-    public void ResetTimer(string quizStateType)
-    {
-        if (quizStateType.Equals("ANSWER"))
-        {
-            this.quizTimer.Reset(QuizStateType.ANSWER, this.AnswerDuration.Value);
-        }
-        else if (quizStateType.Equals("QUESTION"))
-        {
-            this.quizTimer.Reset(QuizStateType.QUESTION, this.QuestionDuration.Value);
-        }
-    }
-
-    private class QuizTimer
-    {
-        private float timerMaxFill;
-
-        private QuizStateType timerType;
-
-        private float duration;
-
-        private float elapsedTime;
-
-        public QuizTimer(float timerMaxFill, QuizStateType timerType, float duration)
-        {
-            this.timerMaxFill = timerMaxFill;
-            this.timerType = timerType;
-            this.duration = duration;
-            this.elapsedTime = 0f;
-        }
-
-        public void ApplyChange(float value)
-        {
-            this.elapsedTime += value;
-        }
-
-        public bool IsDone()
-        {
-            return (this.elapsedTime >= this.duration);
-        }
-
-        public void Reset(QuizStateType timerType, float duration)
-        {
-            this.timerType = timerType;
-            this.elapsedTime = duration;
-        }
-
-        public QuizStateType GetTimerType()
-        {
-            return this.timerType;
-        }
-
-        public float GetTimerFill()
-        {
-            return Mathf.Max(this.timerMaxFill - (this.elapsedTime / this.duration), 0);
-        }
-    }
+    //public void ResetTimer(string quizStateType)
+    //{
+    //    if (quizStateType.Equals("ANSWER"))
+    //    {
+    //        this.quizTimer.Reset(QuizStateType.ANSWER, this.AnswerDuration.Value);
+    //    }
+    //    else if (quizStateType.Equals("QUESTION"))
+    //    {
+    //        this.quizTimer.Reset(QuizStateType.QUESTION, this.QuestionDuration.Value);
+    //    }
+    //}
 }
