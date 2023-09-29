@@ -27,15 +27,15 @@ public class QuizState
         }
     }
 
-    public bool IsQuestionState()
-    {
-        return (this.Value == QuizStateType.QUESTION);
-    }
+    //public bool IsQuestionState()
+    //{
+    //    return (this.Value == QuizStateType.QUESTION);
+    //}
 
-    public bool IsAnswerState()
-    {
-        return (this.Value == QuizStateType.ANSWER);
-    }
+    //public bool IsAnswerState()
+    //{
+    //    return (this.Value == QuizStateType.ANSWER);
+    //}
 }
 
 public enum QuizStateType
