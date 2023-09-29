@@ -20,7 +20,7 @@ public class QuestionController : MonoBehaviour
             QuestionPresentation questionPresentation = (QuestionPresentation)obj;
 
             // Clear out previous question
-            this.DeleteQuestions();
+            this.deleteQuestions();
 
             // Instantiate a question
             GameObject questionText = instantiateQuestionText(this.QuestionTextPrefab, questionPresentation.Question);
@@ -33,7 +33,7 @@ public class QuestionController : MonoBehaviour
     public void ShowCorrectAnswerText(Component component, System.Object obj)
     {
         // Clear out previous question
-        this.DeleteQuestions();
+        this.deleteQuestions();
 
         // Instantiate a question
         GameObject questionText = instantiateQuestionText(this.QuestionTextPrefab, this.CorrectAnswerText.Value);
@@ -49,14 +49,14 @@ public class QuestionController : MonoBehaviour
             QuestionPresentation questionPresentation = (QuestionPresentation)obj;
 
             // Clear out previous question
-            this.DeleteQuestions();
+            this.deleteQuestions();
 
             // Instantiate a question
-            //GameObject questionText = instantiateQuestionText(this.QuestionTextPrefab, string.Format(this.IncorrectAnswerText.Value, questionPresentation.Answers[questionPresentation.CorrectAnswerIndex]));
-            GameObject questionText = instantiateQuestionText(this.QuestionTextPrefab, "hello");
+            GameObject questionText = instantiateQuestionText(this.QuestionTextPrefab, string.Format(this.IncorrectAnswerText.Value, questionPresentation.Answers[questionPresentation.CorrectAnswerIndex]));
 
             // Set its parent to 'Question' GameObject
             questionText.transform.SetParent(this.transform);
+
         }
     }
 
@@ -67,7 +67,7 @@ public class QuestionController : MonoBehaviour
             QuestionPresentation questionPresentation = (QuestionPresentation)obj;
 
             // Clear out previous question
-            this.DeleteQuestions();
+            this.deleteQuestions();
 
             // Instantiate a question
             GameObject questionText = instantiateQuestionText(this.QuestionTextPrefab, string.Format(this.ExpiredTimerText.Value, questionPresentation.Answers[questionPresentation.CorrectAnswerIndex]));
@@ -86,7 +86,7 @@ public class QuestionController : MonoBehaviour
         return questionText;
     }
 
-    public void DeleteQuestions()
+    private void deleteQuestions()
     {
         for (int i = this.transform.childCount - 1; i >= 0; i--)
         {

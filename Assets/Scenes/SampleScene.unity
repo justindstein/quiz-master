@@ -2842,7 +2842,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ScoreTextPrefab: {fileID: 7327162048406311306, guid: ee2599eafd2124c6ca876e111b6439b7, type: 3}
-  ScoreText: {fileID: 0}
 --- !u!1 &1960646979
 GameObject:
   m_ObjectHideFlags: 0
@@ -2852,6 +2851,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1960646980}
+  - component: {fileID: 1960646986}
   - component: {fileID: 1960646985}
   - component: {fileID: 1960646984}
   - component: {fileID: 1960646983}
@@ -3011,6 +3011,32 @@ MonoBehaviour:
   CorrectAnswerText: {fileID: 11400000, guid: 1519a17bbf3644eb5a452a763ca7e358, type: 2}
   IncorrectAnswerText: {fileID: 11400000, guid: eae5b5eb9580243cbb10cc7682985843, type: 2}
   ExpiredTimerText: {fileID: 11400000, guid: fc521fd5f370f44aa8d587c89f56d32a, type: 2}
+--- !u!114 &1960646986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1960646979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59f8146938fff824cb5fd77236b75775, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 0
+  m_Spacing: 0
+  m_ChildForceExpandWidth: 1
+  m_ChildForceExpandHeight: 1
+  m_ChildControlWidth: 0
+  m_ChildControlHeight: 0
+  m_ChildScaleWidth: 0
+  m_ChildScaleHeight: 0
+  m_ReverseArrangement: 0
 --- !u!1 &2002186390
 GameObject:
   m_ObjectHideFlags: 0

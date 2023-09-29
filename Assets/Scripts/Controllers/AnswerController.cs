@@ -17,11 +17,11 @@ public class AnswerController : MonoBehaviour
         {
             QuestionPresentation questionPresentation = (QuestionPresentation)obj;
 
+            // Clear out previous answers
+            this.DeleteAnswers();
+
             foreach (QuizStateManager.AnswerEntity answer in questionPresentation.AnswerEntities)
             {
-                // Clear out previous answers
-                this.DeleteAnswers();
-
                 // Instantiate a button
                 GameObject answerButton = instantiateAnswerButton(this.AnswerButtonPrefab, answer);
 
