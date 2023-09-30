@@ -1,14 +1,11 @@
 using TMPro;
 using UnityEngine;
-using static QuizStateManager;
 
 public class ScoreController : MonoBehaviour
 {
     // TODO: should this be merged with ScoreState?
     // TODO: Deserialize things that are not used externally
     public GameObject ScoreTextPrefab;
-
-    public QuizStateManager QuizStateManager; // TODO: remove me
 
     public ScoreState ScoreState;
 
