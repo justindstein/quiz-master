@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
@@ -8,10 +7,6 @@ public class TimerImageController : MonoBehaviour
     public FloatVariable Duration;
 
     public FloatVariable TimerMaxFill;
-
-    public Sprite Sprite;
-
-    public bool FillClockwise;
 
     public UnityEvent<Component, System.Object> OnTimerExpired;
 
@@ -34,7 +29,6 @@ public class TimerImageController : MonoBehaviour
         {
             this.OnTimerExpired.Invoke(this, null);
             Destroy(this.gameObject);
-
         }
     }
 

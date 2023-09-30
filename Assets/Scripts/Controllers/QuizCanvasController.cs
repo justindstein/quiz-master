@@ -9,7 +9,7 @@ public class QuizCanvasController : MonoBehaviour
 
     public UnityEvent OnQuizEnded;
 
-
+    // TODO: is this even necessary?
     public void LoadQuestion()
     {
         this.OnLoadQuestion.Invoke(this, null);
