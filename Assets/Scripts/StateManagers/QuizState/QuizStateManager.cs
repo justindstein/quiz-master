@@ -1,10 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-//using UnityEngine.Events;
 
-// TODO: Let's start with StateManagers and transition to State if possible
-// QuestionManager? QuizManager?
 public class QuizStateManager : MonoBehaviour
 {
     public UnityEvent<Component, System.Object> OnQuizLoaded;
@@ -16,8 +13,6 @@ public class QuizStateManager : MonoBehaviour
     private readonly IList<Question> askedQuestions = new List<Question>();
 
     private readonly Queue<Question> unaskedQuestions = new Queue<Question>();
-
-    private QuestionPresentation questionPresentation; // TODO: is this needed? probably not
 
     private void OnDisable()
     {
@@ -53,57 +48,13 @@ public class QuizStateManager : MonoBehaviour
         {
             Question nextQuestion = this.unaskedQuestions.Dequeue();
             this.askedQuestions.Add(nextQuestion);
-            this.questionPresentation = new QuestionPresentation(nextQuestion);
-            this.OnQuestionLoaded.Invoke(this, this.questionPresentation); // TODO: clean up questionPresentation
+            this.OnQuestionLoaded.Invoke(this, new QuestionPresentation(nextQuestion)); // TODO: clean up questionPresentation
         }
         else
         {
             this.OnQuizFinished.Invoke(this, null);
         }
     }
-
-    //public bool IsQuestionRemaining()
-    //{
-    //    return (this.unaskedQuestions.Count > 0);
-    //}
-
-    //public int GetQuestionCount()
-    //{
-    //    return this.askedQuestions.Count + this.unaskedQuestions.Count;
-    //}
-
-    
-
-    //public string GetQuestion()
-    //{
-    //    return this.questionPresentation.Question;
-    //}
-
-    //public IList<string> GetAnswers()
-    //{
-    //    return this.questionPresentation.Answers;
-    //}
-
-    // TODO: maybe this should just be wrapped up in GetCurrentQuestion, it's retrieved once and stored locally. It's weird for there
-    // to be a current question in this service
-    //public int GetCorrectAnswerIndex()
-    //{
-    //    return this.questionPresentation.CorrectAnswerIndex;
-    //}
-
-    //public string GetCorrectAnswer()
-    //{
-    //    return this.questionPresentation.Answers[this.GetCorrectAnswerIndex()];
-    //}
-
-    //public IList<AnswerEntity> GetAnswerEntities()
-    //{
-    //    return this.questionPresentation.AnswerEntities;
-    //}
-
-    // TODO:
-    // Store each QuestionPresentation for review at the end of the quiz
-    // record the answer that was made and whether it was correct or incorrect
 
     // TODO: implement this structure
     // Quizzes -> [quiz1, quiz2, etc]
@@ -114,40 +65,28 @@ public class QuizStateManager : MonoBehaviour
     {
         public string Question { get; }
 
-        public IList<string> Answers { get; }
+        public string AnswerExplanation { get; }
 
-        public int CorrectAnswerIndex { get; }
+        public IList<AnswerEntity> AnswerEntities { get; }
 
-        public IList<AnswerEntity> AnswerEntities;
+        public AnswerEntity CorrectAnswer { get; }
 
-        // TODO: clean up this mess
         public QuestionPresentation(Question question)
         {
             this.Question = question.Text;
+            this.AnswerExplanation = question.AnswerExplanation;
 
             List<string> answers = new List<string>(question.IncorrectAnswers);
-            this.Answers = answers.Shuffle();
-
-            this.CorrectAnswerIndex = answers.RandomInsert(question.CorrectAnswer);
+            answers.Shuffle();
+            int correctAnswerIndex = answers.RandomInsert(question.CorrectAnswer);
 
             this.AnswerEntities = new List<AnswerEntity>();
-            for (int i = this.Answers.Count - 1; i >= 0; i--)
+            for (int i = 0; i < answers.Count; i++)
             {
-                AnswerEntity answer = new AnswerEntity(this.Answers[i], (i == this.CorrectAnswerIndex));
-                this.AnswerEntities.Add(answer);
+                this.AnswerEntities.Add(new AnswerEntity(answers[i], (i == correctAnswerIndex)));
             }
-        }
-    }
 
-    private class QuestionState
-    {
-        public QuestionPresentation QuestionPresentation;
-        public int AnsweredIndex;
-
-        public QuestionState(QuestionPresentation questionPresentation, int answeredIndex)
-        {
-            this.QuestionPresentation = questionPresentation;
-            this.AnsweredIndex = answeredIndex;
+            this.CorrectAnswer = this.AnswerEntities[correctAnswerIndex];
         }
     }
 
