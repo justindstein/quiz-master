@@ -84,7 +84,7 @@ public class QuestionController : MonoBehaviour
     {
         for (int i = this.transform.childCount - 1; i >= 0; i--)
         {
-            Destroy(this.transform.GetChild(i));
+            Destroy(this.transform.GetChild(i).gameObject);
         }
     }
 }
