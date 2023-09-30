@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
-using static QuizStateManager;
 
 /// <summary>
 /// Click handling for answer buttons
@@ -18,7 +17,7 @@ public class AnswerButtonController : MonoBehaviour
 
     private Button button;
 
-    private QuestionPresentation question;
+    private QuestionEntity question;
 
     private bool isCorrect;
 
@@ -34,7 +33,7 @@ public class AnswerButtonController : MonoBehaviour
         this.isCorrect = value;
     }
 
-    public void SetQuestion(QuestionPresentation question)
+    public void SetQuestion(QuestionEntity question)
     {
         this.question = question;
     }

@@ -6,7 +6,7 @@ public class QuizStateManager : MonoBehaviour
 {
     public UnityEvent<Component, System.Object> OnQuizLoaded;
 
-    public UnityEvent<Component, QuestionPresentation> OnQuestionLoaded;
+    public UnityEvent<Component, QuestionEntity> OnQuestionLoaded;
 
     public UnityEvent<Component, System.Object> OnQuizFinished;
 
@@ -37,68 +37,21 @@ public class QuizStateManager : MonoBehaviour
                 .Shuffle()
             );
 
-            OnQuizLoaded.Invoke(this, quiz); // TODO: passing quizName not necessary 
+            OnQuizLoaded.Invoke(this, quiz);
         }
     }
 
-    // TODO: QuizStateManager should maybe just load all quizzes and store
     public void LoadQuestion()
     {
         if (this.unaskedQuestions.Count > 0)
         {
             Question nextQuestion = this.unaskedQuestions.Dequeue();
             this.askedQuestions.Add(nextQuestion);
-            this.OnQuestionLoaded.Invoke(this, new QuestionPresentation(nextQuestion)); // TODO: clean up questionPresentation
+            this.OnQuestionLoaded.Invoke(this, new QuestionEntity(nextQuestion));
         }
         else
         {
             this.OnQuizFinished.Invoke(this, null);
-        }
-    }
-
-    // TODO: implement this structure
-    // Quizzes -> [quiz1, quiz2, etc]
-    // Quiz1 -> [question1, question2, etc]
-    // Question1 -> {question {questionText, answeredText}, answers[] {answer1 {text, isCorrectAnswer}, answer2, answer3, answer4} }
-    // Start is called before the first frame update
-    public class QuestionPresentation
-    {
-        public string Question { get; }
-
-        public string AnswerExplanation { get; }
-
-        public IList<AnswerEntity> AnswerEntities { get; }
-
-        public AnswerEntity CorrectAnswer { get; }
-
-        public QuestionPresentation(Question question)
-        {
-            this.Question = question.Text;
-            this.AnswerExplanation = question.AnswerExplanation;
-
-            List<string> answers = new List<string>(question.IncorrectAnswers);
-            answers.Shuffle();
-            int correctAnswerIndex = answers.RandomInsert(question.CorrectAnswer);
-
-            this.AnswerEntities = new List<AnswerEntity>();
-            for (int i = 0; i < answers.Count; i++)
-            {
-                this.AnswerEntities.Add(new AnswerEntity(answers[i], (i == correctAnswerIndex)));
-            }
-
-            this.CorrectAnswer = this.AnswerEntities[correctAnswerIndex];
-        }
-    }
-
-    public class AnswerEntity
-    {
-        public string Answer;
-        public bool IsCorrect;
-
-        public AnswerEntity(string answer, bool isCorrect)
-        {
-            this.Answer = answer;
-            this.IsCorrect = isCorrect;
         }
     }
 }

@@ -1,8 +1,6 @@
 using TMPro;
 using UnityEngine;
 
-using static QuizStateManager;
-
 public class QuestionController : MonoBehaviour
 {
     public GameObject QuestionTextPrefab;
@@ -15,7 +13,7 @@ public class QuestionController : MonoBehaviour
 
     public void ShowQuestion(Component component, System.Object obj)
     {
-        if (obj is QuestionPresentation questionPresentation)
+        if (obj is QuestionEntity questionPresentation)
         {
             // Clear out previous question
             this.DeleteQuestions(null, null);
@@ -42,7 +40,7 @@ public class QuestionController : MonoBehaviour
 
     public void ShowIncorrectAnswerText(Component component, System.Object obj)
     {
-        if (obj is QuestionPresentation questionPresentation)
+        if (obj is QuestionEntity questionPresentation)
         {
             // Clear out previous question
             this.DeleteQuestions(null, null);
@@ -58,7 +56,7 @@ public class QuestionController : MonoBehaviour
 
     public void ShowTimerExpiredText(Component component, System.Object obj)
     {
-        if (obj is QuestionPresentation questionPresentation)
+        if (obj is QuestionEntity questionPresentation)
         {
             // Clear out previous question
             this.DeleteQuestions(null, null);

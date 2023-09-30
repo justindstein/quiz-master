@@ -1,6 +1,5 @@
 using TMPro;
 using UnityEngine;
-using static QuizStateManager;
 
 public class AnswerController : MonoBehaviour
 {
@@ -10,12 +9,12 @@ public class AnswerController : MonoBehaviour
 
     public void LoadAnswers(Component component, System.Object obj)
     {
-        if (obj is QuestionPresentation questionPresentation)
+        if (obj is QuestionEntity questionPresentation)
         {
             // Clear out previous answers
             this.DeleteAnswers(null, null);
 
-            foreach (QuizStateManager.AnswerEntity answer in questionPresentation.AnswerEntities)
+            foreach (AnswerEntity answer in questionPresentation.AnswerEntities)
             {
                 // Instantiate a button
                 GameObject answerButton = instantiateAnswerButton(this.AnswerButtonPrefab, answer, questionPresentation);
@@ -32,7 +31,7 @@ public class AnswerController : MonoBehaviour
     /// <param name="prefab">The prefab to instantiate</param>
     /// <param name="answer">The associated answer</param>
     /// <returns>Instantiated button gameobject</returns>
-    private GameObject instantiateAnswerButton(GameObject prefab, QuizStateManager.AnswerEntity answer, QuestionPresentation question)
+    private GameObject instantiateAnswerButton(GameObject prefab, AnswerEntity answer, QuestionEntity question)
     {
         GameObject answerButton = Instantiate(prefab);
 

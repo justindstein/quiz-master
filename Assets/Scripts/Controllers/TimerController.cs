@@ -1,5 +1,4 @@
 using UnityEngine;
-using static QuizStateManager;
 
 public class TimerController : MonoBehaviour
 {
@@ -9,7 +8,7 @@ public class TimerController : MonoBehaviour
 
     public void CreateQuestionTimer(Component component, System.Object obj)
     {
-        if (obj is QuestionPresentation question)
+        if (obj is QuestionEntity question)
         {
             // Clear out previous answers
             this.DeleteTimers();
@@ -26,7 +25,7 @@ public class TimerController : MonoBehaviour
 
     public void CreateAnswerTimer(Component component, System.Object obj)
     {
-        if (obj is QuestionPresentation question)
+        if (obj is QuestionEntity question)
         {
             // Clear out previous answers
             this.DeleteTimers();

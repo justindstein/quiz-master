@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
-using static QuizStateManager;
 
 public class TimerImageController : MonoBehaviour
 {
@@ -11,7 +10,7 @@ public class TimerImageController : MonoBehaviour
 
     public UnityEvent<Component, System.Object> OnTimerExpired;
 
-    private QuestionPresentation question;
+    private QuestionEntity question;
 
     private Image image;
 
@@ -23,7 +22,7 @@ public class TimerImageController : MonoBehaviour
         this.quizTimer = new QuizTimer(this.TimerMaxFill.Value, this.Duration.Value);
     }
 
-    public void SetQuestion(QuestionPresentation question)
+    public void SetQuestion(QuestionEntity question)
     {
         this.question = question;
     }
