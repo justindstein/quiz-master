@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using static QuizStateManager;
 
 public class ScoreController : MonoBehaviour
 {
@@ -7,36 +8,42 @@ public class ScoreController : MonoBehaviour
     // TODO: Deserialize things that are not used externally
     public GameObject ScoreTextPrefab;
 
-    //public TextMeshProUGUI ScoreText;
+    public QuizStateManager QuizStateManager; // TODO: remove me
 
-    //public QuizStateManager QuizStateManager;
+    public ScoreState ScoreState;
 
-    //public ScoreState ScoreState;
+    private TextMeshProUGUI scoreText;
 
-    private void Start()
+    public void CreateScore(Component component, System.Object obj)
     {
-        //this.ScoreState.QuestionCount = this.QuizStateManager.GetQuestionCount(); // TODO: is this necessary?
-        //this.UpdateScore();
+        this.DestroyScores(null, null);
+
+        GameObject scoreObject = Instantiate(this.ScoreTextPrefab);
+        this.scoreText = scoreObject.GetComponent<TextMeshProUGUI>();
+
+        this.ScoreState.ResetScore();
+        this.scoreText.SetText(this.ScoreState.GetScore());
+
+        this.scoreText.transform.SetParent(this.transform);
     }
 
-    public void ShowScore(Component component, System.Object obj)
+    public void DestroyScores(Component component, System.Object obj)
     {
-        //this.ScoreText.text = this.ScoreState.GetScore();
-        //this.ScoreText.text = "1337 / 1337";
+        for (int i = this.transform.childCount - 1; i >= 0; i--)
+        {
+            Destroy(this.transform.GetChild(i).gameObject);
+        }
     }
 
-    //public void IncrementCorrectAnswers()
-    //{
-    //    this.ScoreState.CorrectAnswers++;
-    //}
+    public void IncrementCorrectAnswers()
+    {
+        this.ScoreState.CorrectAnswers++;
+        this.scoreText.SetText(this.ScoreState.GetScore());
+    }
 
-    //public void IncrementIncorrectAnswers()
-    //{
-    //    this.ScoreState.IncorrectAnswers++;
-    //}
-
-    //public void UpdateScore()
-    //{
-    //    this.ScoreText.text = this.ScoreState.GetScore();
-    //}
+    public void IncrementIncorrectAnswers()
+    {
+        this.ScoreState.IncorrectAnswers++;
+        this.scoreText.SetText(this.ScoreState.GetScore());
+    }
 }

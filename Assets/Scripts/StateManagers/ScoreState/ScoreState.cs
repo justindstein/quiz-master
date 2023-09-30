@@ -5,15 +5,13 @@ public class ScoreState : ScriptableObject
 {
     // TODO: this might go elsewhere
     // TODO: IntVariable conversion
-    public int QuestionCount;
+    public int QuestionCount = 0;
 
-    public int CorrectAnswers;
+    public int CorrectAnswers = 0;
 
-    public int IncorrectAnswers;
+    public int IncorrectAnswers = 0;
 
-    // Reset values as ScripableObject.Awake does not run as expected:
-    // https://forum.unity.com/threads/solved-but-unhappy-scriptableobject-awake-never-execute.488468/
-    private void OnEnable()
+    public void ResetScore()
     {
         this.QuestionCount = 0;
         this.CorrectAnswers = 0;
