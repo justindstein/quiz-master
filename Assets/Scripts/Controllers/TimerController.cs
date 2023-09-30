@@ -1,4 +1,5 @@
 using UnityEngine;
+using static QuizStateManager;
 
 public class TimerController : MonoBehaviour
 {
@@ -8,26 +9,35 @@ public class TimerController : MonoBehaviour
 
     public void CreateQuestionTimer(Component component, System.Object obj)
     {
-        // Clear out previous answers
-        this.DeleteTimers();
+        if (obj is QuestionPresentation question)
+        {
+            // Clear out previous answers
+            this.DeleteTimers();
 
-        // Instantiate a button
-        GameObject questionTimer = Instantiate(this.QuestionTimerPrefab);
+            // Instantiate a button
+            GameObject questionTimer = Instantiate(this.QuestionTimerPrefab);
+            questionTimer.GetComponent<TimerImageController>().SetQuestion(question);
 
-        // Set its parent to 'Answers' GameObject
-        questionTimer.transform.SetParent(this.transform);
+            // Set its parent to 'Answers' GameObject
+            questionTimer.transform.SetParent(this.transform);
+        }
+
     }
 
     public void CreateAnswerTimer(Component component, System.Object obj)
     {
-        // Clear out previous answers
-        this.DeleteTimers();
+        if (obj is QuestionPresentation question)
+        {
+            // Clear out previous answers
+            this.DeleteTimers();
 
-        // Instantiate a button
-        GameObject answerTimer = Instantiate(this.AnswerTimerPrefab);
+            // Instantiate a button
+            GameObject answerTimer = Instantiate(this.AnswerTimerPrefab);
+            answerTimer.GetComponent<TimerImageController>().SetQuestion(question);
 
-        // Set its parent to 'Answers' GameObject
-        answerTimer.transform.SetParent(this.transform);
+            // Set its parent to 'Answers' GameObject
+            answerTimer.transform.SetParent(this.transform);
+        }
     }
 
     private void DeleteTimers()

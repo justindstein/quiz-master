@@ -18,7 +18,7 @@ public class AnswerController : MonoBehaviour
             foreach (QuizStateManager.AnswerEntity answer in questionPresentation.AnswerEntities)
             {
                 // Instantiate a button
-                GameObject answerButton = instantiateAnswerButton(this.AnswerButtonPrefab, answer);
+                GameObject answerButton = instantiateAnswerButton(this.AnswerButtonPrefab, answer, questionPresentation);
 
                 // Set its parent to 'Answers' GameObject
                 answerButton.transform.SetParent(this.transform);
@@ -32,11 +32,12 @@ public class AnswerController : MonoBehaviour
     /// <param name="prefab">The prefab to instantiate</param>
     /// <param name="answer">The associated answer</param>
     /// <returns>Instantiated button gameobject</returns>
-    private GameObject instantiateAnswerButton(GameObject prefab, QuizStateManager.AnswerEntity answer)
+    private GameObject instantiateAnswerButton(GameObject prefab, QuizStateManager.AnswerEntity answer, QuestionPresentation question)
     {
         GameObject answerButton = Instantiate(prefab);
 
         answerButton.GetComponent<AnswerButtonController>().SetIsCorrect(answer.IsCorrect);
+        answerButton.GetComponent<AnswerButtonController>().SetQuestion(question);
 
         answerButton.GetComponentInChildren<TextMeshProUGUI>().SetText(answer.Answer);
 
