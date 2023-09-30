@@ -18,7 +18,7 @@ public class QuestionController : MonoBehaviour
         if (obj is QuestionPresentation questionPresentation)
         {
             // Clear out previous question
-            this.deleteQuestions();
+            this.DeleteQuestions(null, null);
 
             // Instantiate a question
             GameObject questionText = instantiateQuestionText(this.QuestionTextPrefab, questionPresentation.Question);
@@ -31,7 +31,7 @@ public class QuestionController : MonoBehaviour
     public void ShowCorrectAnswerText(Component component, System.Object obj)
     {
         // Clear out previous question
-        this.deleteQuestions();
+        this.DeleteQuestions(null, null);
 
         // Instantiate a question
         GameObject questionText = instantiateQuestionText(this.QuestionTextPrefab, this.CorrectAnswerText.Value);
@@ -45,7 +45,7 @@ public class QuestionController : MonoBehaviour
         if (obj is QuestionPresentation questionPresentation)
         {
             // Clear out previous question
-            this.deleteQuestions();
+            this.DeleteQuestions(null, null);
 
             // Instantiate a question
             GameObject questionText = instantiateQuestionText(this.QuestionTextPrefab, string.Format(this.IncorrectAnswerText.Value, questionPresentation.Answers[questionPresentation.CorrectAnswerIndex]));
@@ -61,7 +61,7 @@ public class QuestionController : MonoBehaviour
         if (obj is QuestionPresentation questionPresentation)
         {
             // Clear out previous question
-            this.deleteQuestions();
+            this.DeleteQuestions(null, null);
 
             // Instantiate a question
             GameObject questionText = instantiateQuestionText(this.QuestionTextPrefab, string.Format(this.ExpiredTimerText.Value, questionPresentation.Answers[questionPresentation.CorrectAnswerIndex]));
@@ -80,7 +80,7 @@ public class QuestionController : MonoBehaviour
         return questionText;
     }
 
-    private void deleteQuestions()
+    public void DeleteQuestions(Component component, System.Object obj)
     {
         for (int i = this.transform.childCount - 1; i >= 0; i--)
         {

@@ -7,15 +7,15 @@ public class QuizController : MonoBehaviour
 
     public QuestionSet[] Quizzes;
 
-    private void OnEnable()
+    private void Awake()
     {
-        this.LoadQuizzes();
+        this.LoadQuizzes(null, null);
     }
 
     /// <summary>
     /// Load a collection of quizzes into 'Quizzes' layout group
     /// </summary>
-    public void LoadQuizzes()
+    public void LoadQuizzes(Component component, System.Object obj)
     {
         foreach (QuestionSet quiz in this.Quizzes)
         {
@@ -24,6 +24,14 @@ public class QuizController : MonoBehaviour
 
             // Set its parent to 'Answers' GameObject
             quizButton.transform.SetParent(this.transform);
+        }
+    }
+
+    public void DestroyQuizzes(Component component, System.Object obj)
+    {
+        for (int i = this.transform.childCount - 1; i >= 0; i--)
+        {
+            Destroy(this.transform.GetChild(i).gameObject);
         }
     }
 

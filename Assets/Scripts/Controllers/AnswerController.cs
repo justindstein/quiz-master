@@ -13,7 +13,7 @@ public class AnswerController : MonoBehaviour
         if (obj is QuestionPresentation questionPresentation)
         {
             // Clear out previous answers
-            this.DeleteAnswers();
+            this.DeleteAnswers(null, null);
 
             foreach (QuizStateManager.AnswerEntity answer in questionPresentation.AnswerEntities)
             {
@@ -43,7 +43,7 @@ public class AnswerController : MonoBehaviour
         return answerButton;
     }
 
-    public void DeleteAnswers()
+    public void DeleteAnswers(Component component, System.Object obj)
     {
         for (int i = this.transform.childCount - 1; i >= 0; i--)
         {

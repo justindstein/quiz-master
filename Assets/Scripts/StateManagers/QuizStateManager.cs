@@ -11,9 +11,13 @@ public class QuizStateManager : MonoBehaviour
 
     public UnityEvent<Component, QuestionPresentation> OnQuestionLoaded;
 
+    public UnityEvent<Component, System.Object> OnQuizFinished;
+
     private readonly IList<Question> askedQuestions = new List<Question>();
 
     private readonly Queue<Question> unaskedQuestions = new Queue<Question>();
+
+    private QuestionPresentation questionPresentation; // TODO: is this needed? probably not
 
     private void OnDisable()
     {
@@ -45,57 +49,57 @@ public class QuizStateManager : MonoBehaviour
     // TODO: QuizStateManager should maybe just load all quizzes and store
     public void LoadQuestion()
     {
-        Question nextQuestion = this.unaskedQuestions.Dequeue();
-        this.askedQuestions.Add(nextQuestion);
-        this.questionPresentation = new QuestionPresentation(nextQuestion);
-        this.OnQuestionLoaded.Invoke(this, this.questionPresentation); // TODO: clean up questionPresentation
+        if (this.unaskedQuestions.Count > 0)
+        {
+            Question nextQuestion = this.unaskedQuestions.Dequeue();
+            this.askedQuestions.Add(nextQuestion);
+            this.questionPresentation = new QuestionPresentation(nextQuestion);
+            this.OnQuestionLoaded.Invoke(this, this.questionPresentation); // TODO: clean up questionPresentation
+        }
+        else
+        {
+            this.OnQuizFinished.Invoke(this, null);
+        }
     }
 
-    //////////////////////////
+    //public bool IsQuestionRemaining()
+    //{
+    //    return (this.unaskedQuestions.Count > 0);
+    //}
 
+    //public int GetQuestionCount()
+    //{
+    //    return this.askedQuestions.Count + this.unaskedQuestions.Count;
+    //}
 
+    
 
+    //public string GetQuestion()
+    //{
+    //    return this.questionPresentation.Question;
+    //}
 
-
-
-    public bool IsQuestionRemaining()
-    {
-        return (this.unaskedQuestions.Count > 0);
-    }
-
-    public int GetQuestionCount()
-    {
-        return this.askedQuestions.Count + this.unaskedQuestions.Count;
-    }
-
-    private QuestionPresentation questionPresentation;
-
-    public string GetQuestion()
-    {
-        return this.questionPresentation.Question;
-    }
-
-    public IList<string> GetAnswers()
-    {
-        return this.questionPresentation.Answers;
-    }
+    //public IList<string> GetAnswers()
+    //{
+    //    return this.questionPresentation.Answers;
+    //}
 
     // TODO: maybe this should just be wrapped up in GetCurrentQuestion, it's retrieved once and stored locally. It's weird for there
     // to be a current question in this service
-    public int GetCorrectAnswerIndex()
-    {
-        return this.questionPresentation.CorrectAnswerIndex;
-    }
+    //public int GetCorrectAnswerIndex()
+    //{
+    //    return this.questionPresentation.CorrectAnswerIndex;
+    //}
 
-    public string GetCorrectAnswer()
-    {
-        return this.GetAnswers()[this.GetCorrectAnswerIndex()];
-    }
+    //public string GetCorrectAnswer()
+    //{
+    //    return this.questionPresentation.Answers[this.GetCorrectAnswerIndex()];
+    //}
 
-    public IList<AnswerEntity> GetAnswerEntities()
-    {
-        return this.questionPresentation.AnswerEntities;
-    }
+    //public IList<AnswerEntity> GetAnswerEntities()
+    //{
+    //    return this.questionPresentation.AnswerEntities;
+    //}
 
     // TODO:
     // Store each QuestionPresentation for review at the end of the quiz
