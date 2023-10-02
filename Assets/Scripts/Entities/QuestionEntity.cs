@@ -13,8 +13,8 @@ public class QuestionEntity
 
     public QuestionEntity(Question question)
     {
-        this.Question = question.Text;
-        this.AnswerExplanation = question.AnswerExplanation;
+        this.Question = question.QuestionText;
+        this.AnswerExplanation = question.Explanation;
 
         List<string> answers = new List<string>(question.IncorrectAnswers);
         answers.Shuffle();
