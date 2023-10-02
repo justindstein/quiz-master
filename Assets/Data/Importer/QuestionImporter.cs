@@ -9,7 +9,7 @@ using UnityEngine;
 public class DataImporter : MonoBehaviour
 {
     private String QuestionImportFilePath = "Assets/Data/Importer/quiz_master_questions.csv";
-    private String QuestionExportPath = "Assets/Data/Questions/{0}";
+    private String QuestionExportPath = "Assets/Data/Questions/";
 
     private void Start()
     {
@@ -20,7 +20,7 @@ public class DataImporter : MonoBehaviour
             ScriptableObject so = this.CreateScriptableObject(question);
 
             // Verify proper directory exists, create it if it doesn't
-            string subjectExportPath = ForceEndsWithSlash(QuestionExportPath) + ((Question)so).Subject;
+            string subjectExportPath = ForceEndsWithSlash(QuestionExportPath) + ((Question)so).Subject.TrimAllWithInplaceCharArray();
             Directory.CreateDirectory(subjectExportPath);
 
             string filePath = string.Format(subjectExportPath + "/Question{0}.asset", count++);
