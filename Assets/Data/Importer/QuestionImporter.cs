@@ -8,23 +8,56 @@ using UnityEngine;
 
 public class DataImporter : MonoBehaviour
 {
-    private String QuestionImportFilePath = "Assets/Data/Importer/quiz_master_questions.csv";
+    private String ImportFilePath = "Assets/Data/Importer/quiz_master_questions.csv";
     private String QuestionExportPath = "Assets/Data/Questions/";
+    private String QuizExportPath = "Assets/Data/Quizzes/";
 
     private void Start()
     {
+        // TODO: remove me after
+        Directory.CreateDirectory(QuestionExportPath);
+        Directory.CreateDirectory(QuizExportPath);
+
+        ClearDirectory(QuestionExportPath);
+        ClearDirectory(QuizExportPath);
+
+        Dictionary<string, List<Question>> quizzes = new Dictionary<string, List<Question>>();
+
         int count = 0;
-        foreach (QuestionParser question in this.GetQuestions(QuestionImportFilePath))
+        foreach (QuestionParser rawQuestion in this.GetQuestions(ImportFilePath))
         {
             // Create so
-            ScriptableObject so = this.CreateScriptableObject(question);
+            Question question = this.CreateQuestionSO(rawQuestion);
+
+            // Associate question with quiz
+            if (quizzes.ContainsKey(question.Subject))
+            {
+                quizzes.GetValueOrDefault(question.Subject).Add(question);
+            }
+            else
+            {
+                quizzes.Add(question.Subject, new List<Question>()) ;
+            }
 
             // Verify proper directory exists, create it if it doesn't
-            string subjectExportPath = ForceEndsWithSlash(QuestionExportPath) + ((Question)so).Subject.TrimAllWithInplaceCharArray();
+            string subjectExportPath = ForceEndsWithSlash(QuestionExportPath) + ((Question)question).Subject.TrimAllWithInplaceCharArray();
             Directory.CreateDirectory(subjectExportPath);
 
             string filePath = string.Format(subjectExportPath + "/Question{0}.asset", count++);
-            this.CreateAsset(so, filePath);
+            this.CreateAsset(question, filePath);
+        }
+
+        Debug.Log("Creating Quizzes");
+        foreach (KeyValuePair<string, List<Question>> entry in quizzes)
+        {
+            var quizName = entry.Key;
+            var questions = entry.Value;
+            Debug.Log("key: " + quizName + " value: " + questions);
+
+            Quiz quiz = CreateQuizSO(quizName, questions);
+
+            string filePath = string.Format(QuizExportPath + "/{0}.asset", entry.Key).TrimAllWithInplaceCharArray();
+            this.CreateAsset(quiz, filePath);
         }
     }
 
@@ -35,7 +68,7 @@ public class DataImporter : MonoBehaviour
         return csv.GetRecords<QuestionParser>();
     }
 
-    private ScriptableObject CreateScriptableObject(QuestionParser questionParser)
+    private Question CreateQuestionSO(QuestionParser questionParser)
     {
         Question so = ScriptableObject.CreateInstance<Question>();
 
@@ -59,6 +92,17 @@ public class DataImporter : MonoBehaviour
         return so;
     }
 
+    private Quiz CreateQuizSO(string quizName, List<Question> questions)
+    {
+        Quiz so = ScriptableObject.CreateInstance<Quiz>();
+
+        so.Name = quizName;
+
+        so.Questions = new List<Question>(questions).ToArray();
+
+        return so;
+    }
+
     private void CreateAsset(ScriptableObject so, string filePath)
     {
         AssetDatabase.CreateAsset(so, filePath);
@@ -69,5 +113,20 @@ public class DataImporter : MonoBehaviour
     private string ForceEndsWithSlash(string path)
     {
         return path + ((path.EndsWith("/")) ? "" : "/");
+    }
+
+    private void ClearDirectory(string directoryPath)
+    {
+        System.IO.DirectoryInfo di = new DirectoryInfo(directoryPath);
+
+        foreach (FileInfo file in di.EnumerateFiles())
+        {
+            file.Delete();
+        }
+
+        foreach (DirectoryInfo dir in di.EnumerateDirectories())
+        {
+            dir.Delete(true);
+        }
     }
 }

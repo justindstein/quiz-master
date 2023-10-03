@@ -5,7 +5,7 @@ public class QuizController : MonoBehaviour
 {
     public GameObject QuizButtonPrefab;
 
-    public QuestionSet[] Quizzes;
+    public Quiz[] Quizzes;
 
     private void Awake()
     {
@@ -17,7 +17,7 @@ public class QuizController : MonoBehaviour
     /// </summary>
     public void LoadQuizzes(Component component, System.Object obj)
     {
-        foreach (QuestionSet quiz in this.Quizzes)
+        foreach (Quiz quiz in this.Quizzes)
         {
             // Instantiate a button
             GameObject quizButton = instantiateQuizButton(this.QuizButtonPrefab, quiz);
@@ -41,7 +41,7 @@ public class QuizController : MonoBehaviour
     /// <param name="prefab">The prefab to instantiate</param>
     /// <param name="quiz">The associated quiz</param>
     /// <returns>Instantiated button gameobject</returns>
-    private GameObject instantiateQuizButton(GameObject prefab, QuestionSet quiz)
+    private GameObject instantiateQuizButton(GameObject prefab, Quiz quiz)
     {
         GameObject quizButton = Instantiate(prefab);
 

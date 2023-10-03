@@ -27,7 +27,7 @@ public class QuizStateManager : MonoBehaviour
     /// <param name="obj"></param>
     public void SetQuiz(Component component, System.Object obj)
     {
-        if (obj is QuestionSet quiz)
+        if (obj is Quiz quiz)
         {
             this.askedQuestions.Clear();
 

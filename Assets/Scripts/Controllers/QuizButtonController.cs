@@ -6,9 +6,9 @@ using UnityEngine.Events;
 /// </summary>
 public class QuizButtonController : MonoBehaviour
 {
-    public UnityEvent<Component, QuestionSet> OnQuizStarted;
+    public UnityEvent<Component, Quiz> OnQuizStarted;
 
-    private QuestionSet quiz;
+    private Quiz quiz;
 
     private void OnDisable()
     {
@@ -21,7 +21,7 @@ public class QuizButtonController : MonoBehaviour
         this.OnQuizStarted.Invoke(this, this.quiz);
     }
 
-    public void SetQuiz(QuestionSet value)
+    public void SetQuiz(Quiz value)
     {
         this.quiz = value;
     }
