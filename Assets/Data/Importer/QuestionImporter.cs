@@ -14,7 +14,6 @@ public class DataImporter : MonoBehaviour
 
     private void Start()
     {
-        // TODO: remove me after
         Directory.CreateDirectory(QuestionExportPath);
         Directory.CreateDirectory(QuizExportPath);
 
@@ -36,7 +35,7 @@ public class DataImporter : MonoBehaviour
             }
             else
             {
-                quizzes.Add(question.Subject, new List<Question>()) ;
+                quizzes.Add(question.Subject, new List<Question>());
             }
 
             // Verify proper directory exists, create it if it doesn't
