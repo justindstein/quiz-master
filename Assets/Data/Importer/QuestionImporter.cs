@@ -8,9 +8,9 @@ using UnityEngine;
 
 public class DataImporter : MonoBehaviour
 {
-    private String ImportFilePath = "Assets/Data/Importer/quiz_master_questions.csv";
-    private String QuestionExportPath = "Assets/Data/Questions/";
-    private String QuizExportPath = "Assets/Data/Quizzes/";
+    public String ImportFilePath = "Assets/Data/Importer/quiz_master_questions.csv";
+    public String QuestionExportPath = "Assets/Data/Questions/";
+    public String QuizExportPath = "Assets/Data/Quizzes/";
 
     private void Start()
     {
