@@ -1,20 +1,18 @@
 ﻿public class QuestionParser
 {
+    public string answer { get; set; }
+
     public string question { get; set; }
 
     public string subject { get; set; }
 
-    public string difficulty { get; set; }
+    public string option1 { get; set; }
 
-    public string firstAnswer { get; set; }
+    public string option2 { get; set; }
 
-    public string secondAnswer { get; set; }
+    public string option3 { get; set; }
 
-    public string thirdAnswer { get; set; }
-
-    public string fourthAnswer { get; set; }
-
-    public string correctAnswer { get; set; }
+    public string option4 { get; set; }
 
     public string explanation { get; set; }
 }

@@ -40,13 +40,13 @@ public class QuestionController : MonoBehaviour
 
     public void ShowIncorrectAnswerText(Component component, System.Object obj)
     {
-        if (obj is QuestionEntity questionPresentation)
+        if (obj is QuestionEntity question)
         {
             // Clear out previous question
             this.DeleteQuestions(null, null);
 
             // Instantiate a question
-            GameObject questionText = instantiateQuestionText(this.QuestionTextPrefab, string.Format(this.IncorrectAnswerText.Value, questionPresentation.CorrectAnswer.Answer));
+            GameObject questionText = instantiateQuestionText(this.QuestionTextPrefab, string.Format(this.IncorrectAnswerText.Value, question.CorrectAnswer.Answer));
 
             // Set its parent to 'Question' GameObject
             questionText.transform.SetParent(this.transform);

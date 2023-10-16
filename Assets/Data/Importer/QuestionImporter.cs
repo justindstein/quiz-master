@@ -73,18 +73,17 @@ public class DataImporter : MonoBehaviour
 
         so.QuestionText = questionParser.question;
         so.Subject = questionParser.subject;
-        so.Difficulty = questionParser.difficulty;
         so.Explanation = questionParser.explanation;
-        so.CorrectAnswer = questionParser.correctAnswer;
+        so.CorrectAnswer = questionParser.answer;
 
         // Remove correct answer from answer list
         HashSet<string> questions = new HashSet<string>() {
-            questionParser.firstAnswer
-            , questionParser.secondAnswer
-            , questionParser.thirdAnswer
-            , questionParser.fourthAnswer
+            questionParser.option1
+            , questionParser.option2
+            , questionParser.option3
+            , questionParser.option4
         };
-        questions.Remove(questionParser.correctAnswer);
+        questions.Remove(questionParser.answer);
 
         so.IncorrectAnswers = questions.ToArray();
 
