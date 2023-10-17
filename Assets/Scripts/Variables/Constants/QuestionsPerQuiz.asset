@@ -9,9 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3c65e0073b5c416b88c4e1b33a95d8c, type: 3}
-  m_Name: ScoreState
+  m_Script: {fileID: 11500000, guid: ee08beb44caee42dc9301b142d43020b, type: 3}
+  m_Name: QuestionsPerQuiz
   m_EditorClassIdentifier: 
-  QuestionCount: 0
-  CorrectAnswers: 0
-  IncorrectAnswers: 0
+  DeveloperDescription: 
+  Value: 5

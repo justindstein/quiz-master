@@ -3,28 +3,28 @@ using UnityEngine;
 
 public class ScoreController : MonoBehaviour
 {
-    // TODO: should this be merged with ScoreState?
-    // TODO: Deserialize things that are not used externally
     public GameObject ScoreTextPrefab;
-
-    public ScoreState ScoreState;
 
     private TextMeshProUGUI scoreText;
 
+    private int questionCount = 0;
+
+    private int correctAnswers = 0;
+
     public void CreateScore(Component component, System.Object obj)
     {
-        this.DestroyScores(null, null);
+        this.DestroyScores();
 
         GameObject scoreObject = Instantiate(this.ScoreTextPrefab);
         this.scoreText = scoreObject.GetComponent<TextMeshProUGUI>();
 
-        this.ScoreState.ResetScore();
-        this.scoreText.SetText(this.ScoreState.GetScore());
+        this.ResetScore();
+        this.scoreText.SetText(this.GetScore());
 
         this.scoreText.transform.SetParent(this.transform);
     }
 
-    public void DestroyScores(Component component, System.Object obj)
+    public void DestroyScores()
     {
         for (int i = this.transform.childCount - 1; i >= 0; i--)
         {
@@ -34,13 +34,25 @@ public class ScoreController : MonoBehaviour
 
     public void IncrementCorrectAnswers()
     {
-        this.ScoreState.CorrectAnswers++;
-        this.scoreText.SetText(this.ScoreState.GetScore());
+        this.questionCount++;
+        this.correctAnswers++;
+        this.scoreText.SetText(this.GetScore());
     }
 
     public void IncrementIncorrectAnswers()
     {
-        this.ScoreState.IncorrectAnswers++;
-        this.scoreText.SetText(this.ScoreState.GetScore());
+        this.questionCount++;
+        this.scoreText.SetText(this.GetScore());
+    }
+
+    private void ResetScore()
+    {
+        this.questionCount = 0;
+        this.correctAnswers = 0;
+    }
+
+    private string GetScore()
+    {
+        return string.Format("Score: {0} / {1}", this.correctAnswers, this.questionCount);
     }
 }

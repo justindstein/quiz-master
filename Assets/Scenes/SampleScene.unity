@@ -1105,7 +1105,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 901127790499951799, guid: 90dffab6e58864efda5da84af7ea80f8, type: 3}
       propertyPath: Quizzes.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 901127790499951799, guid: 90dffab6e58864efda5da84af7ea80f8, type: 3}
       propertyPath: Quizzes.Array.data[0]
@@ -1119,6 +1119,10 @@ PrefabInstance:
       propertyPath: Quizzes.Array.data[2]
       value: 
       objectReference: {fileID: 11400000, guid: d31d41d29e894435f823ac4b9ee53e5b, type: 2}
+    - target: {fileID: 901127790499951799, guid: 90dffab6e58864efda5da84af7ea80f8, type: 3}
+      propertyPath: Quizzes.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: 9c0b7a3d6d5a54a0e9a9553899857ba1, type: 2}
     - target: {fileID: 1385070087986440905, guid: 90dffab6e58864efda5da84af7ea80f8, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
