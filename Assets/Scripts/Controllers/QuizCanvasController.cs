@@ -7,6 +7,7 @@ public class QuizCanvasController : MonoBehaviour
 
     public UnityEvent<Component, Object> OnLoadQuestion;
 
+    // TODO: will we use this?
     public UnityEvent OnQuizEnded;
 
     // TODO: is this even necessary?

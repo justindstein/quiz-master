@@ -81,7 +81,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ScoreTextPrefab: {fileID: 7327162048406311306, guid: ee2599eafd2124c6ca876e111b6439b7, type: 3}
-  ScoreState: {fileID: 11400000, guid: 263987f9375c54d9bb6234146bab6025, type: 2}
+  LifetimeAnswerCount: {fileID: 0}
+  LifetimeCorrectAnswerCount: {fileID: 0}
 --- !u!114 &134910611956182121
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -213,7 +214,7 @@ MonoBehaviour:
       - m_Target: {fileID: 3874305349822331113}
         m_TargetAssemblyTypeName: ScoreController, Assembly-CSharp
         m_MethodName: DestroyScores
-        m_Mode: 0
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

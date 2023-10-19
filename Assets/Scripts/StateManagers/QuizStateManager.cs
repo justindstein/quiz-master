@@ -10,6 +10,10 @@ public class QuizStateManager : MonoBehaviour
 
     public UnityEvent<Component, System.Object> OnQuizFinished;
 
+    public IntVariable QuizSize;
+
+    public IntVariable CurrentQuizAnswerCount;
+
     private readonly IList<Question> askedQuestions = new List<Question>();
 
     private readonly Queue<Question> unaskedQuestions = new Queue<Question>();
@@ -43,15 +47,18 @@ public class QuizStateManager : MonoBehaviour
 
     public void LoadQuestion()
     {
-        if (this.unaskedQuestions.Count > 0)
+        // No questions remaining or question count exceeds some value
+        if (this.unaskedQuestions.Count <= 0 || this.CurrentQuizAnswerCount.Value >= this.QuizSize.Value)
+        {
+            this.OnQuizFinished.Invoke(this, null);
+        }
+
+        // Load next question
+        else
         {
             Question nextQuestion = this.unaskedQuestions.Dequeue();
             this.askedQuestions.Add(nextQuestion);
             this.OnQuestionLoaded.Invoke(this, new QuestionEntity(nextQuestion));
-        }
-        else
-        {
-            this.OnQuizFinished.Invoke(this, null);
         }
     }
 }
