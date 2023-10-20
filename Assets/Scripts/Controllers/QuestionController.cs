@@ -62,7 +62,7 @@ public class QuestionController : MonoBehaviour
             this.DeleteQuestions(null, null);
 
             // Instantiate a question
-            GameObject questionText = instantiateQuestionText(this.QuestionTextPrefab, string.Format(this.ExpiredTimerText.Value, questionPresentation.CorrectAnswer));
+            GameObject questionText = instantiateQuestionText(this.QuestionTextPrefab, string.Format(this.ExpiredTimerText.Value, questionPresentation.CorrectAnswer.Answer));
 
             // Set its parent to 'Question' GameObject
             questionText.transform.SetParent(this.transform);
