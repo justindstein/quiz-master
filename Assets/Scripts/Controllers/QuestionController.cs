@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 
@@ -28,14 +29,17 @@ public class QuestionController : MonoBehaviour
 
     public void ShowCorrectAnswerText(Component component, System.Object obj)
     {
-        // Clear out previous question
-        this.DeleteQuestions(null, null);
+        if (obj is QuestionEntity question)
+        {
+            // Clear out previous question
+            this.DeleteQuestions(null, null);
 
-        // Instantiate a question
-        GameObject questionText = instantiateQuestionText(this.QuestionTextPrefab, this.CorrectAnswerText.Value);
+            // Instantiate a question
+            GameObject questionText = instantiateQuestionText(this.QuestionTextPrefab, string.Format(this.CorrectAnswerText.Value, question.AnswerExplanation));
 
-        // Set its parent to 'Question' GameObject
-        questionText.transform.SetParent(this.transform);
+            // Set its parent to 'Question' GameObject
+            questionText.transform.SetParent(this.transform);
+        }
     }
 
     public void ShowIncorrectAnswerText(Component component, System.Object obj)
@@ -46,7 +50,7 @@ public class QuestionController : MonoBehaviour
             this.DeleteQuestions(null, null);
 
             // Instantiate a question
-            GameObject questionText = instantiateQuestionText(this.QuestionTextPrefab, string.Format(this.IncorrectAnswerText.Value, question.CorrectAnswer.Answer));
+            GameObject questionText = instantiateQuestionText(this.QuestionTextPrefab, string.Format(this.ExpiredTimerText.Value, question.CorrectAnswer.Answer));
 
             // Set its parent to 'Question' GameObject
             questionText.transform.SetParent(this.transform);
@@ -56,13 +60,13 @@ public class QuestionController : MonoBehaviour
 
     public void ShowTimerExpiredText(Component component, System.Object obj)
     {
-        if (obj is QuestionEntity questionPresentation)
+        if (obj is QuestionEntity question)
         {
             // Clear out previous question
             this.DeleteQuestions(null, null);
 
             // Instantiate a question
-            GameObject questionText = instantiateQuestionText(this.QuestionTextPrefab, string.Format(this.ExpiredTimerText.Value, questionPresentation.CorrectAnswer.Answer));
+            GameObject questionText = instantiateQuestionText(this.QuestionTextPrefab, string.Format(this.ExpiredTimerText.Value, question.CorrectAnswer.Answer));
 
             // Set its parent to 'Question' GameObject
             questionText.transform.SetParent(this.transform);

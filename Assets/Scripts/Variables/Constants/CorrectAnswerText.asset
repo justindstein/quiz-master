@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: CorrectAnswerText
   m_EditorClassIdentifier: 
   DeveloperDescription: 
-  Value: Correct!
+  Value: Correct! {0}

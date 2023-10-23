@@ -81,9 +81,7 @@ public class DataImporter : MonoBehaviour
             questionParser.option1
             , questionParser.option2
             , questionParser.option3
-            , questionParser.option4
         };
-        questions.Remove(questionParser.answer);
 
         so.IncorrectAnswers = questions.ToArray();
 
