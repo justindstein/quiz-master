@@ -33,6 +33,8 @@ public class QuizStateManager : MonoBehaviour
     {
         if (obj is Quiz quiz)
         {
+            this.CurrentQuizAnswerCount.SetValue(0);
+
             this.askedQuestions.Clear();
 
             this.unaskedQuestions.Clear();
