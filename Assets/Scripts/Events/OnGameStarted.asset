@@ -9,8 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee08beb44caee42dc9301b142d43020b, type: 3}
-  m_Name: QuestionsPerQuiz
+  m_Script: {fileID: 11500000, guid: 9c60ac81fcf8d414dae4d4a33ba1507c, type: 3}
+  m_Name: OnGameStarted
   m_EditorClassIdentifier: 
-  DeveloperDescription: 
-  Value: 5

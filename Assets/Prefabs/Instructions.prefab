@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &5093262652697074672
+--- !u!1 &3523009715653627651
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,26 +8,26 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4682755801556313042}
-  - component: {fileID: 1782500825536471957}
-  - component: {fileID: 8862442697956417205}
-  - component: {fileID: 2991347986607231158}
-  - component: {fileID: 5606678455164497835}
-  - component: {fileID: 8176157374942258787}
+  - component: {fileID: 7544187268103430236}
+  - component: {fileID: 1313613046280585995}
+  - component: {fileID: 6368793331191123761}
+  - component: {fileID: 8307180891831263187}
+  - component: {fileID: 4943739552039049426}
+  - component: {fileID: 9005330859708168178}
   m_Layer: 5
-  m_Name: Quizzes
+  m_Name: Instructions
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &4682755801556313042
+--- !u!224 &7544187268103430236
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5093262652697074672}
+  m_GameObject: {fileID: 3523009715653627651}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -37,16 +37,16 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1500, y: 300}
+  m_AnchoredPosition: {x: 0, y: 250}
+  m_SizeDelta: {x: 1500, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1782500825536471957
+--- !u!114 &1313613046280585995
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5093262652697074672}
+  m_GameObject: {fileID: 3523009715653627651}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 59f8146938fff824cb5fd77236b75775, type: 3}
@@ -58,38 +58,34 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 0
-  m_Spacing: -10
-  m_ChildForceExpandWidth: 0
+  m_Spacing: 0
+  m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
-  m_ChildControlWidth: 1
-  m_ChildControlHeight: 1
+  m_ChildControlWidth: 0
+  m_ChildControlHeight: 0
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!114 &8862442697956417205
+--- !u!114 &6368793331191123761
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5093262652697074672}
+  m_GameObject: {fileID: 3523009715653627651}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c579d15ea5074048a4c5280834d5c8b, type: 3}
+  m_Script: {fileID: 11500000, guid: 103f9cea0b7514b45a0495bbba69ee34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  QuizButtonPrefab: {fileID: 1240806332237892295, guid: 5b4fb2a896ada4ed6b1bcc101cae2fb1, type: 3}
-  Quizzes:
-  - {fileID: 11400000, guid: 54bf310c5d00345158712bb878c49096, type: 2}
-  - {fileID: 11400000, guid: 10f32ce1140fb4c109e2f803499e3f61, type: 2}
-  - {fileID: 11400000, guid: d31d41d29e894435f823ac4b9ee53e5b, type: 2}
---- !u!114 &2991347986607231158
+  InstructionsTextPrefab: {fileID: 1488715581437384236, guid: 4b4380c1c2a9f4bbda627956a597b358, type: 3}
+--- !u!114 &8307180891831263187
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5093262652697074672}
+  m_GameObject: {fileID: 3523009715653627651}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9ef990d7ce6084a7ebc69d7d34352f39, type: 3}
@@ -99,9 +95,9 @@ MonoBehaviour:
   Response:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8862442697956417205}
-        m_TargetAssemblyTypeName: QuizController, Assembly-CSharp
-        m_MethodName: LoadQuizzes
+      - m_Target: {fileID: 6368793331191123761}
+        m_TargetAssemblyTypeName: InstructionsController, Assembly-CSharp
+        m_MethodName: LoadInstructions
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -111,13 +107,13 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &5606678455164497835
+--- !u!114 &4943739552039049426
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5093262652697074672}
+  m_GameObject: {fileID: 3523009715653627651}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9ef990d7ce6084a7ebc69d7d34352f39, type: 3}
@@ -127,9 +123,9 @@ MonoBehaviour:
   Response:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8862442697956417205}
-        m_TargetAssemblyTypeName: QuizController, Assembly-CSharp
-        m_MethodName: DestroyQuizzes
+      - m_Target: {fileID: 6368793331191123761}
+        m_TargetAssemblyTypeName: InstructionsController, Assembly-CSharp
+        m_MethodName: DestroyInstructions
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -139,25 +135,25 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &8176157374942258787
+--- !u!114 &9005330859708168178
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5093262652697074672}
+  m_GameObject: {fileID: 3523009715653627651}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9ef990d7ce6084a7ebc69d7d34352f39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: 94280924ef04c449b87648fe35c3e7a5, type: 2}
+  Event: {fileID: 11400000, guid: 075265d137b344a93b5a3bf8f6187e92, type: 2}
   Response:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8862442697956417205}
-        m_TargetAssemblyTypeName: QuizController, Assembly-CSharp
-        m_MethodName: LoadQuizzes
+      - m_Target: {fileID: 6368793331191123761}
+        m_TargetAssemblyTypeName: InstructionsController, Assembly-CSharp
+        m_MethodName: LoadInstructions
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
