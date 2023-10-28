@@ -4,12 +4,6 @@ public class InstructionsController : MonoBehaviour
 {
     public GameObject InstructionsTextPrefab;
 
-    //// TODO: a single event to kick off initialization
-    //private void Awake()
-    //{
-    //    this.LoadInstructions(null, null);
-    //}
-
     /// <summary>
     /// Load a collection of quizzes into 'Quizzes' layout group
     /// </summary>

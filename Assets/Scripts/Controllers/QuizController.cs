@@ -7,19 +7,11 @@ public class QuizController : MonoBehaviour
 
     public Quiz[] Quizzes;
 
-    // TODO: a single event to kick off initialization
-    //private void Awake()
-    //{
-    //    this.LoadQuizzes(null, null);
-    //}
-
     /// <summary>
     /// Load a collection of quizzes into 'Quizzes' layout group
     /// </summary>
     public void LoadQuizzes(Component component, System.Object obj)
     {
-        Debug.Log("LoadQuizzes");
-
         foreach (Quiz quiz in this.Quizzes)
         {
             // Instantiate a button

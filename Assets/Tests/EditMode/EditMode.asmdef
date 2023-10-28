@@ -1,0 +1,12 @@
+{
+    "name": "Tests",
+    "optionalUnityReferences": [
+        "TestAssemblies"
+    ],
+    "references": [
+        "ScriptsAssembly"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ]
+}

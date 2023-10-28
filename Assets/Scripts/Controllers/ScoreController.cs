@@ -10,7 +10,7 @@ public class ScoreController : MonoBehaviour
     public IntVariable LifetimeCorrectAnswerCount;
 
     public IntVariable QuizAnswerCount;
-
+     
     public IntVariable QuizCorrectAnswerCount;
 
     private TextMeshProUGUI scoreText;
