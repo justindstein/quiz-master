@@ -2,7 +2,7 @@
 using System.Threading;
 
 /// <summary>
-/// https://stackoverflow.com/questions/273313/randomize-a-listt
+/// Util class for generating thread-safe random number per https://stackoverflow.com/questions/273313/randomize-a-listt
 /// </summary>
 public static class ThreadSafeRandom
 {

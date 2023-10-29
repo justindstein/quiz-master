@@ -6,7 +6,7 @@
 public static class IListExtensions
 {
     /// <summary>
-    /// Randomly shuffle a list of elements using Fisher-Yates Shuffle algorithm
+    /// Randomly shuffle a list of elements using modified version of Fisher-Yates Shuffle algorithm
     /// https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle
     /// </summary>
     /// <typeparam name="T"></typeparam>
@@ -15,7 +15,7 @@ public static class IListExtensions
     {
         for (int i = list.Count - 1; i > 0; i--)
         {
-            int randomIndex = ThreadSafeRandom.ThisThreadsRandom.Next(i);
+            int randomIndex = ThreadSafeRandom.ThisThreadsRandom.Next(i + 1);
             T temp = list[randomIndex];
             list[randomIndex] = list[i];
             list[i] = temp;
@@ -62,12 +62,10 @@ public static class IListExtensions
     public static Queue<T> ToQueue<T>(this IList<T> list)
     {
         Queue<T> queue = new Queue<T>();
-
         foreach (var element in list)
         {
             queue.Enqueue(element);
         }
-
         return queue;
     }
 }
