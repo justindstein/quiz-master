@@ -100,99 +100,38 @@ public class IListExtensionsUT
         }
     }
 
-    //[Test]
-    //public void GetRandomElementExcluding_ElementsNull_ExcludeElementsNull()
-    //{
-    //    string randomElement = CollectionUtil.GetRandomElementExcluding(CollectionUtilUT.NULL_LIST, CollectionUtilUT.NULL_LIST);
-    //    Assert.IsNull(randomElement);
-    //}
+    [Test]
+    // Low probability of failed assertion due to random nature of random insertions.
+    public void RandomInsert_VerifyCompleteDistribution_Elements()
+    {
+        int INSERT_MINIMUM_THRESHOLD = 10;
 
-    //[Test]
-    //public void GetRandomElementExcluding_ElementsEmpty_ExcludeElementsNull()
-    //{
-    //    string randomElement = CollectionUtil.GetRandomElementExcluding(CollectionUtilUT.EMPTY_LIST, CollectionUtilUT.NULL_LIST);
-    //    Assert.IsNull(randomElement);
-    //}
+        Dictionary<int, int> insertIndexes = new Dictionary<int, int>();
 
-    //[Test]
-    //public void GetRandomElementExcluding_Elements_ExcludeElementsNull()
-    //{
-    //    string randomElement = CollectionUtil.GetRandomElementExcluding(this.elements, CollectionUtilUT.NULL_LIST);
+        List<string> randomInsertElements = new List<string>(elements);
 
-    //    Assert.NotNull(randomElement);
-    //    Assert.Contains(randomElement, this.elements);
+        for (int i = 0; i < 100; i++)
+        {
+            string value = "test";
+            int insertIndex = randomInsertElements.RandomInsert(value);
 
-    //    Assert.IsTrue("0".Equals(elements[0]));
-    //    Assert.IsTrue("1".Equals(elements[1]));
-    //    Assert.IsTrue("2".Equals(elements[2]));
-    //    Assert.IsTrue("3".Equals(elements[3]));
-    //    Assert.IsTrue("4".Equals(elements[4]));
-    //}
+            if (!insertIndexes.ContainsKey(insertIndex))
+            {
+                insertIndexes.Add(insertIndex, 0);
+            }
 
-    //[Test]
-    //public void GetRandomElementExcluding_ElementsNull_ExcludeElementsEmpty()
-    //{
-    //    string randomElement = CollectionUtil.GetRandomElementExcluding(CollectionUtilUT.NULL_LIST, CollectionUtilUT.EMPTY_LIST);
-    //    Assert.IsNull(randomElement);
-    //}
+            insertIndexes[insertIndex] = insertIndexes[insertIndex] + 1;
 
-    //[Test]
-    //public void GetRandomElementExcluding_ElementsEmpty_ExcludeElementsEmpty()
-    //{
-    //    string randomElement = CollectionUtil.GetRandomElementExcluding(CollectionUtilUT.EMPTY_LIST, CollectionUtilUT.EMPTY_LIST);
-    //    Assert.IsNull(randomElement);
-    //}
+            randomInsertElements.RemoveAt(insertIndex);
+        }
 
-    //[Test]
-    //public void GetRandomElementExcluding_Elements_ExcludeElementsEmpty()
-    //{
-    //    string randomElement = CollectionUtil.GetRandomElementExcluding(this.elements, CollectionUtilUT.EMPTY_LIST);
+        Assert.AreEqual(elements.Count, randomInsertElements.Count);
 
-    //    Assert.NotNull(randomElement);
-    //    Assert.Contains(randomElement, this.elements);
-
-    //    Assert.IsTrue("0".Equals(elements[0]));
-    //    Assert.IsTrue("1".Equals(elements[1]));
-    //    Assert.IsTrue("2".Equals(elements[2]));
-    //    Assert.IsTrue("3".Equals(elements[3]));
-    //    Assert.IsTrue("4".Equals(elements[4]));
-    //}
-
-    //[Test]
-    //public void GetRandomElementExcluding_ElementsNull_ExcludeElements()
-    //{
-    //    string randomElement = CollectionUtil.GetRandomElementExcluding(CollectionUtilUT.NULL_LIST, this.excludeElements);
-    //    Assert.IsNull(randomElement);
-    //}
-
-    //[Test]
-    //public void GetRandomElementExcluding_ElementsEmpty_ExcludeElements()
-    //{
-    //    string randomElement = CollectionUtil.GetRandomElementExcluding(CollectionUtilUT.EMPTY_LIST, this.excludeElements);
-    //    Assert.IsNull(randomElement);
-    //}
-
-    //[Test]
-    //public void GetRandomElementExcluding_Elements_ExcludeElements()
-    //{
-    //    string randomElement = CollectionUtil.GetRandomElementExcluding(this.elements, this.excludeElements);
-
-    //    Assert.NotNull(randomElement);
-    //    Assert.Contains(randomElement, this.elements);
-    //    Assert.False(this.excludeElements.Contains(randomElement));
-
-    //    Assert.IsTrue("0".Equals(elements[0]));
-    //    Assert.IsTrue("1".Equals(elements[1]));
-    //    Assert.IsTrue("2".Equals(elements[2]));
-    //    Assert.IsTrue("3".Equals(elements[3]));
-    //    Assert.IsTrue("4".Equals(elements[4]));
-    //}
-
-    //[Test]
-    //public void GetRandomElementExcluding_Elements_ExcludeElementsFull()
-    //{
-    //    string randomElement = CollectionUtil.GetRandomElementExcluding(this.elements, this.excludeElementsFull);
-
-    //    Assert.Null(randomElement);
-    //}
+        // Verify that each index (including front and back of list) has been touched
+        for (int i = 0; i <= elements.Count; i++)
+        {
+            Assert.IsTrue(insertIndexes.ContainsKey(i));
+            Assert.GreaterOrEqual(insertIndexes[i], INSERT_MINIMUM_THRESHOLD);
+        }
+    }
 }
