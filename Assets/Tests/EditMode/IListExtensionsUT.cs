@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using NUnit.Framework;
 
@@ -34,6 +33,7 @@ public class IListExtensionsUT
     }
 
     [Test]
+    // Very low probability of failed assertion due to shuffle not displacing ordering of any elements.
     public void Shuffle_Elements()
     {
         List<string> shuffleElements = new List<string>(this.elements);
@@ -59,6 +59,45 @@ public class IListExtensionsUT
             && shuffleElements[3].Equals(this.elements[3])
             && shuffleElements[4].Equals(this.elements[4])
         );
+    }
+
+    [Test]
+    public void RandomInsert_ElementsEmpty()
+    {
+        List<string> randomInsertElements = new List<string>(EMPTY_LIST);
+
+        string value = "0";
+        int index = randomInsertElements.RandomInsert(value);
+
+        Assert.IsNotEmpty(randomInsertElements);
+        Assert.Contains(value, randomInsertElements);
+        Assert.AreEqual(value, randomInsertElements[index]);
+    }
+
+    [Test]
+    // Low probability of failed assertion due to random nature of random insertions.
+    public void RandomInsert_Elements()
+    {
+        int MINIMUM_UNIQUE_INSERT_INDEXES = 40;
+
+        HashSet<int> insertIndexes = new HashSet<int>();
+
+        List<string> randomInsertElements = new List<string>(EMPTY_LIST);
+
+        for (int i = 0; i < 100; i++)
+        {
+            string value = i.ToString();
+            insertIndexes.Add(randomInsertElements.RandomInsert(value));
+        }
+
+        Assert.IsNotEmpty(randomInsertElements);
+        Assert.GreaterOrEqual(insertIndexes.Count, MINIMUM_UNIQUE_INSERT_INDEXES);
+
+        for (int i = 0; i < 100; i++)
+        {
+            string value = i.ToString();
+            Assert.Contains(value, randomInsertElements);
+        }
     }
 
     //[Test]

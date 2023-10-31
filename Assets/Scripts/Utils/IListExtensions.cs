@@ -32,7 +32,7 @@ public static class IListExtensions
     /// <returns>The index of the randomly inserted element</returns>
     public static int RandomInsert<T>(this IList<T> list, T element)
     {
-        int randomIndex = ThreadSafeRandom.ThisThreadsRandom.Next(list.Count - 1);
+        int randomIndex = ThreadSafeRandom.ThisThreadsRandom.Next(list.Count);
         list.Insert(randomIndex, element);
         return randomIndex;
     }
