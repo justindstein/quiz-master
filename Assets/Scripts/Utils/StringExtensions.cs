@@ -5,7 +5,6 @@
 /// </summary>
 public static class StringExtensions
 {
-
     public static string TrimAllWithInplaceCharArray(this string str)
     {
         var len = str.Length;

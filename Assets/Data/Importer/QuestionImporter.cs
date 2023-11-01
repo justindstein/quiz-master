@@ -21,12 +21,12 @@ public class DataImporter : MonoBehaviour
         ClearDirectory(QuizExportPath);
 
         Dictionary<string, List<Question>> quizzes = new Dictionary<string, List<Question>>();
-
         int count = 0;
-        foreach (QuestionParser rawQuestion in this.GetQuestions(ImportFilePath))
+
+        Debug.Log("Parsing Questions...");
+        foreach (QuestionParser questionParser in this.GetQuestions(ImportFilePath))
         {
-            // Create so
-            Question question = this.CreateQuestionSO(rawQuestion);
+            Question question = Question.CreateInstance(questionParser);
 
             // Associate question with quiz
             if (quizzes.ContainsKey(question.Subject))
@@ -46,17 +46,13 @@ public class DataImporter : MonoBehaviour
             this.CreateAsset(question, filePath);
         }
 
-        Debug.Log("Creating Quizzes");
+        Debug.Log("Creating Quizzes...");
         foreach (KeyValuePair<string, List<Question>> entry in quizzes)
         {
-            var quizName = entry.Key;
-            var questions = entry.Value;
-            Debug.Log("key: " + quizName + " value: " + questions);
-
-            Quiz quiz = CreateQuizSO(quizName, questions);
-
+            Quiz quiz = Quiz.CreateInstance(entry.Key, entry.Value);
             string filePath = string.Format(QuizExportPath + "/{0}.asset", entry.Key).TrimAllWithInplaceCharArray();
             this.CreateAsset(quiz, filePath);
+            Debug.Log(entry.Key);
         }
     }
 
@@ -67,41 +63,9 @@ public class DataImporter : MonoBehaviour
         return csv.GetRecords<QuestionParser>();
     }
 
-    private Question CreateQuestionSO(QuestionParser questionParser)
+    private void CreateAsset(ScriptableObject asset, string filePath)
     {
-        Question so = ScriptableObject.CreateInstance<Question>();
-
-        so.QuestionText = questionParser.question;
-        so.Subject = questionParser.subject;
-        so.Explanation = questionParser.explanation;
-        so.CorrectAnswer = questionParser.answer;
-
-        // Remove correct answer from answer list
-        HashSet<string> questions = new HashSet<string>() {
-            questionParser.option1
-            , questionParser.option2
-            , questionParser.option3
-        };
-
-        so.IncorrectAnswers = questions.ToArray();
-
-        return so;
-    }
-
-    private Quiz CreateQuizSO(string quizName, List<Question> questions)
-    {
-        Quiz so = ScriptableObject.CreateInstance<Quiz>();
-
-        so.Name = quizName;
-
-        so.Questions = new List<Question>(questions).ToArray();
-
-        return so;
-    }
-
-    private void CreateAsset(ScriptableObject so, string filePath)
-    {
-        AssetDatabase.CreateAsset(so, filePath);
+        AssetDatabase.CreateAsset(asset, filePath);
         AssetDatabase.SaveAssets();
         AssetDatabase.Refresh();
     }

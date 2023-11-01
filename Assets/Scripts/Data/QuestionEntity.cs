@@ -6,7 +6,7 @@ public class QuestionEntity
 
     public string Explanation { get; }
 
-    public IList<string> Answers { get; }
+    public List<string> Answers { get; }
 
     public string CorrectAnswer { get; }
 
