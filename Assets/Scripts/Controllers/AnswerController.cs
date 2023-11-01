@@ -7,6 +7,8 @@ public class AnswerController : MonoBehaviour
 
     public GameObject AnswerButtonPrefab;
 
+    public IntVariable QuizAnswerCount;
+
     public void LoadAnswers(Component component, System.Object obj)
     {
         if (obj is QuestionEntity question)

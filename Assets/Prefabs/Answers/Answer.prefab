@@ -283,7 +283,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44361eb763cb04b4d871bf459b2be96a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CorrectAnswerSprite: {fileID: 21300000, guid: e89f51b7621c04fffa47e63913381264, type: 3}
+  CorrectAnswerSprite: {fileID: 21300000, guid: 8fdf80513a37641039c16ce35c3df9de, type: 3}
+  IncorrectAnswerSprite: {fileID: 21300000, guid: d98fd7c976eb84084a4936b10e4e1c02, type: 3}
   OnCorrectAnswer:
     m_PersistentCalls:
       m_Calls:
@@ -343,8 +344,8 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1137659102659658139}
-        m_TargetAssemblyTypeName: AnswerButtonController, Assembly-CSharp
-        m_MethodName: Highlight
+        m_TargetAssemblyTypeName: AnswerButtonController, ScriptsAssembly
+        m_MethodName: HighlightCorrect
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -383,8 +384,8 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1137659102659658139}
-        m_TargetAssemblyTypeName: AnswerButtonController, Assembly-CSharp
-        m_MethodName: Highlight
+        m_TargetAssemblyTypeName: AnswerButtonController, ScriptsAssembly
+        m_MethodName: HighlightIncorrect
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -423,8 +424,8 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1137659102659658139}
-        m_TargetAssemblyTypeName: AnswerButtonController, Assembly-CSharp
-        m_MethodName: Highlight
+        m_TargetAssemblyTypeName: AnswerButtonController, ScriptsAssembly
+        m_MethodName: HighlightIncorrect
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

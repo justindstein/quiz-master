@@ -9,6 +9,8 @@ public class AnswerButtonController : MonoBehaviour
 {
     public Sprite CorrectAnswerSprite;
 
+    public Sprite IncorrectAnswerSprite;
+
     public UnityEvent<Component, System.Object> OnCorrectAnswer;
 
     public UnityEvent<Component, System.Object> OnIncorrectAnswer;
@@ -52,11 +54,22 @@ public class AnswerButtonController : MonoBehaviour
     /// <summary>
     /// Highlight this button if this instance corresponds to the correct answer
     /// </summary>
-    public void Highlight()
+    public void HighlightCorrect()
     {
         if (this.isCorrect)
         {
             this.image.sprite = this.CorrectAnswerSprite;
+        }
+    }
+
+    /// <summary>
+    /// Highlight this button if this instance corresponds to the correct answer
+    /// </summary>
+    public void HighlightIncorrect()
+    {
+        if (this.isCorrect)
+        {
+            this.image.sprite = this.IncorrectAnswerSprite;
         }
     }
 
