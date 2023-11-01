@@ -9,4 +9,3 @@ public static class HashSetExtensions
         return array;
     }
 }
-

@@ -1,6 +1,5 @@
 using TMPro;
 using UnityEngine;
-using static QuestionEntity;
 
 public class AnswerController : MonoBehaviour
 {
@@ -15,10 +14,12 @@ public class AnswerController : MonoBehaviour
             // Clear out previous answers
             this.DeleteAnswers(null, null);
 
-            foreach (ActiveAnswer answer in question.Answers)
+            foreach (string answer in question.Answers)
             {
+                bool isCorrectAnswer = question.CorrectAnswer.Equals(answer);
+
                 // Instantiate a button
-                GameObject answerButton = instantiateAnswerButton(this.AnswerButtonPrefab, answer, question);
+                GameObject answerButton = instantiateAnswerButton(this.AnswerButtonPrefab, answer, isCorrectAnswer, question);
 
                 // Set its parent to 'Answers' GameObject
                 answerButton.transform.SetParent(this.transform);
@@ -32,14 +33,14 @@ public class AnswerController : MonoBehaviour
     /// <param name="prefab">The prefab to instantiate</param>
     /// <param name="answer">The associated answer</param>
     /// <returns>Instantiated button gameobject</returns>
-    private GameObject instantiateAnswerButton(GameObject prefab, ActiveAnswer answer, QuestionEntity question)
+    private GameObject instantiateAnswerButton(GameObject prefab, string answer, bool isCorrectAnswer, QuestionEntity question)
     {
         GameObject answerButton = Instantiate(prefab);
 
-        answerButton.GetComponent<AnswerButtonController>().SetIsCorrect(answer.IsCorrect);
+        answerButton.GetComponent<AnswerButtonController>().SetIsCorrect(isCorrectAnswer);
         answerButton.GetComponent<AnswerButtonController>().SetQuestion(question);
 
-        answerButton.GetComponentInChildren<TextMeshProUGUI>().SetText(answer.Answer);
+        answerButton.GetComponentInChildren<TextMeshProUGUI>().SetText(answer);
 
         return answerButton;
     }
