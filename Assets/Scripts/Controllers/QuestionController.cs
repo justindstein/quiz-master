@@ -49,11 +49,10 @@ public class QuestionController : MonoBehaviour
             this.DeleteQuestions(null, null);
 
             // Instantiate a question
-            GameObject questionText = instantiateQuestionText(this.QuestionTextPrefab, string.Format(this.ExpiredTimerText.Value, question.CorrectAnswer.Answer));
+            GameObject questionText = instantiateQuestionText(this.QuestionTextPrefab, string.Format(this.IncorrectAnswerText.Value, question.CorrectAnswer.Answer));
 
             // Set its parent to 'Question' GameObject
             questionText.transform.SetParent(this.transform);
-
         }
     }
 
@@ -75,9 +74,7 @@ public class QuestionController : MonoBehaviour
     private GameObject instantiateQuestionText(GameObject prefab, string text)
     {
         GameObject questionText = Instantiate(prefab);
-
         questionText.GetComponent<TextMeshProUGUI>().SetText(text);
-
         return questionText;
     }
 
