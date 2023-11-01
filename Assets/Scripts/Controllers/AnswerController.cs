@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using static QuestionEntity;
 
 public class AnswerController : MonoBehaviour
 {
@@ -9,15 +10,15 @@ public class AnswerController : MonoBehaviour
 
     public void LoadAnswers(Component component, System.Object obj)
     {
-        if (obj is QuestionEntity questionPresentation)
+        if (obj is QuestionEntity question)
         {
             // Clear out previous answers
             this.DeleteAnswers(null, null);
 
-            foreach (AnswerEntity answer in questionPresentation.AnswerEntities)
+            foreach (ActiveAnswer answer in question.Answers)
             {
                 // Instantiate a button
-                GameObject answerButton = instantiateAnswerButton(this.AnswerButtonPrefab, answer, questionPresentation);
+                GameObject answerButton = instantiateAnswerButton(this.AnswerButtonPrefab, answer, question);
 
                 // Set its parent to 'Answers' GameObject
                 answerButton.transform.SetParent(this.transform);
@@ -31,7 +32,7 @@ public class AnswerController : MonoBehaviour
     /// <param name="prefab">The prefab to instantiate</param>
     /// <param name="answer">The associated answer</param>
     /// <returns>Instantiated button gameobject</returns>
-    private GameObject instantiateAnswerButton(GameObject prefab, AnswerEntity answer, QuestionEntity question)
+    private GameObject instantiateAnswerButton(GameObject prefab, ActiveAnswer answer, QuestionEntity question)
     {
         GameObject answerButton = Instantiate(prefab);
 

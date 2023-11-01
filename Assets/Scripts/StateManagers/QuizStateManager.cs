@@ -49,7 +49,7 @@ public class QuizStateManager : MonoBehaviour
 
     public void LoadQuestion()
     {
-        // No questions remaining or question count exceeds some value
+        // No questions remaining or question count exceeds QuizSize
         if (this.unaskedQuestions.Count <= 0 || this.CurrentQuizAnswerCount.Value >= this.QuizSize.Value)
         {
             this.OnQuizFinished.Invoke(this, null);
