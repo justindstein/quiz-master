@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: TimerExpiredText
   m_EditorClassIdentifier: 
   DeveloperDescription: 
-  Value: 'Out of time! Correct answer: {0}'
+  Value: 'Out of time!{0}Correct answer: {1}'

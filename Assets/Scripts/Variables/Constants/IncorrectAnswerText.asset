@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: IncorrectAnswerText
   m_EditorClassIdentifier: 
   DeveloperDescription: 
-  Value: 'Wrong! Correct answer: {0}'
+  Value: 'Wrong!{0}Correct answer: {1}'
