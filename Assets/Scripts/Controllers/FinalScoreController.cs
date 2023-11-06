@@ -5,6 +5,8 @@ public class FinalScoreController : MonoBehaviour
 {
     public GameObject FinalScorePrefab;
 
+    public StringVariable FinalScoreText;
+
     public IntVariable QuizCorrectAnswerCount;
 
     public IntVariable QuizAnswerCount;
@@ -30,7 +32,8 @@ public class FinalScoreController : MonoBehaviour
 
         finalScore.GetComponent<TextMeshProUGUI>()
             .SetText(this.GetFinalScoreMessage(
-                this.QuizCorrectAnswerCount.Value
+                this.FinalScoreText.Value
+                , this.QuizCorrectAnswerCount.Value
                 , this.QuizAnswerCount.Value
                 , this.LifetimeCorrectAnswerCount.Value
                 , this.LifetimeAnswerCount.Value
@@ -39,11 +42,12 @@ public class FinalScoreController : MonoBehaviour
         return finalScore;
     }
 
-    private string GetFinalScoreMessage(int quizCorrectAnswerCount, int quizAnswerCount, int lifetimeCorrectAnswerCount, int lifetimeAnswerCount)
+    private string GetFinalScoreMessage(string finalScoreText, int quizCorrectAnswerCount, int quizAnswerCount, int lifetimeCorrectAnswerCount, int lifetimeAnswerCount)
     {
-        return string.Format("Quiz score: {0}/{1}\nLifetime score: {2}/{3}"
+        return string.Format(finalScoreText
             , quizCorrectAnswerCount
             , quizAnswerCount
+            , "\n"
             , lifetimeCorrectAnswerCount
             , lifetimeAnswerCount
         );
