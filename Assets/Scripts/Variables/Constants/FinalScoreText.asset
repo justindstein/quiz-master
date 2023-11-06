@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: FinalScoreText
   m_EditorClassIdentifier: 
   DeveloperDescription: 
-  Value: 'Quiz score: {0}/{1}{2}Lifetime score: {3}/{4}'
+  Value: 'Quiz Score: {0}/{1}{2}Lifetime Score: {3}/{4}'
