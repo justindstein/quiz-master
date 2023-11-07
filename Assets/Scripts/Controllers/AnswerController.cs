@@ -3,11 +3,7 @@ using UnityEngine;
 
 public class AnswerController : MonoBehaviour
 {
-    public QuizStateManager QuizStateManager;
-
     public GameObject AnswerButtonPrefab;
-
-    public IntVariable QuizAnswerCount;
 
     public void LoadAnswers(Component component, System.Object obj)
     {
