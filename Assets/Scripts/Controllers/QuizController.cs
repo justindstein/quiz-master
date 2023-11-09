@@ -7,6 +7,11 @@ public class QuizController : MonoBehaviour
 
     public Quiz[] Quizzes;
 
+    public void Awake()
+    {
+        LoadQuizzes(null, null);
+    }
+
     /// <summary>
     /// Load a collection of quizzes into 'Quizzes' layout group
     /// </summary>

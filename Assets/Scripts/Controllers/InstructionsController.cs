@@ -4,6 +4,11 @@ public class InstructionsController : MonoBehaviour
 {
     public GameObject InstructionsTextPrefab;
 
+    public void Awake()
+    {
+        this.LoadInstructions(null, null);
+    }
+
     /// <summary>
     /// Load a collection of quizzes into 'Quizzes' layout group
     /// </summary>
@@ -13,6 +18,8 @@ public class InstructionsController : MonoBehaviour
 
         // Instantiate instructions
         GameObject instructionsText = Instantiate(InstructionsTextPrefab);
+
+        Debug.Log("InstructionsController.LoadInstructions");
 
         // Set its parent to 'Instructions' GameObject
         instructionsText.transform.SetParent(this.transform);

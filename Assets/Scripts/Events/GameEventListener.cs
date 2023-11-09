@@ -24,7 +24,6 @@ public class GameEventListener : MonoBehaviour
 
     public void OnEventRaised(Component component, System.Object obj)
     {
-        Debug.Log("OnEventRaised");
         Response.Invoke(component, obj);
     }
 }
