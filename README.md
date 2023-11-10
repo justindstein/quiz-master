@@ -1,35 +1,19 @@
-# quiz-master
-Unity quiz game prototype.
+# snow-boarder
+This project is a quiz game written using the Unity game engine. This game was built primarily for self-educational purposes with guidance from [this tutorial](https://www.udemy.com/course/unitycourse/).
 
-"Harry Potter" series by J.K. Rowling
-"The Lord of the Rings" series by J.R.R. Tolkien
-"Game of Thrones" series by George R.R. Martin
-"The Hunger Games" series by Suzanne Collins
-"Twilight" series by Stephenie Meyer
-"Star Wars" franchise
-"Star Trek" franchise
-Marvel comics universe
-dc comic universe
-the witcher
+### Controls
+left mouse - press button
 
-fallout universe
-legend of zelda
-super mario
-pokemon
-world of warcraft
-final fantasy
-megaman
-harvest moon
-castlevania
+### Gameplay Features
+- Test your knowledge against our extensive pool of AI-generated questions. Do you have what it takes to pass ChatGPT's grueling trivia exam?
+- Demonstrate your mastery of highly intellectual subjects including: Lord of the Rings, Harry Potter, and Star Wars!
 
+### Gameplay Demo
 
-Fullmetal Alchemist: Brotherhood:
-Naruto and Naruto Shippuden
-Attack on Titan
-One Piece
-Death Note
-Cowboy Bebop
-Bleach
-Spirited Away
-Inuyasha
-Dragonball and dragonballz
+Playable on [itch.io](https://justindstein.itch.io/quiz-master).
+
+https://github.com/justindstein/quiz-master/assets/11355547/136a0f17-0ae2-4655-a48c-b61a320a6d08
+
+### License
+
+[MIT](./LICENSE).
