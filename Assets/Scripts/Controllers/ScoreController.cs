@@ -5,6 +5,8 @@ public class ScoreController : MonoBehaviour
 {
     public GameObject ScoreTextPrefab;
 
+    public StringVariable ScoreText;
+
     public IntVariable LifetimeAnswerCount;
 
     public IntVariable LifetimeCorrectAnswerCount;
@@ -63,6 +65,6 @@ public class ScoreController : MonoBehaviour
 
     public void UpdateScore()
     {
-        this.scoreText.SetText(string.Format("Score: {0} / {1}", this.QuizCorrectAnswerCount.Value, this.QuizAnswerCount.Value));
+        this.scoreText.SetText(string.Format(this.ScoreText.Value, this.QuizCorrectAnswerCount.Value, this.QuizAnswerCount.Value));
     }
 }
