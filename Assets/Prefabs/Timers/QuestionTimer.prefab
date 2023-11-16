@@ -36,7 +36,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 135, y: 135}
+  m_SizeDelta: {x: 90, y: 90}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7213858057977674563
 CanvasRenderer:
@@ -90,8 +90,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Duration: {fileID: 11400000, guid: 3a9288d750a2f42ffb7adc230d8fd367, type: 2}
   TimerMaxFill: {fileID: 11400000, guid: b02e37ddc6a7e4b1eb4f0e89df808de1, type: 2}
-  Sprite: {fileID: 0}
-  FillClockwise: 0
   OnTimerExpired:
     m_PersistentCalls:
       m_Calls:

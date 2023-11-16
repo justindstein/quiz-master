@@ -37,7 +37,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -180}
-  m_SizeDelta: {x: 1500, y: 430}
+  m_SizeDelta: {x: 575, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &64908989682997161
 MonoBehaviour:
@@ -77,9 +77,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61ef7f27ba5e049eebf5c1a316e3e426, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  QuizStateManager: {fileID: 0}
   AnswerButtonPrefab: {fileID: 8782574070687847616, guid: b3697fe8e969542c2b6155724574da77, type: 3}
-  QuizAnswerCount: {fileID: 0}
 --- !u!114 &522266005133826599
 MonoBehaviour:
   m_ObjectHideFlags: 0
