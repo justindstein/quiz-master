@@ -12,7 +12,7 @@ left mouse - press button
 
 Playable on [itch.io](https://justindstein.itch.io/quiz-master).
 
-https://github.com/justindstein/quiz-master/assets/11355547/136a0f17-0ae2-4655-a48c-b61a320a6d08
+https://github.com/justindstein/quiz-master/assets/11355547/c35f32ec-e044-4470-b5f5-262c95684da3
 
 ### License
 
