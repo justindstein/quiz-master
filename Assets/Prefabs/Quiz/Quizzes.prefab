@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4682755801556313042}
   - component: {fileID: 1782500825536471957}
   - component: {fileID: 8862442697956417205}
-  - component: {fileID: 2991347986607231158}
   - component: {fileID: 5606678455164497835}
   - component: {fileID: 8176157374942258787}
   m_Layer: 5
@@ -83,34 +82,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 54bf310c5d00345158712bb878c49096, type: 2}
   - {fileID: 11400000, guid: 10f32ce1140fb4c109e2f803499e3f61, type: 2}
   - {fileID: 11400000, guid: d31d41d29e894435f823ac4b9ee53e5b, type: 2}
---- !u!114 &2991347986607231158
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5093262652697074672}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ef990d7ce6084a7ebc69d7d34352f39, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: 63a0eafe21a634e7995c62f7c8b558f7, type: 2}
-  Response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8862442697956417205}
-        m_TargetAssemblyTypeName: QuizController, Assembly-CSharp
-        m_MethodName: LoadQuizzes
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &5606678455164497835
 MonoBehaviour:
   m_ObjectHideFlags: 0

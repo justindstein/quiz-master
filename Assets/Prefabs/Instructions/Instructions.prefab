@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 7544187268103430236}
   - component: {fileID: 1313613046280585995}
   - component: {fileID: 6368793331191123761}
-  - component: {fileID: 8307180891831263187}
   - component: {fileID: 4943739552039049426}
   - component: {fileID: 9005330859708168178}
   m_Layer: 5
@@ -79,34 +78,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   InstructionsTextPrefab: {fileID: 1488715581437384236, guid: 4b4380c1c2a9f4bbda627956a597b358, type: 3}
---- !u!114 &8307180891831263187
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3523009715653627651}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ef990d7ce6084a7ebc69d7d34352f39, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: 63a0eafe21a634e7995c62f7c8b558f7, type: 2}
-  Response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6368793331191123761}
-        m_TargetAssemblyTypeName: InstructionsController, Assembly-CSharp
-        m_MethodName: LoadInstructions
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &4943739552039049426
 MonoBehaviour:
   m_ObjectHideFlags: 0
