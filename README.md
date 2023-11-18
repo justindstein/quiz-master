@@ -1,16 +1,32 @@
 # quiz-master
+
+Embark on an enthralling journey of self-discovery with Quiz-Master, the ultimate quiz experience! Immerse yourself in the enchanting realms of Tolkien's creation, the magical wonders of Hogwarts, and the captivating galaxy brought to life by George Lucas. Engage in a diverse array of 100% AI-generated questions in our browser-based quiz game, where each round invites you to explore 10 multiple-choice questions from a limitless question bank, ensuring a fresh and captivating quiz experience every time. Test your knowledge against the prowess of AI and discover if you can emerge victorious!
+
 This project is a quiz game written using the Unity game engine. This game was built primarily for self-educational purposes with guidance from [this tutorial](https://www.udemy.com/course/unitycourse/).
 
 ### Controls
 left mouse - press button
 
 ### Gameplay Features
-- Test your knowledge against our extensive pool of AI-generated questions. Do you have what it takes to pass ChatGPT's grueling trivia exam?
-- Demonstrate your mastery of highly intellectual subjects including: Lord of the Rings, Harry Potter, and Star Wars!
+- Diverse Quiz Subjects
+  - Explore questions from three popular fandoms: Star Wars, Harry Potter, and Star Wars.
+- Dynamic Question Bank
+  - Engage in a diverse array of 100% AI-generated questions for each quiz round.
+  - Enjoy a limitless question bank, ensuring a unique and challenging experience with every playthrough.
+- Browser-Based Experience
+  - Play seamlessly in your browser using Unity WebGL, eliminating the need for additional downloads or installations.
+- Multiple-Choice Questions
+  - Answer 10 multiple-choice questions in each round, testing your knowledge on various aspects of the selected fandoms.
+- Personalized Progress Tracking
+  - Monitor your progress as you navigate through the quiz game.
+  - Keep track of your correct and incorrect answers, providing insights into your overall performance.
 
 ### Gameplay Demo
 
 Playable on [itch.io](https://justindstein.itch.io/quiz-master).
+
+### Design Features
+
 
 https://github.com/justindstein/quiz-master/assets/11355547/c35f32ec-e044-4470-b5f5-262c95684da3
 
