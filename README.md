@@ -25,10 +25,17 @@ left mouse - press button
 
 Playable on [itch.io](https://justindstein.itch.io/quiz-master).
 
-### Design Features
-
-
 https://github.com/justindstein/quiz-master/assets/11355547/c35f32ec-e044-4470-b5f5-262c95684da3
+
+### Design Features
+- Dynamic Object Management
+  - Enable on-demand creation and cleanup of game objects for efficient and controlled operations.
+- Event-Driven Architecture
+  - Architect the game around an event-driven system for responsiveness and modularity.
+- Resolution Scaling
+  - Ensure a visually appealing experience by dynamically adjusting to different devices and screen sizes.
+- Data Import Tooling
+  - Import tooling to seamlessly import massive question datasets, enriching the game with diverse and extensive quiz content.
 
 ### License
 
